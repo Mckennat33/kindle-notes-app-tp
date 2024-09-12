@@ -2,10 +2,10 @@ const fs = require('fs')
 const csvParser = require('csv-parser')
 const { error } = require('console')
 const millionDollarWeekend = "C:/Users/thoma/Downloads/milliondollarweekend.csv"; // Corrected path
-
+const dontBelieveEverthingYouThink = "c:/Users/thoma/Downloads/dontbelieveeverythingyouthink.csv"
 
 const results = [];
-fs.createReadStream(millionDollarWeekend)
+fs.createReadStream(dontBelieveEverthingYouThink)
   .pipe(csvParser())
   .on('data', (data) => results.push(data))
   .on('end', () => {
