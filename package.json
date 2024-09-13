@@ -1,0 +1,18 @@
+{
+  "name": "kindle-notes-app-tp",
+  "version": "1.0.0",
+  "description": "Kindle notes app for my thinkpad",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "kindle-notes-app-tp"
+  },
+  "author": "Thomas McKenna",
+  "license": "ISC",
+  "dependencies": {
+    "csv-parser": "^3.0.0"
+  }
+}
