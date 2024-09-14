@@ -33,18 +33,23 @@ function formatBook(book) {
   .on('data', (data) => results.push(data))
   .on('end', () => {
     const jsonResults = JSON.stringify(results, null, 2); 
-    fs.writeFile('booknotes.csv', jsonResults, (err) => {
-      if (err) {
-        console.log('Error writing to file:', err)
-      } else {
-        console.log("file written successfully")
-      }
-    })
-  });
+    
+    //console.log(notesArray)
+  })
 }
 
 
 // book needs to be parsed before it can go through the formatBook function
+function createBookFile() {
+  fs.writeFile('booknotes.csv', jsonResults, (err) => {
+    if (err) {
+      console.log('Error writing to file:', err)
+    } else {
+      console.log("file written successfully")
+    }
+  })
+}
+
 
 function bookFile() {
 
@@ -55,5 +60,3 @@ function allBookFiles() {
 }
 
 
-
- 
