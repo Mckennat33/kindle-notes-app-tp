@@ -33,10 +33,14 @@ function formatBook(book) {
   .on('data', (data) => results.push(data))
   .on('end', () => {
     
+    //const bookNotes = results.slice(7)
+    const [{"Your Kindle Notes For:": book}, {"Your Kindle Notes For:": author},,,,,,  {"": notes} ] = results
+    console.log(notes)
+    // const [, {"Your Kindle Notes For:": author}] = results
+    // const [,,,,,,,{"": notes}] = results
     
-    console.log(results)
     
-    //console.log(notesArray)
+
   })
 }
 
