@@ -20,19 +20,21 @@ const books = [
 
 books.forEach(book => formatBook(book))
 
+// sending each book into formatBooks, so if I try to format it i need 
+//to do it for each book 
 function formatBook(book) {
-
   // this is overwriting booknotes.csv file with the last book in the array. We need to creat a unique path/name for each book
   // then we need to create a way to put them all in one. 
   //first we need to format them 
   const bookPath = book.path
-  console.log(bookPath)
   const results = [];
   fs.createReadStream(bookPath)
   .pipe(csvParser())
   .on('data', (data) => results.push(data))
   .on('end', () => {
-    const jsonResults = JSON.stringify(results, null, 2); 
+    
+    
+    console.log(results)
     
     //console.log(notesArray)
   })
