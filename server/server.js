@@ -1,6 +1,7 @@
 const fs = require('fs')
 const csvParser = require('csv-parser')
-const { error } = require('console')
+const { error } = require('console');
+const { notStrictEqual } = require('assert');
 const millionDollarWeekend = "C:/Users/thoma/Downloads/milliondollarweekend.csv"; // Corrected path
 const dontBelieveEverthingYouThink = "c:/Users/thoma/Downloads/dontbelieveeverythingyouthink.csv"
 const howToBeFree = "c:/Users/thoma/Downloads/howtobefree.csv"
@@ -32,13 +33,16 @@ function formatBook(book) {
   .pipe(csvParser())
   .on('data', (data) => results.push(data))
   .on('end', () => {
-    
-    //const bookNotes = results.slice(7)
-    const [{"Your Kindle Notes For:": book}, {"Your Kindle Notes For:": author},,,,,,  {"": notes} ] = results
-    console.log(notes)
-    // const [, {"Your Kindle Notes For:": author}] = results
+
+    // results.forEach((note) => {
+    //   console.log(note[""])
+    // })
+    const test = results.slice(7, results.length)
+    //console.log(test)
+    const [{"Your Kindle Notes For:": book}, {"Your Kindle Notes For:": author}] = results
     // const [,,,,,,,{"": notes}] = results
-    
+
+
     
 
   })
