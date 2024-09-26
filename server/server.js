@@ -7,10 +7,6 @@ const dontBelieveEverthingYouThink = "c:/Users/thoma/Downloads/dontbelieveeveryt
 const howToBeFree = "c:/Users/thoma/Downloads/howtobefree.csv"
 const theWayToLove = "c:/Users/thoma/Downloads/thewaytolove.csv"
 
-// 1. we want to put each book into its own csv file, we also want to have a csv file with all our books highlighted notes. 
-// 2. need to put each book into a data structure so we can loop through them
-// I need to parse the notes before I can sent it through the format function 
-
 
 const books = [
   {path: 'C:/Users/thoma/Downloads/milliondollarweekend.csv', name:'millionDillorWeekend.csv'}, 
@@ -18,6 +14,7 @@ const books = [
   {path: 'c:/Users/thoma/Downloads/howtobefree.csv', name: 'howToBeFree.csv'}, 
   {path: 'c:/Users/thoma/Downloads/thewaytolove.csv', name: 'theWayToLove.csv'}
 ]
+
 
 books.forEach(book => formatBook(book))
 
@@ -33,20 +30,24 @@ function formatBook(book) {
   .pipe(csvParser())
   .on('data', (data) => results.push(data))
   .on('end', () => {
-
-    // results.forEach((note) => {
-    //   console.log(note[""])
-    // })
+    const newArray = results
     const test = results.slice(7, results.length)
-    //console.log(test)
-    const [{"Your Kindle Notes For:": book}, {"Your Kindle Notes For:": author}] = results
-    // const [,,,,,,,{"": notes}] = results
+    const [{"Your Kindle Notes For:": bookTitle}, {"Your Kindle Notes For:": author}] = results
+    //const [,,,,,,,{"": notes}] = newArray
 
-
-    
+    const notes = test
+    .slice(7)
+    .filter(row => row["Your Kindle Notes For:"].startsWith("Highlight")) // Only get highlight rows
+    .map(row => ({
+      title: bookTitle,
+      author: author,
+      note: row[""] // Extract the actual note content
+    }));
+    console.log(notes)
 
   })
 }
+
 
 
 // book needs to be parsed before it can go through the formatBook function
@@ -61,7 +62,7 @@ function createBookFile() {
 }
 
 
-function bookFile() {
+function bookFile(books) {
 
 }
 
