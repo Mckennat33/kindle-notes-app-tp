@@ -7,7 +7,6 @@ const dontBelieveEverthingYouThink = "c:/Users/thoma/Downloads/dontbelieveeveryt
 const howToBeFree = "c:/Users/thoma/Downloads/howtobefree.csv"
 const theWayToLove = "c:/Users/thoma/Downloads/thewaytolove.csv"
 
-
 const books = [
   {path: 'C:/Users/thoma/Downloads/milliondollarweekend.csv', name:'millionDillorWeekend.csv'}, 
   {path: 'c:/Users/thoma/Downloads/dontbelieveeverythingyouthink.csv', name: 'dontBelieveEverythingYouThink.csv'}, 
@@ -15,15 +14,9 @@ const books = [
   {path: 'c:/Users/thoma/Downloads/thewaytolove.csv', name: 'theWayToLove.csv'}
 ]
 
-
 books.forEach(book => formatBook(book))
-
-// sending each book into formatBooks, so if I try to format it i need 
-//to do it for each book 
+ 
 function formatBook(book) {
-  // this is overwriting booknotes.csv file with the last book in the array. We need to creat a unique path/name for each book
-  // then we need to create a way to put them all in one. 
-  //first we need to format them 
   const bookPath = book.path
   const results = [];
   fs.createReadStream(bookPath)
@@ -33,7 +26,6 @@ function formatBook(book) {
     const newArray = results
     const test = results.slice(7, results.length)
     const [{"Your Kindle Notes For:": bookTitle}, {"Your Kindle Notes For:": author}] = results
-    //const [,,,,,,,{"": notes}] = newArray
 
     const notes = test
     .slice(7)
@@ -43,31 +35,23 @@ function formatBook(book) {
       author: author,
       note: row[""] // Extract the actual note content
     }));
-    console.log(notes)
-
+    
+    createBookFile(notes)
   })
 }
 
 
 
-// book needs to be parsed before it can go through the formatBook function
-function createBookFile() {
-  fs.writeFile('booknotes.csv', jsonResults, (err) => {
+function createBookFile(booknotes) {
+  const stringNotes = JSON.stringify(booknotes)
+  fs.writeFile('booknotes.csv', stringNotes, (err) => {
     if (err) {
       console.log('Error writing to file:', err)
     } else {
-      console.log("file written successfully")
+      console.log('file written successfully')
     }
   })
-}
+} 
 
-
-function bookFile(books) {
-
-}
-
-function allBookFiles() {
-
-}
 
 
