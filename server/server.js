@@ -2,18 +2,23 @@ const fs = require('fs')
 const csvParser = require('csv-parser')
 const { error } = require('console');
 const { notStrictEqual } = require('assert');
-const { create } = require('domain');
-const millionDollarWeekend = "/Users/thomasmckenna/Downloads/Million-Dollar-Weekend-Notes.csv"; // Corrected path
+const millionDollarWeekend = "/Users/thomasmckenna/Downloads/Million-Dollar-Weekend-Notes.csv"
 const howToBeFree = "/Users/thomasmckenna/Downloads/how-to-be-free.csv"
+const friendsLoversAndTheBigTerribleThing = "/Users/thomasmckenna/Downloads/friends-lovers-and-the-big-terrible-thing-a-memoir.csv"
 
 
 const books = [
-  {path: "/Users/thomasmckenna/Downloads/Million-Dollar-Weekend-Notes.csv", name:'millionDillorWeekend.csv'}, 
+  {path: '/Users/thomasmckenna/Downloads/Million-Dollar-Weekend-Notes.csv', name:'millionDillorWeekend.csv'}, 
+  //{path: '/Users/thomasmckenna/Downloads/dontbelieveeverythingyouthink.csv', name: 'dontBelieveEverythingYouThink.csv'}, 
   {path: "/Users/thomasmckenna/Downloads/how-to-be-free.csv", name: 'howToBeFree.csv'}, 
+  //{path: '/Users/thomasmckenna/Downloads/thewaytolove.csv', name: 'theWayToLove.csv'}
 ]
+
 
 books.forEach(book => formatBook(book))
 
+// sending each book into formatBooks, so if I try to format it i need 
+//to do it for each book 
 function formatBook(book) {
   const bookPath = book.path
   const results = [];
@@ -32,57 +37,41 @@ function formatBook(book) {
       author: author,
       note: row[""] // Extract the actual note content
     }));
-    writeFile(notes)
-  })  
+    
+
+    createBookFile(notes)
+  })
 }
 
-module.exports = { formatBook }
 
-function writeFile(booknotes) {
-    const stringNotes = JSON.stringify(booknotes)
-    fs.writeFile('test.csv', stringNotes, (err) => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(`Filewritten successfully`)
-      }
-    })
-    
-  }
 
-  
-  function readFiles() {
-    const newResults = [];
-    fs.createReadStream('test.csv')
-      .pipe(csvParser())
-      .on('data', (data) => newResults.push(data)) // Push each row of CSV into results
-      .on('end', () => {
-        console.log('we did it', newResults); // Output the parsed CSV as an array of objects
-      })
-      .on('error', (err) => {
-        console.error('Error reading file:', err); // Handle errors
-      });
-  }
-  
-  readFiles();
+// book needs to be parsed before it can go through the formatBook function
+function createBookFile(bookNotes) {
+  const stringNotes = JSON.stringify(bookNotes)
+  fs.writeFile('booknotes.csv', stringNotes, (err) => {
+    if (err) {
+      console.log('Error writing to file:', err)
+    } else {
+      console.log("file written successfully")
+    }
+  })
+}
 
+function readBookFile() {
+  const newResults = []
+  fs.createReadStream('./booknotes.csv')
+  .pipe(csvParser())
+  .on('data', (data) => newResults.push(data))
+  .on('end', () => {
+    console.log('we did it', newResults)
+  })
+  .on('error', (err) => {
+    console.log('error reading file:', err)
+  })
+}
+
+readBookFile()
 
 
 
-// const createCsvFile = require('csv-writer').createObjectCsvWriter
-// const csvWriter = createCsvFile({
-//   path: "allBookNotes.csv", 
-//   header: [
-//     {id: 'title', title: 'Title'},
-//     {id: 'author', title: 'Author'},
-//     {id: 'note', title: 'Note'},
-//   ]
-// })
 
-// csvWriter.writeRecords(notes)
-//   .then(() => {
-//     console.log(`File written for ${bookTitle}`)
-//   })
-//   .catch(err => {
-//     console.log("error writing CSV:", err)
-//   })
