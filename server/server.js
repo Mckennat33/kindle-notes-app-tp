@@ -38,40 +38,79 @@ function formatBook(book) {
       note: row[""] // Extract the actual note content
     }));
     
+    tenRandomNotes(notes)
 
     createBookFile(notes)
   })
 }
-
-
 
 // book needs to be parsed before it can go through the formatBook function
 function createBookFile(bookNotes) {
   const stringNotes = JSON.stringify(bookNotes)
   fs.writeFile('booknotes.csv', stringNotes, (err) => {
     if (err) {
-      console.log('Error writing to file:', err)
+      //console.log('Error writing to file:', err)
     } else {
-      console.log("file written successfully")
+      //console.log("file written successfully")
     }
   })
 }
 
-function readBookFile() {
-  const newResults = []
-  fs.createReadStream('./booknotes.csv')
-  .pipe(csvParser())
-  .on('data', (data) => newResults.push(data))
-  .on('end', () => {
-    console.log('we did it', newResults)
-  })
-  .on('error', (err) => {
-    console.log('error reading file:', err)
-  })
+function tenRandomNotes(bookNotes) {
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)); // random index
+        [array[i], array[j]] = [array[j], array[i]]; // swap elements
+    }
+    //console.log(array)
+}
+const example = [];
+shuffleArray(bookNotes);
+example.push(...bookNotes); 
+
+const randomTenNotes = example.slice(0,5); 
+
+console.log(randomTenNotes);
 }
 
-readBookFile()
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function readBookFile() {
+//   const newResults = []
+//   fs.createReadStream('./booknotes.csv')
+//   .pipe(csvParser())
+//   .on('data', (data) => newResults.push(data))
+//   .on('end', () => {
+//     console.log('we did it', newResults)
+//   })
+//   .on('error', (err) => {
+//     console.log('error reading file:', err)
+//   })
+// }
+
+// readBookFile()
 
 
 
