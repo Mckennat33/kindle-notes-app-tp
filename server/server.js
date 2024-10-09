@@ -17,8 +17,6 @@ const books = [
 
 books.forEach(book => formatBook(book))
 
-// sending each book into formatBooks, so if I try to format it i need 
-//to do it for each book 
 function formatBook(book) {
   const bookPath = book.path
   const results = [];
@@ -35,7 +33,7 @@ function formatBook(book) {
     .map(row => ({
       title: bookTitle,
       author: author,
-      note: row[""] // Extract the actual note content
+      note: row[""] 
     }));
     
     tenRandomNotes(notes)
@@ -44,14 +42,14 @@ function formatBook(book) {
   })
 }
 
-// book needs to be parsed before it can go through the formatBook function
+
 function createBookFile(bookNotes) {
   const stringNotes = JSON.stringify(bookNotes)
   fs.writeFile('booknotes.csv', stringNotes, (err) => {
     if (err) {
-      //console.log('Error writing to file:', err)
+      console.log(err)
     } else {
-      //console.log("file written successfully")
+      
     }
   })
 }
@@ -62,10 +60,9 @@ function tenRandomNotes(bookNotes) {
         const j = Math.floor(Math.random() * (i + 1)); // random index
         [array[i], array[j]] = [array[j], array[i]]; // swap elements
     }
-    //console.log(array)
 }
-const example = [];
-shuffleArray(bookNotes);
+  const example = [];
+  shuffleArray(bookNotes);
 example.push(...bookNotes); 
 
 const randomTenNotes = example.slice(0,5); 
