@@ -32,8 +32,6 @@ function formatBook(book) {
       author: author,
       note: row[""] // Extract the actual note content
     }));
-
-
     writeFile(notes)
   })  
 }
@@ -46,27 +44,27 @@ function writeFile(booknotes) {
       if (err) {
         console.log(err)
       } else {
-        console.log('success')
+        console.log(`Filewritten successfully`)
       }
     })
     
   }
 
-
-
   
-//   function readFiles(example) {
-//    fs.readFile('test.csv', 'utf-8', (err, data) => {
-//       const newData = JSON.parse(data)
-//       if (err) {
-//         console.log(err)
-//       } else {
-//         console.log("we did it", newData)
-//       }
-//    })
-//   }
+  function readFiles() {
+    const newResults = [];
+    fs.createReadStream('test.csv')
+      .pipe(csvParser())
+      .on('data', (data) => newResults.push(data)) // Push each row of CSV into results
+      .on('end', () => {
+        console.log('we did it', newResults); // Output the parsed CSV as an array of objects
+      })
+      .on('error', (err) => {
+        console.error('Error reading file:', err); // Handle errors
+      });
+  }
   
-//   readFiles()
+  readFiles();
 
 
 
