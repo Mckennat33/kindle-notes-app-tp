@@ -16,10 +16,10 @@ const books = [
   //{path: '/Users/thomasmckenna/Downloads/thewaytolove.csv', name: 'theWayToLove.csv'}
 ]
 
-
 books.forEach(book => formatBook(book))
 
 function formatBook(book) {
+  
   const bookPath = book.path
   const results = [];
   fs.createReadStream(bookPath)
@@ -38,9 +38,11 @@ function formatBook(book) {
       note: row[""] 
     }));
     
-    tenRandomNotes(notes)
-
+    //tenRandomNotes(notes)
     createBookFile(notes)
+
+    scheduleNotesEmail(notes)
+
   })
 }
 
@@ -56,7 +58,17 @@ function createBookFile(bookNotes) {
   })
 }
 
-function tenRandomNotes(bookNotes) {
+
+function scheduleNotesEmail(notes) {
+
+    schedule.scheduleJob('*/1 * * * *', () => {
+      return emailTenRandomNotes(notes), new Date().toLocaleTimeString();
+      
+    });
+  
+}
+
+function emailTenRandomNotes(bookNotes) {
   const example = [];
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -70,52 +82,50 @@ function tenRandomNotes(bookNotes) {
   shuffleArray(bookNotes);
 
   const randomTenNotes = example.slice(0,5); 
-  emailRandomNotes(randomTenNotes)
+  emailNotes(randomTenNotes)
 }
 
-function emailRandomNotes(notes) {
-  const dailyAtThreePM = schedule.scheduleJob('0 6 * * *', () => {
-    console.log('Task executed daily at 3 PM:', new Date().toLocaleTimeString());
-
-  });
-}
-
+function emailNotes(randomTenNotes) {
+  console.log(randomTenNotes)
 
 // starter code for email
 // sending emails
 // Create a transporter object
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com', 
-    port: 587,
-    secure: false, // use SSL
-    auth: {
-        user: 'thomasmckenna12@gmail.com ',
-        pass: 'abcj zpwy bcwo ibvu',
-    }
+  host: 'smtp.gmail.com', 
+  port: 587,
+  secure: false, // use SSL
+  auth: {
+      user: 'thomasmckenna12@gmail.com ',
+      pass: 'abcj zpwy bcwo ibvu',
+  }
 });  
 
 // Configure the mailoptions object
 const mailOptions = {
-    from: 'thomasmckenna12@gmail.com',
-    to: 'thomasmckenna12@gmail.com',
-    subject: 'Sending Email using Node.js', // this will be a variable
-    text: 'This is my first email WOOOOOOOO',  // this will be a variable
-    attachments: [
-        {
-            filename: 'hightlights.txt', 
-            path: noteFile,
-        }
-    ]
+  from: 'thomasmckenna12@gmail.com',
+  to: 'thomasmckenna12@gmail.com',
+  subject: 'It worked, Notes form Kindle', // this will be a variable
+  text: randomTenNotes.join('/n'),  // this will be a variable - also cant be an array
+  attachments: [
+      {
+          // filename: 'hightlights.txt', 
+          // path: noteFile,
+      }
+  ]
 };
 
-  // Send the email
+// Send the email
 transporter.sendMail(mailOptions, function(error, info){
-    if (error) {
-        console.log('Error:', error);
-    } else {
-        console.log('Email sent:', info.response);
-    }
+  if (error) {
+      console.log('Error:', error);
+  } else {
+      console.log('Email sent:', info.response);
+  }
 });
+}
+
+
 
 
 
