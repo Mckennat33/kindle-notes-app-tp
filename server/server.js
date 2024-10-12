@@ -11,10 +11,15 @@ const nodemailer = require('nodemailer')
 
 const books = [
   {path: '/Users/thomasmckenna/Downloads/Million-Dollar-Weekend-Notes.csv', name:'millionDillorWeekend.csv'}, 
-  //{path: '/Users/thomasmckenna/Downloads/dontbelieveeverythingyouthink.csv', name: 'dontBelieveEverythingYouThink.csv'}, 
   {path: "/Users/thomasmckenna/Downloads/how-to-be-free.csv", name: 'howToBeFree.csv'}, 
-  //{path: '/Users/thomasmckenna/Downloads/thewaytolove.csv', name: 'theWayToLove.csv'}
+  {path: "/Users/thomasmckenna/Downloads/friends-lovers-and-the-big-terrible-thing.csv", name: "friendsLoversAndTheBigTerribleThing.csv"},
+  {path: "/Users/thomasmckenna/Downloads/never-finished.csv", name: "neverFinished.csv"},
+  {path: "/Users/thomasmckenna/Downloads/live-your-truth.csv", name: "liveYourTruth.csv"},
+  {path: "/Users/thomasmckenna/Downloads/ between-the-world-and-me.csv", name: "betweenTheWorldAndMe.csv"},
+  {path: "/Users/thomasmckenna/Downloads/dont-believe-everything-you-think.csv", name: "dontBelieveEverythingYouThink.csv"}
 ]
+
+
 
 books.forEach(book => formatBook(book))
 
@@ -28,7 +33,6 @@ function formatBook(book) {
   .on('end', () => {
     const bookNotes = results.slice(7, results.length)
     const [{"Your Kindle Notes For:": bookTitle}, {"Your Kindle Notes For:": author}] = results
-
     const notes = bookNotes
     .slice(7)
     .filter(row => row["Your Kindle Notes For:"].startsWith("Highlight")) 
@@ -37,15 +41,11 @@ function formatBook(book) {
       author: author,
       note: row[""] 
     }));
-    
     //tenRandomNotes(notes)
     createBookFile(notes)
-
     scheduleNotesEmail(notes)
-
   })
 }
-
 
 function createBookFile(bookNotes) {
   const stringNotes = JSON.stringify(bookNotes)
@@ -58,14 +58,10 @@ function createBookFile(bookNotes) {
   })
 }
 
-
 function scheduleNotesEmail(notes) {
-
     schedule.scheduleJob('*/1 * * * *', () => {
-      return emailTenRandomNotes(notes), new Date().toLocaleTimeString();
-      
+      return emailTenRandomNotes(notes), new Date().toLocaleTimeString(); 
     });
-  
 }
 
 function emailTenRandomNotes(bookNotes) {
@@ -75,54 +71,54 @@ function emailTenRandomNotes(bookNotes) {
         const j = Math.floor(Math.random() * (i + 1)); 
         [array[i], array[j]] = [array[j], array[i]]; 
     }
-
     example.push(...bookNotes); 
 }
-
   shuffleArray(bookNotes);
-
   const randomTenNotes = example.slice(0,5); 
   emailNotes(randomTenNotes)
 }
 
 function emailNotes(randomTenNotes) {
-  console.log(randomTenNotes)
+  let formattedNotes = randomTenNotes.map(note => 
+    `Title: ${note.title}\nAuthor: ${note.author}\nNote: ${note.note}\n`
+  ).join('\n')
+  // starter code for email
+  // sending emails
+  // Create a transporter object
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com', 
+    port: 587,
+    secure: false, // use SSL
+    auth: {
+        user: 'thomasmckenna12@gmail.com ',
+        pass: 'abcj zpwy bcwo ibvu',
+    }
+  });  
 
-// starter code for email
-// sending emails
-// Create a transporter object
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com', 
-  port: 587,
-  secure: false, // use SSL
-  auth: {
-      user: 'thomasmckenna12@gmail.com ',
-      pass: 'abcj zpwy bcwo ibvu',
-  }
-});  
+  // Configure the mailoptions object
+  const mailOptions = {
+    from: 'thomasmckenna12@gmail.com',
+    to: 'thomasmckenna12@gmail.com',
+    subject: `Notes for ${randomTenNotes[0].title}`, // this will be a variable
+    text: formattedNotes,
+    //JSON.stringify(randomTenNotes, null, 2),  // this will be a variable - also cant be an array
+    attachments: [
+        {
+            // filename: 'hightlights.txt', 
+            // path: noteFile,
+        }
+    ]
+  };
 
-// Configure the mailoptions object
-const mailOptions = {
-  from: 'thomasmckenna12@gmail.com',
-  to: 'thomasmckenna12@gmail.com',
-  subject: 'It worked, Notes form Kindle', // this will be a variable
-  text: randomTenNotes.join('/n'),  // this will be a variable - also cant be an array
-  attachments: [
-      {
-          // filename: 'hightlights.txt', 
-          // path: noteFile,
-      }
-  ]
-};
+  // Send the email
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        console.log('Error:', error);
+    } else {
+        console.log('Email sent:', info.response);
+    }
+  });
 
-// Send the email
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-      console.log('Error:', error);
-  } else {
-      console.log('Email sent:', info.response);
-  }
-});
 }
 
 
