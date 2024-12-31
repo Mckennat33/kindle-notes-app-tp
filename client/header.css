@@ -1,0 +1,28 @@
+
+a {
+    text-decoration: none;
+}
+
+.nav-bar-container {
+    border: 3px solid blue;
+    width: 80%;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-around;   
+}
+
+.kindle-notes-app {
+    border: 3px solid blue;
+}
+
+.nav-list {
+    border: 3px solid blue;
+    list-style-type: none;
+    display: flex;
+    gap: 30px;
+}
+
+
+
