@@ -14,9 +14,9 @@
 }
 
 .sec-one, .sec-two, .sec-three {
-    max-width: 80%;
+    max-width: 75%;
     width: 100%;
-    border: 2px solid brown;
+    border: 2px solid red;
 }
 
 .section-one-container {
@@ -40,7 +40,7 @@
     justify-content: center;
     border: 3px solid green;    
     color: blue; 
-}
+}  
 
 .sec-two {
     display: flex;
