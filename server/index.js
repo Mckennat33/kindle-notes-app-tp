@@ -1,26 +1,28 @@
+const express = require('express')
+const app = express()
+const path = require('path')
+const port = 3000
+const Book = require('../models/book.js');
 
-const fs = require('fs')
-const csvParser = require('csv-parser')
-const { error } = require('console');
-const { notStrictEqual } = require('assert');
-const millionDollarWeekend = "/Users/thomasmckenna/Downloads/Million-Dollar-Weekend-Notes.csv"
-const howToBeFree = "/Users/thomasmckenna/Downloads/how-to-be-free.csv"
-const friendsLoversAndTheBigTerribleThing = "/Users/thomasmckenna/Downloads/friends-lovers-and-the-big-terrible-thing-a-memoir.csv"
+const book = new Book({
+  author: 'Thomas', 
+  title: "They wanna be me"
+})
 
 
 
+app.use(express.static(path.join(__dirname, '../client')))
 
-function readBookFile() {
-    const newResults = []
-    fs.createReadStream('/Users/thomasmckenna/kindle-notes-app-tp/server/allBookNotes.csv')
-    .pipe(csvParser())
-    .on('data', (data) => newResults.push(data))
-    .on('end', () => {
-      console.log('we did it', newResults)
-    })
-    .on('error', (err) => {
-      console.log('error reading file:', err)
-    })
-  }
-  
-  readBookFile()
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '..client/index.html'))
+// })
+
+app.get('/', (req, res) => {
+  res.send(book)
+})
+
+
+
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`, book)
+})  
