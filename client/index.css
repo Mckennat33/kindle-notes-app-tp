@@ -1,3 +1,5 @@
+/* Global */
+
 body {
     border: 3px solid red;
     height: 100vh;
@@ -7,28 +9,62 @@ body {
 /* Nav bar */
 .nav-main-container {
     border: 3px solid purple;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.nav-bar {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
 }
 
 
 /* Main page */
 
+
 .main-container {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center; 
+    width: 100%;
+    border: 3px solid green;
+}
+
+.card-container {
     border: 3px solid blue;
     display: flex;
-    flex-direction: row;
-    width: 50%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+
+    /* This puts the blue box at 75% of the width of the page */
+    width: 75%; 
+
+    height: 100%;
+    /* gap: 50px; */
+    padding: 20px 0;
 }
 
-.book-one-container {
-    
-    border: 2px solid brown;
+.book-one-card, .book-two-card, .book-three-card, .book-four-card {
+    width: 30%; 
+    border: 2px solid green;
+    box-sizing: border-box; 
+    margin: 0 0 20px 0;
+    padding: 10px; /* Adds some padding inside the cards */
+    word-wrap: break-word; /* Ensures long words break onto the next line */
+    overflow-wrap: break-word; /* Ensures long words break onto the next line */
 }
 
-.book-two-container {
-    border: 2px solid brown;
+.img-container-one, .img-container-two, .img-container-three, .img-container-four {
+    /* Not sure how to do this part */
+    border: 3px solid green;
+    height: 25%;
 }
 
-.book-three-container {
-    border: 2px solid brown;
+#book-img {
+    border: 3px solid red;
 }
 
