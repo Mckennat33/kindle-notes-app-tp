@@ -1,0 +1,17 @@
+
+.main-container {
+    border: 3px solid red;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.signup-container {
+    border: 3px solid green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 60%;
+}
