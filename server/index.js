@@ -1,28 +1,49 @@
 const express = require('express')
 const app = express()
 const path = require('path')
-const port = 3000
+const bodyParser = require('body-parser')
+
 const Book = require('../models/book.js');
-
-const book = new Book({
-  author: 'Thomas', 
-  title: "They wanna be me"
-})
+const Notes = require('../models/highlightedNotes.js')
+const { STATUS_CODES } = require('http')
 
 
+
+app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(express.static(path.join(__dirname, '../client')))
 
-// app.get('/', (req, res) => {
-//   res.sendFile(path.join(__dirname, '..client/index.html'))
-// })
-
 app.get('/', (req, res) => {
-  res.send(book)
+    res.status(200).sendFile(path.join(__dirname, '../client/html/index.html'))
+})
+
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/html/login.html')); 
+});
+
+
+app.get('/signup', (req, res) => {
+  try {
+    res.sendFile(path.join(__dirname, '../client/html/signup.html'))
+  } catch(err) {
+    console.log(err)
+    res.status(500).send("internal Server Error")
+  }
+})
+
+app.post('/signup', (req, res) => {
+  const username = req.body.username
+  const email = req.body.email
+  const password = req.body.password
+  res.status(200).send({username, email, password})
+  console.log(username, email, password)
 })
 
 
+const port = process.env.PORT || 3000
 
 app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`, book)
+  console.log(`Server listening at http://localhost:${port}`)
 })  
+
