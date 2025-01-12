@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
-
 const Book = require('../models/book.js');
 const Notes = require('../models/highlightedNotes.js')
 const { STATUS_CODES } = require('http')
@@ -33,9 +32,12 @@ app.get('/signup', (req, res) => {
 })
 
 app.post('/signup', (req, res) => {
-  const username = req.body.username
-  const email = req.body.email
-  const password = req.body.password
+  // const username = req.body.username
+  // const email = req.body.email
+  // const password = req.body.password
+  // not sure if this works yet 
+  const { username, email, password } = req.body 
+
   res.status(200).send({username, email, password})
   console.log(username, email, password)
 })
