@@ -6,13 +6,11 @@ const Book = require('../models/book.js');
 const Notes = require('../models/highlightedNotes.js')
 const { STATUS_CODES } = require('http')
 const mongoose = require('mongoose')
+const signUpRoute = require("../routes/signup.routes.js")
+const loginRoute = require('../routes/login.routes.js')
 const connectDB = require("../config/dbconn.js")
-require('dotenv').config();
 require('dotenv').config({ path: '../.env ' });
-// connect to mongodb 
 connectDB()
-
-
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -23,39 +21,32 @@ app.get('/', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, '../client/html/index.html'))
 })
 
-app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/html/login.html')); 
-});
 
+app.use('/login', loginRoute)
+// app.get('/login', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/html/login.html')); 
+// });
 
-app.get('/signup', (req, res) => {
-  try {
-    res.sendFile(path.join(__dirname, '../client/html/signup.html'))
-  } catch(err) {
-    console.log(err)
-    res.status(500).send("internal Server Error")
-  }
-})
+// app.get('/signup', (req, res) => {
+//   try {
+//     res.sendFile(path.join(__dirname, '../client/html/signup.html'))
+//   } catch(err) {
+//     console.log(err)
+//     res.status(500).send("internal Server Error")
+//   }
+// })
 
-app.post('/signup', (req, res) => {
+app.use('/signup', signUpRoute)
 
-  const { username, email, password } = req.body 
+// app.post('/signup', (req, res) => {
 
-  res.status(200).send({username, email, password})
-  console.log(username, email, password)
-})
+//   const { username, email, password } = req.body 
 
+//   res.status(200).send({username, email, password})
+//   console.log(username, email, password)
+// })
 
 const port = process.env.PORT || 3000
-
-
-//just added this
-// mongoose.connection.once('open', () => {
-//   console.log("connected to mongodb")
-//   app.listen(port, () => {
-//     console.log(`Server listening at http://localhost:${port}`)
-//   })  
-// })
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
