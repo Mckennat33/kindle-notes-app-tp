@@ -35,10 +35,10 @@ const userSignup = async (req, res) => {
 
   } catch(err) {
     console.log(JSON.stringify(err))
-    // if (err.code === 11000) {
-    //   return res.json({ status: 'error', err: 'duplicate username'})
-    // }
-    // console.log('new user created')
+    if (err.code === 11000) {
+      return res.json({ status: 'error', err: 'duplicate username'})
+    }
+    console.log('new user created')
   }
 }
 
