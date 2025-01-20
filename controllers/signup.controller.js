@@ -7,6 +7,8 @@ require('dotenv').config({ path: '../.env ' });
 app.use(express.json())
 const User = require("../models/user.js")
 const homeRoute = require('../routes/home.routes.js')
+const brcrypt = require('bcrypt')
+const { error } = require('console')
 
 const signupPage = async (req, res) => {
     try {
@@ -19,18 +21,24 @@ const signupPage = async (req, res) => {
 
 
 const userSignup = async (req, res) => {
+  const {username, email, password } = req.body
+  // const hashedPassword = brcrypt.hash(password, 10)
   
   try {
-    const {username, email, password } = req.body
     const newUser = new User({
       username, 
-      email, 
+      email,    
       password
     })
-    res.status(202).json({message: "user was added"})
     await newUser.save()
+    
+
   } catch(err) {
-    console.log(err, "This is not working")
+    console.log(JSON.stringify(err))
+    // if (err.code === 11000) {
+    //   return res.json({ status: 'error', err: 'duplicate username'})
+    // }
+    // console.log('new user created')
   }
 }
 
