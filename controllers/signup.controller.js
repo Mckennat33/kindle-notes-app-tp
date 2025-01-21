@@ -7,7 +7,7 @@ require('dotenv').config({ path: '../.env ' });
 app.use(express.json())
 const User = require("../models/user.js")
 const homeRoute = require('../routes/home.routes.js')
-const brcrypt = require('bcrypt')
+const bcrypt = require('bcrypt')
 const { error } = require('console')
 
 const signupPage = async (req, res) => {
@@ -22,14 +22,16 @@ const signupPage = async (req, res) => {
 
 const userSignup = async (req, res) => {
   const {username, email, password } = req.body
-  // const hashedPassword = brcrypt.hash(password, 10)
+  const hashedPassword = bcrypt.hash(password, 10)
   
   try {
     const newUser = new User({
       username, 
       email,    
-      password
+      hashedPassword
     })
+
+    console.log(hashedPassword)
     await newUser.save()
     
 
