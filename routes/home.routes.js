@@ -4,9 +4,9 @@ const router = express.Router()
 const path = require('path')
 const mongoose = require('mongoose')
 require('dotenv').config({ path: '../.env ' });
-const signupController = require('../controllers/signup.controller.js')
+const homeController = require('../controllers/home.controller.js')
 
-router.get('/', signupController.signupPage)
-router.post('/', signupController.userSignup)
-module.exports = router;  
 
+router.get("", homeController.homePage)
+
+module.exports = router;

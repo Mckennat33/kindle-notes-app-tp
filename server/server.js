@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, '../client')))
 app.use('/', homeRoute)
 app.use('/login', loginRoute)
 app.use('/signup', signupRoute)
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 80
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
 })  

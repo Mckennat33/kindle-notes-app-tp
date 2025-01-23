@@ -43,7 +43,6 @@ const userSignup = async (req, res) => {
         password: hashedPassword
       })
       await newUser.save()
-      console.log(_.pick(newUser, ['username', 'email']))
     }
   } catch(err) {
     return res.json({message: err.message})

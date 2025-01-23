@@ -13,8 +13,12 @@
   "author": "Thomas McKenna",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "csv-parser": "^3.0.0",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "joi": "^17.13.3",
+    "lodash": "^4.17.21",
     "mongoose": "^8.9.3",
     "nodemon": "^3.1.9",
     "semantic-ui-react": "^2.1.5"

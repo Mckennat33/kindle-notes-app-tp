@@ -11,16 +11,10 @@ function signUp(event) {
     let userName = document.getElementById('username').value
     let userEmail = document.getElementById('email').value
     let userPassword = document.getElementById('password').value
-    console.log(userName, userEmail, userPassword)
-    
-
-    // i have the value for username, email and password. 
-    // need to storm them in a schema
-
-    const userAPI = "http://localhost:3000/signup"
+    const signupServer = "http://localhost:80/signup"
     async function postRequest() {
         try {
-            const response = await fetch(userAPI, {
+            const response = await fetch(signupServer, {
                 method: "POST",
                 headers: {
                     "Content-Type": 'application/json'
@@ -35,13 +29,11 @@ function signUp(event) {
             if (response.ok) {
                 console.log(response.status)
             } else {
-                console.log("Httpe Error", response.status)
+                console.log("Http Error", response.status)
             }
         } catch(err) {
             console.log(err)
         }
     }
-
     postRequest()
-
 }
