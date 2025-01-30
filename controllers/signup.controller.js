@@ -1,9 +1,10 @@
+const jwt = require('jsonwebtoken')
 const express = require('express')
 const app = express()
 const router = express.Router()
 const _ = require('lodash')
 const path = require('path')
-const mongoose = require('mongoose')
+const mongoose = require('mongoose')0
 require('dotenv').config({ path: '../.env ' });
 app.use(express.json())
 const User = require("../models/user.js")
@@ -22,12 +23,8 @@ const signupPage = async (req, res) => {
       }
 }
 
-
-
 const userSignup = async (req, res) => {
-  // take in username email password
   const { username, email, password} = req.body
-  // console.log(username, email, password)
   try {
     const matchingUsername = await User.findOne({ username })
     if (matchingUsername) {
@@ -43,13 +40,14 @@ const userSignup = async (req, res) => {
         password: hashedPassword
       })
       await newUser.save()
+      res.send({
+        username, email
+      })
     }
   } catch(err) {
     return res.json({message: err.message})
   }
 }
-
-
 
 module.exports = {
     signupPage,

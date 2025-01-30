@@ -12,6 +12,10 @@ const homeRoute = require('../routes/home.routes.js')
 const connectDB = require("../config/dbconn.js")
 require('dotenv').config({ path: '../.env ' });
 connectDB()
+const config = require('config')
+
+if fig.get('jstPrivateKey')
+
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -23,4 +27,5 @@ const port = process.env.PORT || 80
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
 })  
+
 
