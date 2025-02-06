@@ -10,11 +10,14 @@ const signupRoute = require("../routes/signup.routes.js")
 const loginRoute = require('../routes/login.routes.js')
 const homeRoute = require('../routes/home.routes.js')
 const connectDB = require("../config/dbconn.js")
-require('dotenv').config({ path: '../.env ' });
+require('dotenv').config({ path: '../.env' });
 connectDB()
 const config = require('config')
 
-if fig.get('jstPrivateKey')
+// if (!config.get('jwtPrivateKey')) {
+//   console.error('FATAL ERROR: jwtPrivateKey is not defined')
+//   process.exit(1)
+// }
 
 
 app.use(express.json())
