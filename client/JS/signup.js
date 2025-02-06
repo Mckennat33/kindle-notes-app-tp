@@ -23,9 +23,13 @@ function signUp(event) {
                 })
             })
             const data = await response.json()
-            console.log(data)
             if (response.ok) {
                 console.log("hello this worked")
+                console.log(response)
+                const token = data.token
+                sessionStorage.setItem('authToken', token)
+                window.location.href = "/home"
+
             } else {
                 console.log("Http Error", response.status, 'This did not work')
             }
@@ -33,5 +37,5 @@ function signUp(event) {
             console.log(err)
         }
     }
-    postRequest()
+    postRequest()   
 }

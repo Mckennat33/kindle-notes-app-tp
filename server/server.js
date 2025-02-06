@@ -14,11 +14,6 @@ require('dotenv').config({ path: '../.env' });
 connectDB()
 const config = require('config')
 
-// if (!config.get('jwtPrivateKey')) {
-//   console.error('FATAL ERROR: jwtPrivateKey is not defined')
-//   process.exit(1)
-// }
-
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
