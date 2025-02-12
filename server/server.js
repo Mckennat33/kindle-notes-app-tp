@@ -10,8 +10,10 @@ const signupRoute = require("../routes/signup.routes.js")
 const loginRoute = require('../routes/login.routes.js')
 const homeRoute = require('../routes/home.routes.js')
 const connectDB = require("../config/dbconn.js")
+const auth = require('../middleware/auth.js')
 require('dotenv').config({ path: '../.env' });
 connectDB()
+
 const config = require('config')
 
 
