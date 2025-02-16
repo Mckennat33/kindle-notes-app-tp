@@ -12,18 +12,11 @@ const homeRoute = require('../routes/home.routes.js')
 const connectDB = require("../config/dbconn.js")
 const auth = require('../middleware/auth.js')
 require('dotenv').config({ path: '../.env' });
-const session = require('express-session')
+const cookieParser = require('cookie-parser')
 connectDB()
-
 const config = require('config')  
 
-app.use(session({
-  secret: 'your-secret-key',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: false } // Set to true if using HTTPS
-}));
-
+app.use(cookieParser())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../client')))
