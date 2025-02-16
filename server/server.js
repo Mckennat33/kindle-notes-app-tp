@@ -12,15 +12,23 @@ const homeRoute = require('../routes/home.routes.js')
 const connectDB = require("../config/dbconn.js")
 const auth = require('../middleware/auth.js')
 require('dotenv').config({ path: '../.env' });
+const session = require('express-session')
 connectDB()
 
-const config = require('config')
+const config = require('config')  
 
+app.use(session({
+  secret: 'your-secret-key',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true if using HTTPS
+}));
 
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../client')))
-app.use('/', homeRoute)
+app.use('/', loginRoute)
+app.use('/home', auth, homeRoute)
 app.use('/login', loginRoute)
 app.use('/signup', signupRoute)
 const port = process.env.PORT || 80
@@ -29,3 +37,7 @@ app.listen(port, () => {
 })  
 
 
+// init home page
+// if user is not logged in take to login page
+// 
+// if no user has no login take to sign up page
