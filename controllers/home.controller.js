@@ -5,9 +5,10 @@ const mongoose = require('mongoose')
 
 
 const homePage = (req, res) => { 
-    res.sendFile(path.join(__dirname, '../client/html/index.html')); 
+    //res.json({message: 'Welcome to the home page'})
+    res.sendFile(path.join(__dirname, '../client/html/home.html')); 
 }
 
 module.exports = {
     homePage
-}
+}  

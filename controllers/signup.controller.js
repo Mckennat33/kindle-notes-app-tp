@@ -42,15 +42,19 @@ const userSignup = async (req, res) => {
       })
       await newUser.save()
       console.log(newUser)
-      // create a jwt 
+      // create jwt 
       const jwtPrivateKey = process.env.JWT_PRIVATE_KEY;
       if (!jwtPrivateKey) {
         console.error("FATAL ERROR: jwtPrivateKey is not defined");
         process.exit(1);
       }
       const token = jwt.sign({ userId: newUser._id }, jwtPrivateKey, { expiresIn: '1hr'})
-      console.log("Signup successful, sending response...");
-      res.json({ message: 'User created successfully!', username: newUser.username, email: newUser.email, token });
+      res.cookie('access_token', token, {
+        httpOnly: true,
+        secure: true, 
+        sameSite: 'Strict'
+      }).status(200).json({ message: 'User created successfully!', username: newUser.username, email: newUser.email, token })
+      //res.json({ message: 'User created successfully!', username: newUser.username, email: newUser.email, token });
     }
   } catch(err) {
     return res.status(500).json({message: err.message})
@@ -61,3 +65,4 @@ module.exports = {
     signupPage,
     userSignup,
 }
+
