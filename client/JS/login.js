@@ -1,33 +1,35 @@
-// Starter code for login
-
 document.addEventListener('DOMContentLoaded', () => {
-    let logInButton = document.querySelector('.login-bttn')
-    loginButton.addEventListener('click', loginUser)
+    const logInButton = document.querySelector('.login-bttn')
+    
+    logInButton.addEventListener('click', loginUser)
 })
 
 
 function loginUser(event) {
     event.preventDefault()
-    // get value for usernam
-    const username = document.querySelector('.username').ariaValueMin
-    // get value for password
-    const password = document.querySelector('.password').value
-    // get login server
+    const username = document.querySelector('#username').value
+    const password = document.querySelector('#password').value
     const loginServer = "http://localhost:80/login"
-    async function postRequest() {
-        const response = await fetch(loginServer, {
-            method: 'POST', 
-            headers: { 
-                'Content-Type': 'application/json'
-            }, 
-            body: JSON.stringify({
-                username, 
-                password
+        async function postRequest() {
+        try {
+            const response = await fetch(loginServer, {
+                method: 'POST', 
+                headers: { 
+                    'Content-Type': 'application/json'
+                }, 
+                body: JSON.stringify({
+                    username, 
+                    password
+                })
             })
-        })
-    }
-    // fetch post request json to
+        }
+        catch(err) {
+            console.err(err, "Error with front end")
+        }
+    } 
 
-    // the backend
-
+    postRequest()
 }
+
+
+
