@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const logInButton = document.querySelector('.login-bttn')
-    
     logInButton.addEventListener('click', loginUser)
 })
 
@@ -10,7 +9,7 @@ function loginUser(event) {
     const username = document.querySelector('#username').value
     const password = document.querySelector('#password').value
     const loginServer = "http://localhost:80/login"
-        async function postRequest() {
+    async function postRequest() {
         try {
             const response = await fetch(loginServer, {
                 method: 'POST', 
@@ -21,13 +20,17 @@ function loginUser(event) {
                     username, 
                     password
                 })
-            })
+            }) 
+            if (response.ok) {
+                window.location.href = "/home";
+            } else {
+                console.log('Http Error', response.status, "This did not work")
+            }
         }
         catch(err) {
-            console.err(err, "Error with front end")
+            console.log(err, "Error with front end")
         }
     } 
-
     postRequest()
 }
 
