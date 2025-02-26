@@ -25,7 +25,10 @@ const catchDownloadedNote = () => {
                             .pipe(csv())
                             .on('data', (data) => results.push(data))
                             .on('end', () => {
-                                console.log(results)
+                                //console.log(results)
+                                const bookNotes = results.slice(7, results.length)
+                                const [{ "Your Kindle Notes For:": bookTitle }, { "Your Kindle Notes For:": author }] = results 
+                                console.log(bookTitle, author, bookNotes)
                             })
                     }
             }  
