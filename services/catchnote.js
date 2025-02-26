@@ -1,6 +1,9 @@
 
 const chokidar = require('chokidar')
+const csv = require('csv-parser')
+const fs = require('fs')
 const Book = require("../models/book.js")
+
 
 const catchDownloadedNote = () => {
     try {    
@@ -17,7 +20,13 @@ const catchDownloadedNote = () => {
             const newFile = path.split('.').pop()
             if (newFile === 'csv') {
                     function parseBook(path) {
-                        console.log("Hello from the parser function", path)
+                        const results = []
+                        fs.createReadStream(path)
+                            .pipe(csv())
+                            .on('data', (data) => results.push(data))
+                            .on('end', () => {
+                                console.log(results)
+                            })
                     }
             }  
             // get path of book
