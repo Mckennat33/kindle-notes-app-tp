@@ -16,6 +16,7 @@ const cookieParser = require('cookie-parser')
 connectDB()
 const config = require('config')  
 
+
 app.use(cookieParser())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -28,9 +29,3 @@ const port = process.env.PORT || 80
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
 })  
-
-
-// init home page
-// if user is not logged in take to login page
-// 
-// if no user has no login take to sign up page

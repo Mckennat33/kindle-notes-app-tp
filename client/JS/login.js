@@ -24,7 +24,7 @@ function loginUser(event) {
             if (response.ok) {
                 window.location.href = "/home";
             } else {
-                console.log('Http Error', response.status, "This did not work")
+                alert('Invalid user name or password')
             }
         }
         catch(err) {

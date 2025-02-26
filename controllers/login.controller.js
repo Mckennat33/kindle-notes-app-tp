@@ -6,6 +6,8 @@ const User = require('../models/user.js')
 require('dotenv').config({ path: '../.env' });
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
 const getLoginPage = async (req, res) => {
     try {
@@ -33,9 +35,6 @@ const loginUser = async ( req, res ) => {
             secure: true, 
             sameSite: 'Strict'
         }).status(200).json({ message: 'Logged in successfully' })
-
-
-    
     } catch(err) {
         console.error(err)
         res.status(500).json({ message: 'Internal server error' })
@@ -48,3 +47,6 @@ module.exports = {
     getLoginPage,
     loginUser
 }
+
+
+

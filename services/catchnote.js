@@ -1,17 +1,6 @@
 
-// when something is downloaded or sent to the download file
-// if it is a csv file 
-    // filtering out files that are not csv 
-// read that data
-// parse data and take the informaiton that we need
-// put that info in our database
-// if not csv file 
-// ignore
-
-// link to possible ignore certain files bug. 
-// https://stackoverflow.com/questions/40468608/use-chokidar-to-watch-for-specific-file-extension
-
 const chokidar = require('chokidar')
+const Book = require("../models/book.js")
 
 const catchDownloadedNote = () => {
     try {    
@@ -22,28 +11,33 @@ const catchDownloadedNote = () => {
             }
         )
         watcher.on('add', (path) => {
-            if (path.endsWith(".tmp") && path.endsWith(".crdownload")) {
+            if (path.endsWith(".tmp") || path.endsWith(".crdownload")) {
                 return; 
             }
             const newFile = path.split('.').pop()
             if (newFile === 'csv') {
-                console.log("This is a csv")
-            }  else {
-                return 
-            }
-        
+                    function parseBook(path) {
+                        console.log("Hello from the parser function", path)
+                    }
+            }  
+            // get path of book
+            // name the path for each book based on the title/author
+            // put that data in an array. 
+            // send array into into a readstream 
+            parseBook(path)
+            // put that data into our mongoose database
+
         })
         
     } catch(err) {
         console.log(err)
     }
-    
 }
 
 catchDownloadedNote()
 
-
 module.exports = {
     catchDownloadedNote
 }
+
 

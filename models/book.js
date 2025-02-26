@@ -5,7 +5,13 @@ const bookSchema = Schema({
     author: String, 
     title: String, 
     genre: String, 
-    bookId: Number
+    bookId: Number, 
+    dateAdded: {
+        type: Date, 
+        default: Date.now
+    }
 })
 
-module.exports = mongoose.model('Book', bookSchema)
+
+const Book = mongoose.model("Boook", bookSchema)
+module.exports = Book
