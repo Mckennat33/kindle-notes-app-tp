@@ -28,17 +28,18 @@ const catchDownloadedNote = () => {
                                 //console.log(results)
                                 const bookNotes = results.slice(7, results.length)
                                 const [{ "Your Kindle Notes For:": bookTitle }, { "Your Kindle Notes For:": author }] = results 
-                                console.log(bookTitle, author, bookNotes)
+                                //const [{ "": notes }] = bookNotes
+                                const bookNotesArray = []
+                                bookNotes.map((notes) => {
+                                    const {"": allNotes} = notes
+                                    bookNotesArray.push(allNotes)
+                                })
+                                console.log(bookNotesArray[0])
+                                //console.log(bookTitle, author, notes)
                             })
                     }
             }  
-            // get path of book
-            // name the path for each book based on the title/author
-            // put that data in an array. 
-            // send array into into a readstream 
             parseBook(path)
-            // put that data into our mongoose database
-
         })
         
     } catch(err) {
