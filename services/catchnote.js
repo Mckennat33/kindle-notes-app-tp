@@ -1,9 +1,13 @@
-
+const express = require('express')
 const chokidar = require('chokidar')
+const mongoose = require('mongoose')
 const csv = require('csv-parser')
 const fs = require('fs')
+const path = require('path')
+require('dotenv').config({ path: '../.env' });
 const Book = require("../models/book.js")
 
+// if book already exists in the database return error: book already exists. 
 
 const catchDownloadedNote = () => {
     try {    
@@ -46,13 +50,13 @@ const parseBook = (path) => {
                 const {"": allNotes} = notes
                 bookNotesArray.push(allNotes)
             })
-            //console.log(bookNotesArray)
+            console.log(bookNotesArray[0])
             const newBook = new Book({
                 author: author, 
                 title: bookTitle, 
                 notes: bookNotesArray
             })
-            console.log(newBook)
+            newBook.save()
         })
 }
 

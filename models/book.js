@@ -2,10 +2,15 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const bookSchema = Schema({
-    author: String, 
-    title: String, 
-    genre: String, 
-    bookId: Number, 
+    author: {
+        type: String, 
+        required: true,
+    }, 
+    title: {
+        type: String, 
+        required: true,
+    },
+    notes: [String],
     dateAdded: {
         type: Date, 
         default: Date.now
@@ -13,5 +18,5 @@ const bookSchema = Schema({
 })
 
 
-const Book = mongoose.model("Boook", bookSchema)
+const Book = mongoose.model("Book", bookSchema)
 module.exports = Book
