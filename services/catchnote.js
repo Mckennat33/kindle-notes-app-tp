@@ -6,8 +6,11 @@ const app = express()
 const fs = require('fs')
 const path = require('path')
 require('dotenv').config({ path: '../.env' });
-const Book = require("../models/book.js")
 app.use(express.json())
+
+const Book = require("../models/book.js")
+const connectDB = require("../config/dbconn.js");
+connectDB()
 
 // if book already exists in the database return error: book already exists. 
 
@@ -37,13 +40,14 @@ const catchDownloadedNote = () => {
     }
 }
 
-const parseBook = (path) => {
+
+const parseBook = async (path) => {
     const results = []
-    fs.createReadStream(path)
+    try {
+        fs.createReadStream(path)
         .pipe(csv())
         .on('data', (data) => results.push(data))
         .on('end', () => {
-            //console.log(results)
             const bookNotes = results.slice(7, results.length)
             const [{ "Your Kindle Notes For:": bookTitle }, { "Your Kindle Notes For:": author }] = results 
             const [{ "": notes }] = bookNotes
@@ -52,19 +56,23 @@ const parseBook = (path) => {
                 const {"": allNotes} = notes
                 bookNotesArray.push(allNotes)
             })
-            console.log(bookNotesArray[0])
+            
             const newBook = new Book({
                 author: author, 
                 title: bookTitle, 
                 notes: bookNotesArray
             })
-            console.log("Book saved in Mongoose", author)
+            console.log("Book saved in Mongoose")
             newBook.save()
         })
+    } catch(err) {
+        console.log(err, "there is an error connecting to bookMongoose")
+    }
 }
 
 catchDownloadedNote()
 
 module.exports = {
-    catchDownloadedNote
+    catchDownloadedNote, 
+    parseBook
 }
