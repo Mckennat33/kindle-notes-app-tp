@@ -12,7 +12,13 @@ const Book = require("../models/book.js")
 const connectDB = require("../config/dbconn.js");
 connectDB()
 
+// watch for when the user adds a new book
+// take that book parse the csv file and add that to the database
+
+
 // if book already exists in the database return error: book already exists. 
+
+
 
 const catchDownloadedNote = () => {
     try {    
@@ -40,14 +46,13 @@ const catchDownloadedNote = () => {
     }
 }
 
-
 const parseBook = async (path) => {
     const results = []
     try {
         fs.createReadStream(path)
         .pipe(csv())
         .on('data', (data) => results.push(data))
-        .on('end', () => {
+        .on('end', async () => {
             const bookNotes = results.slice(7, results.length)
             const [{ "Your Kindle Notes For:": bookTitle }, { "Your Kindle Notes For:": author }] = results 
             const [{ "": notes }] = bookNotes
@@ -56,19 +61,25 @@ const parseBook = async (path) => {
                 const {"": allNotes} = notes
                 bookNotesArray.push(allNotes)
             })
-            
-            const newBook = new Book({
-                author: author, 
-                title: bookTitle, 
-                notes: bookNotesArray
-            })
-            console.log("Book saved in Mongoose")
-            newBook.save()
+
+            const matchingBook = await Book.findOne({title: bookTitle})
+            if (matchingBook) {
+                console.log("Book already exists")
+            } else {
+                const newBook = new Book({
+                    author: author, 
+                    title: bookTitle, 
+                    notes: bookNotesArray
+                })
+                console.log("Book saved in Mongoose")
+                await newBook.save()
+            }
         })
     } catch(err) {
         console.log(err, "there is an error connecting to bookMongoose")
     }
 }
+
 
 catchDownloadedNote()
 
