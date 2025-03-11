@@ -10,6 +10,7 @@ const signupRoute = require("../routes/signup.routes.js")
 const loginRoute = require('../routes/login.routes.js')
 const homeRoute = require('../routes/home.routes.js')
 const connectDB = require("../config/dbconn.js")
+const catchNote = require("../services/catchnote.js")
 const auth = require('../middleware/auth.js')
 require('dotenv').config({ path: '../.env' });
 const cookieParser = require('cookie-parser')
@@ -25,7 +26,10 @@ app.use('/', loginRoute)
 app.use('/home', auth, homeRoute)
 app.use('/login', loginRoute)
 app.use('/signup', signupRoute)
+
+
 const port = process.env.PORT || 80
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`)
+  catchNote
 })  
