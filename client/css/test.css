@@ -1,0 +1,140 @@
+/* Apple-style dark theme */
+:root {
+    --background: #121212;
+    --card-bg: #1E1E1E;
+    --text-primary: #FFFFFF;
+    --text-secondary: #AAAAAA;
+    --border: #333333;
+    --highlight: #0A84FF;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 20px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+}
+
+/* Themed App Title */
+.app-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--highlight);
+    text-shadow: 0 0 10px rgba(10, 132, 255, 0.8), 0 0 20px rgba(10, 132, 255, 0.6);
+    border: 2px solid var(--highlight);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(10, 132, 255, 0.5);
+}
+
+/* Main Content */
+.content {
+    display: flex;
+    flex: 1;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background: var(--card-bg);
+    padding: 20px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Toggle View Button */
+#toggleView {
+    background: var(--highlight);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Sidebar Titles - Slightly Taller */
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+}
+
+.title {
+    background: var(--border);
+    color: var(--text-primary);
+    padding: 18px; /* Slightly taller */
+    border: none;
+    text-align: left;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.title:hover {
+    background: var(--highlight);
+    color: white;
+}
+
+/* Notes Section */
+.notes-display {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 75%; /* More to the right */
+    margin-right: 60px; /* Leaves some space on the right */
+}
+
+/* Notes Section */
+.notes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Individual Note Styling */
+.note {
+    background: var(--card-bg);
+    padding: 24px; /* Increased padding */
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 120px; /* Taller notes */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
+    width: 100%;
+}
+
+.page-number {
+    color: var(--highlight);
+    font-weight: 600;
+}
