@@ -54,7 +54,6 @@ const userSignup = async (req, res) => {
         secure: true, 
         sameSite: 'Strict'
       }).status(200).json({ message: 'User created successfully!', username: newUser.username, email: newUser.email, token })
-      //res.json({ message: 'User created successfully!', username: newUser.username, email: newUser.email, token });
     }
   } catch(err) {
     return res.status(500).json({message: err.message})
