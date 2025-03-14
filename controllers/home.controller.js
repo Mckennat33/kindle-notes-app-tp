@@ -14,10 +14,10 @@ const Book = require("../models/book.js")
 const homePage = async (req, res) => { 
     //res.json({message: 'Welcome to the home page'})
     res.sendFile(path.join(__dirname, '../client/html/home.html'));
-    
+
     try {
         // fetching each 
-        const bookInfo = Book.find({})
+        const bookInfo = await Book.find({})
 
         console.log(bookInfo, "this is my test")
         res.send(bookInfo)
