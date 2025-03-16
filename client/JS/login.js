@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     logInButton.addEventListener('click', loginUser)
 })
 
-
 function loginUser(event) {
     event.preventDefault()
     const username = document.querySelector('#username').value
