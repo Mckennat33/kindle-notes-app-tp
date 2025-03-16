@@ -5,36 +5,24 @@ const mongoose = require('mongoose')
 const catchNote = require('../services/catchnote.js')
 const Book = require("../models/book.js")
 
-
-// when the user goes to their home page this is when the application catches the users notes whenever the user saves their notes to the file system it catches the note
-
-
-
-
 const homePage = async (req, res) => { 
-    //res.json({message: 'Welcome to the home page'})
-    res.sendFile(path.join(__dirname, '../client/html/home.html'));
-
     try {
-        // fetching each 
-        const bookInfo = await Book.find({})
-
-        console.log(bookInfo, "this is my test")
-        res.send(bookInfo)
+        await res.sendFile(path.join(__dirname, '../client/html/home.html'));
     } catch(err) {
         console.log(err)
-    }
-    
+        res.send("Error getting Book Data")
+    }   
 }
 
-
-
 const getUserData = async (req, res) => {
-    
-    // verify the user token/cookies
-        // if no token return unauthorized user
-    // make a request for the users data 
-    // send that user data to the front end 
+    try {
+        const bookInfo = await Book.find({})
+        //console.log(req.cookies.access_token)
+        res.json(bookInfo)
+    } catch(err) {
+        console.log(err)
+        res.status(500).send("Error getting book data")
+    }
 }
 
 module.exports = {
