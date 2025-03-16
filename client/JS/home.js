@@ -8,11 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: {
                         "Content-Type": "application/json"
                     }
-
                 })
                 const jsonData = await response.json()
                 if (response.ok) {
-                    console.log(jsonData, "Retreived data from mongodb")
+                    renderBookData(jsonData)
                 } else {
                     console.log("Error from fetching User Data", response.status)
                 }
@@ -24,3 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
  
+async function renderBookData(bookData) {
+    console.log(bookData)
+    const firstBook = bookData[0]
+    const title = firstBook.title
+    console.log(title)
+    const bookTitle = document.querySelector('.book-title')
+    const bookTitleDisplayLeft = document.querySelector('.title')
+    bookTitleDisplayLeft.textContent = `${title}`
+    bookTitle.textContent = `${title}`
+
+    const author = firstBook.author
+    const authorName = document.querySelector('.author')
+    authorName.textContent = `${author}` 
+
+    const notes = firstBook.notes
+    const notesSelector = document.querySelector('.note-text')
+    notesSelector.textContent = `${notes[0]}`
+
+}
