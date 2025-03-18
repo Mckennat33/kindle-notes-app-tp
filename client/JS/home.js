@@ -1,3 +1,5 @@
+// const { NotBeforeError } = require("jsonwebtoken")
+
 document.addEventListener('DOMContentLoaded', () => {
         const fetchUserData = "http://localhost:80/home/data"
         async function fetchData() {
@@ -24,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
  
 async function renderBookData(bookData) {
-    console.log(bookData)
+    // console.log(bookData)
     const firstBook = bookData[0]
     const title = firstBook.title
-    console.log(title)
+    // console.log(title)
     const bookTitle = document.querySelector('.book-title')
     const bookTitleDisplayLeft = document.querySelector('.title')
     bookTitleDisplayLeft.textContent = `${title}`
@@ -38,7 +40,33 @@ async function renderBookData(bookData) {
     authorName.textContent = `${author}` 
 
     const notes = firstBook.notes
-    const notesSelector = document.querySelector('.note-text')
-    notesSelector.textContent = `${notes[0]}`
+    const notesDiv = document.createElement('div')
+    notesDiv.class = 'note'
+
+
+    
+    const test = notes.map((note) => {
+        const notesDiv = document.createElement('div')
+        const noteSpan = document.createElement('span')
+        noteSpan.class = 'page-number'
+
+        const notePara = document.createElement('p')
+        notePara.class = 'note-text'
+        notePara.textContent = note
+
+        notesDiv.append(noteSpan, notePara)
+
+
+
+        // const notesSelector = document.querySelector('.note-text')
+        // console.log(note)
+        // notesSelector.textContent = `${notes[0]}`
+    })
+
+    const noteContainer = document.querySelector('.notes')
+    noteContainer.append(test)
+
+    // console.log(testNote)
+    
 
 }
