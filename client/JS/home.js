@@ -42,8 +42,6 @@ function renderBookData(bookData) {
         notesDiv.className = 'note'
         const noteSpan = document.createElement('span')
         noteSpan.className = 'page-number'
-        // Need to update hard coded page number
-        //noteSpan.textContent = 'Page 7'
 
         const notePara = document.createElement('p')
         notePara.className = 'note-text'
@@ -55,7 +53,6 @@ function renderBookData(bookData) {
 }
 
 function renderTitles(bookData) {
-    // console.log(bookData)
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
         const bookTitleButton = document.createElement('button')

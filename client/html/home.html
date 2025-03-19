@@ -17,19 +17,15 @@
             <aside class="sidebar">
                 <button id="toggleView">View by Author</button>
                 <div class="list">
-                    <button class="title">Title 1</button>
-                    <button class="title">Title 2</button>
-                    <button class="title">Title 3</button>
-                    <button class="title">Title 4</button>
-                    <button class="title">Title 5</button>
+
                 </div>
             </aside>
 
             <!-- Notes Display Section -->
             <main class="notes-display">
                 <div class="book-info">
-                    <h2>Your Kindle notes for:</h2>
-                    <p class="author">By Author Name</p>
+                    <h2>Your Kindle notes for: </h2> <h3 class="book-title"></h3>
+                    <p class="author"></p>
                 </div>
 
                 <div class="notes">
@@ -37,25 +33,28 @@
                         <span class="page-number">Page 10</span>
                         <p class="note-text">This is a sample note from the book.</p>
                     </div>
-                    <div class="note">
-                        <span class="page-number">Page 25</span>
-                        <p class="note-text">Another interesting note from the book.</p>
-                    </div>
-                    <div class="note">
-                        <span class="page-number">Page 50</span>
-                        <p class="note-text">A key takeaway from this chapter.</p>
-                    </div>
                 </div>
             </main>
         </div>
 
+        <!-- Modal sections  -->
+            <button >Open Modal</button> 
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <div class="title">Exmaple Modal</div>
+                <button class="close-button">Close</button>
+            </div>
+            <div class="modal-body">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic explicabo delectus, saepe molestias velit iste, quae facere, ducimus dolores natus enim. Accusantium id repellat officia eaque unde inventore nostrum illum!
+            </div>
+        </div>
         <!-- Toggle Footer -->
         <footer>
             <button class="toggle-btn active">Book</button>
             <button class="toggle-btn">Author</button>
         </footer>
     </div>
-    <script src="..\JS\home.js"></script>
 </body>
+<script src="..\JS\home.js"></script>
 </html>
 
