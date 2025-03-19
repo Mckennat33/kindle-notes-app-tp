@@ -28,12 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
  
 function renderBookData(bookData) {
     const firstBook = bookData[0]
-    const title = firstBook.title
-    
-    const bookTitle = document.querySelector('.book-title')
-    const bookTitleDisplayLeft = document.querySelector('.title')
-    bookTitleDisplayLeft.textContent = `${title}`
-    bookTitle.innerHTML = `${title}`
 
     const author = firstBook.author
     const authorName = document.querySelector('.author')
@@ -49,7 +43,7 @@ function renderBookData(bookData) {
         const noteSpan = document.createElement('span')
         noteSpan.className = 'page-number'
         // Need to update hard coded page number
-        noteSpan.textContent = 'Page 7'
+        //noteSpan.textContent = 'Page 7'
 
         const notePara = document.createElement('p')
         notePara.className = 'note-text'
