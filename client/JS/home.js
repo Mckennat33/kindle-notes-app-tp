@@ -11,9 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         "Content-Type": "application/json"
                     }
                 })
-                const jsonData = await response.json()
+                const jsonBookData = await response.json()
                 if (response.ok) {
-                    renderBookData(jsonData)
+                    renderBookData(jsonBookData)
+                    renderTitles(jsonBookData)
                 } else {
                     console.log("Error from fetching User Data", response.status)
                 }
@@ -25,18 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
  
-async function renderBookData(bookData) {
+function renderBookData(bookData) {
     const firstBook = bookData[0]
     const title = firstBook.title
     
     const bookTitle = document.querySelector('.book-title')
     const bookTitleDisplayLeft = document.querySelector('.title')
     bookTitleDisplayLeft.textContent = `${title}`
-    bookTitle.textContent = `${title}`
+    bookTitle.innerHTML = `${title}`
 
     const author = firstBook.author
     const authorName = document.querySelector('.author')
-    authorName.textContent = `${author}` 
+    authorName.innerHTML = `${author}` 
 
     const notes = firstBook.notes
     const notesDiv = document.createElement('div')
@@ -58,3 +59,17 @@ async function renderBookData(bookData) {
         document.querySelector('.notes').append(notesDiv);
     })    
 }
+
+function renderTitles(bookData) {
+    // console.log(bookData)
+    for (let i = 0; i < bookData.length; i++) {
+        const bookTitle = bookData[i].title
+        const bookTitleButton = document.createElement('button')
+        bookTitleButton.className = 'title'
+        bookTitleButton.innerText = bookTitle
+
+        document.querySelector('.list').append(bookTitleButton)
+      }
+}
+
+  
