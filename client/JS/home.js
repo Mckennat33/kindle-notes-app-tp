@@ -55,7 +55,10 @@ function renderBookData(bookData) {
         notePara.className = 'note-text'
         notePara.innerHTML = note
 
-        const pinBttn = document.createElement('button')
+        const pinBttn = document.createElement('button').addEventListener('click', function() {
+            // take the note
+            // pin that note to the top 
+        })
         pinBttn.className = 'pin-button'
         pinBttn.innerHTML = 'Pin Note'
 
@@ -75,4 +78,3 @@ function renderTitles(bookData) {
       }
 }
 
-  
