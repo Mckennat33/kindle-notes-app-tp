@@ -9,25 +9,32 @@
 <body>
     <div class="container">
         <header>
-            <h1>Kindle Notes App</h1>
+            <h1 class="app-title">Kindle Notes App</h1>
         </header>
+
+
 
         <div class="content">
             <!-- Sidebar -->
             <aside class="sidebar">
                 <button id="toggleView">View by Author</button>
                 <div class="list">
-
+                    <!-- Book Titles will be dynamically inserted here -->
                 </div>
             </aside>
 
             <!-- Notes Display Section -->
             <main class="notes-display">
                 <div class="book-info">
-                    <h2>Your Kindle notes for: </h2> <h3 class="book-title"></h3>
+                    <h2>Your Kindle notes for:</h2> 
+                    <h3 class="book-title"></h3>
                     <p class="author"></p>
                 </div>
-
+                <div class="pin-note-div">
+                    <div class="pin-note">
+                        <p>Pinned Note</p>
+                    </div>
+                </div>
                 <div class="notes">
                     <div class="note">
                         <span class="page-number">Page 10</span>
@@ -37,17 +44,6 @@
             </main>
         </div>
 
-        <!-- Modal sections  -->
-            <button >Open Modal</button> 
-        <div class="modal" id="modal">
-            <div class="modal-header">
-                <div class="title">Exmaple Modal</div>
-                <button class="close-button">Close</button>
-            </div>
-            <div class="modal-body">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Hic explicabo delectus, saepe molestias velit iste, quae facere, ducimus dolores natus enim. Accusantium id repellat officia eaque unde inventore nostrum illum!
-            </div>
-        </div>
         <!-- Toggle Footer -->
         <footer>
             <button class="toggle-btn active">Book</button>
@@ -57,4 +53,3 @@
 </body>
 <script src="..\JS\home.js"></script>
 </html>
-
