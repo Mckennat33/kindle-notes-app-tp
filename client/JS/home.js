@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchData()
 })
 
+
+// Live your truth
+// Dont believe everything you think
+// Never Finished 
+// The way to love
+// Between the world and me
+// How to be free
+// Friends lovers and the big terrible thing
  
 function renderBookData(bookData) {
     const firstBook = bookData[0]
@@ -47,7 +55,11 @@ function renderBookData(bookData) {
         notePara.className = 'note-text'
         notePara.innerHTML = note
 
-        notesDiv.append(noteSpan, notePara)
+        const pinBttn = document.createElement('button')
+        pinBttn.className = 'pin-button'
+        pinBttn.innerHTML = 'Pin Note'
+
+        notesDiv.append(noteSpan, notePara, pinBttn)
         document.querySelector('.notes').append(notesDiv);
     })    
 }
