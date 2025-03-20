@@ -5,20 +5,13 @@ const csv = require('csv-parser')
 const app = express()
 const fs = require('fs')
 const path = require('path')
+const pdf = require('pdf-parse');
 require('dotenv').config({ path: '../.env' });
 app.use(express.json())
 
 const Book = require("../models/book.js")
 const connectDB = require("../config/dbconn.js");
 connectDB()
-
-// watch for when the user adds a new book
-// take that book parse the csv file and add that to the database
-
-
-// if book already exists in the database return error: book already exists. 
-
-
 
 const catchDownloadedNote = () => {
     try {    
@@ -31,20 +24,18 @@ const catchDownloadedNote = () => {
         watcher.on('add', (path) => {
             if (path.endsWith(".tmp") || path.endsWith(".crdownload")) {
                 return; 
+            } else if (path.endsWith('csv')) {
+                parseBook(path)
+            } else if (path.endsWith(".pdf")) {
+                parsePdfBook(path)
             }
-            if (path.endsWith('csv')) {
-                try {
-                    parseBook(path)
-                } catch(err) {
-                    console.log("Error while parsing book:", err)
-                }
-            }  
         })
         
     } catch(err) {
         console.log(err)
     }
 }
+
 
 const parseBook = async (path) => {
     const results = []
@@ -81,9 +72,17 @@ const parseBook = async (path) => {
 }
 
 
+const parsePdfBook = async (path) => {
+    let dataBuffer = fs.readFileSync(path)
+    pdf(dataBuffer).then(function(data) {
+        console.log(data)
+    })
+}
+
 catchDownloadedNote()
 
 module.exports = {
     catchDownloadedNote, 
     parseBook
+    // parsePdfBook
 }
