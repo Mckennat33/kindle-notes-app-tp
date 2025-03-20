@@ -79,6 +79,16 @@ header {
     border-radius: 8px;
 }
 
+.pin-button {
+    background: var(--highlight);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
 /* Sidebar Titles - Slightly Taller */
 .list {
     display: flex;
@@ -137,6 +147,27 @@ header {
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
     width: 100%;
 }
+.pin-note-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Individual Note Styling */
+.pin-note {
+    background: var(--card-bg);
+    padding: 24px; /* Increased padding */
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 120px; /* Taller notes */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
+    width: 100%;
+}
+
+
 
 .page-number {
     color: var(--highlight);
