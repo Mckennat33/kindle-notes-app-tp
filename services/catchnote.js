@@ -75,12 +75,12 @@ const parseBook = async (path) => {
 const parsePdfBook = async (path) => {
     let dataBuffer = fs.readFileSync(path)
     pdf(dataBuffer).then(function(data) {
-        const { textData } = data
-        const pdfNotes = textData.split("Free")[1].split('|').slice(2)
+        const { text } = data
+        const pdfNotes = text.split("Free")[1].split('|').slice(2)
 
-        const pdfTitle = textData.split('Free')[0].split('by')[0]
+        const pdfTitle = text.split('Free')[0].split('by')[0]
 
-        const pdfAuthor = textData.split('Free')[0].split('by')[1]
+        const pdfAuthor = text.split('Free')[0].split('by')[1]
 
         const bookObject = {
         author: pdfAuthor, 
@@ -88,7 +88,7 @@ const parsePdfBook = async (path) => {
         notes: pdfNotes
         }
 
-        console.log(pdfTitle)
+        console.log(bookObject)
     })
 }
 
