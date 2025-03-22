@@ -46,15 +46,17 @@ function renderBookData(bookData) {
         noteSpan.className = 'page-number'
 
         const notePara = document.createElement('p')
-        notePara.className = 'note-text'
+        notePara.className = 'note-text' // add a unique class name
         notePara.innerHTML = note
 
-        const pinBttn = document.createElement('button')
         
+
+        const pinBttn = document.createElement('button')
         pinBttn.addEventListener('click', function() {
-            // take the note
-            // pin that note to the top 
-            console.log('Pin Button')
+            // need to grab unique class name 
+            const pickedNoteClass = document.querySelector('.note-text') 
+            const pickedNote = pickedNoteClass.innerHTML
+            console.log(pickedNote)
         })
         pinBttn.className = 'pin-button'
         pinBttn.innerHTML = 'Pin Note'
@@ -62,7 +64,24 @@ function renderBookData(bookData) {
         notesDiv.append(noteSpan, notePara, pinBttn)
         document.querySelector('.notes').append(notesDiv);
     })    
+    
 }
+
+// function pinNote() {
+//     // console.log("pinned note function from outside")
+//     const pinBttn = document.createElement('button')
+//     pinBttn.addEventListener('click', function() {
+//         // need to grab unique class name 
+//         const pickedNoteClass = document.querySelector('.note-text') 
+//         const pickedNote = pickedNoteClass.innerHTML
+
+//         const 
+//     })
+//     pinBttn.className = 'pin-button'
+//     pinBttn.innerHTML = 'Pin Note'
+
+
+// }
 
 function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
