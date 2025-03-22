@@ -75,38 +75,30 @@ const parseBook = async (path) => {
 
 const parsePdfBook = async (path) => {
     try {
-
         let dataBuffer = fs.readFileSync(path)
-        pdf(dataBuffer).then(function(data) {
-            
+        pdf(dataBuffer).then(async (data) => {  
             const { text } = data
             const pdfNotes = text.split("Free")[1].split('|').slice(2)
-            const pdfTitle = text.split('Free')[0].split('by')[0]
-            const pdfAuthor = text.split('Free')[0].split('by')[1]
+            const pdfTitle = text.split('Free')[0].split('by')[0].trim()
+            const pdfAuthor = text.split('Free')[0].split('by')[1]?.trim()
             
-            const matchingPdfBook = Book.find({text: pdfTitle})
+
+            const matchingPdfBook = await Book.findOne({ title: pdfTitle }) 
             if (matchingPdfBook) {
                 console.log('PDF Book already exists')
             } else {
                 const pdfBook = new Book({
                     author: pdfAuthor, 
                     title: pdfTitle, 
-                    note: pdfNotes
+                    notes: pdfNotes
                 })
-                pdfBook.save()
+                await pdfBook.save() 
+                console.log("PDF Book saved in Mongoose")
             }
-            
-            // const bookObject = {
-                // author: pdfAuthor, 
-                // title: pdfTitle,
-                // notes: pdfNotes
-                // }
-                
-                console.log()
-            })
-        } catch (err) {
-            console.log(err.message)
-        }
+        })
+    } catch (err) {
+        console.log(err.message)
+    }
 }
 
 catchDownloadedNote()
@@ -114,5 +106,13 @@ catchDownloadedNote()
 module.exports = {
     catchDownloadedNote, 
     parseBook
-    // parsePdfBook
 }
+
+
+// Live your truth
+// Dont believe everything you think
+// Never Finished 
+// The way to love
+// Between the world and me
+// How to be free
+// Friends lovers and the big terrible thing
