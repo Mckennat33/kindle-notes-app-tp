@@ -13,8 +13,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 const jsonBookData = await response.json()
                 if (response.ok) {
+                    // if I take out renderBookData - it will render titles
+                    // May be an issue because of the PDF data. 
                     renderBookData(jsonBookData)
                     renderTitles(jsonBookData)
+                    console.log(jsonBookData)
                 } else {
                     console.log("Error from fetching User Data", response.status)
                 }
@@ -24,15 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         fetchData()
 })
-
-
-// Live your truth
-// Dont believe everything you think
-// Never Finished 
-// The way to love
-// Between the world and me
-// How to be free
-// Friends lovers and the big terrible thing
  
 function renderBookData(bookData) {
     const firstBook = bookData[0]
@@ -55,9 +49,12 @@ function renderBookData(bookData) {
         notePara.className = 'note-text'
         notePara.innerHTML = note
 
-        const pinBttn = document.createElement('button').addEventListener('click', function() {
+        const pinBttn = document.createElement('button')
+        
+        pinBttn.addEventListener('click', function() {
             // take the note
             // pin that note to the top 
+            console.log('Pin Button')
         })
         pinBttn.className = 'pin-button'
         pinBttn.innerHTML = 'Pin Note'
