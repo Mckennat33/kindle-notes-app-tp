@@ -39,7 +39,7 @@ function renderBookData(bookData) {
     const notesDiv = document.createElement('div')
     notesDiv.className = 'note'
 
-    notes.forEach((note) => {
+    notes.forEach((note, index) => {
         const notesDiv = document.createElement('div')
         notesDiv.className = 'note'
         const noteSpan = document.createElement('span')
@@ -47,14 +47,14 @@ function renderBookData(bookData) {
 
         const notePara = document.createElement('p')
         notePara.className = 'note-text' // add a unique class name
+        notePara.dataset.index = index
         notePara.innerHTML = note
 
-        
-
         const pinBttn = document.createElement('button')
-        pinBttn.addEventListener('click', function() {
+        pinBttn.addEventListener('click', (ev) => {
+
             // need to grab unique class name 
-            const pickedNoteClass = document.querySelector('.note-text') 
+            const pickedNoteClass = document.querySelector(`[data-index="${index}"]`) 
             const pickedNote = pickedNoteClass.innerHTML
             console.log(pickedNote)
         })
