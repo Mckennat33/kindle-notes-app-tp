@@ -13,11 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 const jsonBookData = await response.json()
                 if (response.ok) {
-                    // if I take out renderBookData - it will render titles
-                    // May be an issue because of the PDF data. 
                     renderBookData(jsonBookData)
                     renderTitles(jsonBookData)
-                    console.log(jsonBookData)
+                    renderAuthors(jsonBookData)
                 } else {
                     console.log("Error from fetching User Data", response.status)
                 }
@@ -92,5 +90,28 @@ function renderTitles(bookData) {
 
         document.querySelector('.list').append(bookTitleButton)
       }
+
+
+
+
 }
+
+function renderAuthors(bookData) {
+
+    const renderAuthorsBttn = document.getElementById('toggleView')
+    renderAuthorsBttn.addEventListener('click', () => {
+        console.log("Render the authors on the sidebar")
+    })
+
+
+    // for (let i = 0; i < bookData.length; i++) {
+    //     const bookAuthor = bookData[i].author
+    //     const bookAuthorBttn = document.createElement('button')
+    //     bookAuthorBttn.className = 'author'
+    //     bookAuthorBttn.innerText = bookAuthor
+
+    //     document.querySelector('.list').append(bookAuthorBttn)
+    // }
+}
+
 
