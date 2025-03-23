@@ -80,14 +80,20 @@ header {
 }
 
 .pin-button {
+
     background: var(--highlight);
     color: white;
     border: none;
-    padding: 10px;
+    padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
-    margin-bottom: 20px;
     border-radius: 8px;
+    width: fit-content; 
+    min-width: 150px; 
+    text-align: center;
+    display: block;
+    margin: 10px auto; 
+    
 }
 /* Sidebar Titles - Slightly Taller */
 .list {
@@ -121,10 +127,10 @@ header {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    max-width: 75%; /* More to the right */
-    margin-right: 60px; /* Leaves some space on the right */
-    overflow-y: auto; /* Allows only the notes section to scroll */
-    height: 100vh; /* Takes full height of the viewport */
+    max-width: 75%; 
+    margin-right: 60px; 
+    overflow-y: auto; 
+    height: 100vh; 
 }
 
 /* Notes */
@@ -134,16 +140,16 @@ header {
     gap: 20px;
 }
 
-/* Individual Note Styling */
+
 .note {
     background: var(--card-bg);
-    padding: 24px; /* Increased padding */
+    padding: 24px; 
     border-radius: 10px;
     border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-height: 120px; /* Taller notes */
+    min-height: 120px; 
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
     width: 100%;
 }
@@ -156,7 +162,7 @@ header {
 /* Individual Note Styling */
 .pin-note {
     background: var(--card-bg);
-    padding: 24px; /* Increased padding */
+    padding: 24px; 
     border-radius: 10px;
     border: 1px solid var(--border);
     display: flex;
@@ -165,6 +171,31 @@ header {
     min-height: 120px; /* Taller notes */
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
     width: 100%;
+}
+
+.pinned-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* Just added this */
+.pinned-note p {
+    margin-bottom: 15px;
+}
+
+.del-pin-bttn {
+    background: var(--highlight);
+    color: white;
+    border: none;
+    padding: 10px 20px; 
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 8px;
+    width: auto; 
+    align-self: center; 
 }
 
 
