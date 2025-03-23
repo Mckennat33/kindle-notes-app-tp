@@ -63,9 +63,13 @@ function renderBookData(bookData) {
             const deletePinBttn = document.createElement('button')
             deletePinBttn.className = 'del-pin-bttn'
             deletePinBttn.innerText = "Remove Pin"
+            deletePinBttn.addEventListener('click', () => {
+                // Do I want to add a line in between the notes that are pinned? 
+                const removePinnedNote = document.querySelector(".pinned-note")
+                removePinnedNote.remove()
+            })
 
             pinnedNote.append(deletePinBttn)
-
             pinnedDiv.append(pinnedNote)
 
         })
