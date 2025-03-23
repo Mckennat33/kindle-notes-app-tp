@@ -60,6 +60,12 @@ function renderBookData(bookData) {
             pinnedNote.className = 'pinned-note'
             pinnedNote.innerText = pickedNote
 
+            const deletePinBttn = document.createElement('button')
+            deletePinBttn.className = 'del-pin-bttn'
+            deletePinBttn.innerText = "Remove Pin"
+
+            pinnedNote.append(deletePinBttn)
+
             pinnedDiv.append(pinnedNote)
 
         })
