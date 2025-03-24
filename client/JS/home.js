@@ -88,6 +88,9 @@ function renderTitles(bookData) {
         bookTitleButton.className = 'title'
         bookTitleButton.innerText = bookTitle
 
+        // if replace button is by title 
+            // click - switch to by author
+
         document.querySelector('.list').append(bookTitleButton)
         
       }
@@ -97,7 +100,7 @@ function renderTitles(bookData) {
 
 }
 
-function renderAuthors(bookData, element) {
+function renderAuthors(bookData) {
 
     const renderAuthorsBttn = document.getElementById('toggleView')
     renderAuthorsBttn.addEventListener('click', () => {
@@ -108,7 +111,16 @@ function renderAuthors(bookData, element) {
             bookAuthorBttn.className = 'author'
             bookAuthorBttn.innerText = bookAuthor
 
-            document.querySelector('.list').append(bookAuthorBttn)
+            const titleView = document.createElement('button')
+            titleView.id = 'title-toggleView'
+            titleView.innerText = "View by Title"
+            
+            const authorBttn = document.getElementById('toggleView')
+            authorBttn.replaceWith(titleView)
+
+
+            const titleList = document.querySelector('.title')
+            titleList.replaceWith(bookAuthorBttn)
             
         }
         
