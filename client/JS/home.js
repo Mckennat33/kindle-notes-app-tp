@@ -89,6 +89,7 @@ function renderTitles(bookData) {
         bookTitleButton.innerText = bookTitle
 
         document.querySelector('.list').append(bookTitleButton)
+        
       }
 
 
@@ -96,22 +97,23 @@ function renderTitles(bookData) {
 
 }
 
-function renderAuthors(bookData) {
+function renderAuthors(bookData, element) {
 
     const renderAuthorsBttn = document.getElementById('toggleView')
     renderAuthorsBttn.addEventListener('click', () => {
         console.log("Render the authors on the sidebar")
+        for (let i = 0; i < bookData.length; i++) {
+            const bookAuthor = bookData[i].author
+            const bookAuthorBttn = document.createElement('button')
+            bookAuthorBttn.className = 'author'
+            bookAuthorBttn.innerText = bookAuthor
+
+            document.querySelector('.list').append(bookAuthorBttn)
+            
+        }
+        
     })
 
-
-    // for (let i = 0; i < bookData.length; i++) {
-    //     const bookAuthor = bookData[i].author
-    //     const bookAuthorBttn = document.createElement('button')
-    //     bookAuthorBttn.className = 'author'
-    //     bookAuthorBttn.innerText = bookAuthor
-
-    //     document.querySelector('.list').append(bookAuthorBttn)
-    // }
 }
 
 
