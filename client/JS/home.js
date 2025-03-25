@@ -85,7 +85,7 @@ function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
         const bookTitleButton = document.createElement('button')
-        bookTitleButton.className = 'title'
+        bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
         // if replace button is by title 
@@ -106,6 +106,7 @@ function renderAuthors(bookData) {
     renderAuthorsBttn.addEventListener('click', () => {
         console.log("Render the authors on the sidebar")
         for (let i = 0; i < bookData.length; i++) {
+            const bookTitle = bookData[i].title 
             const bookAuthor = bookData[i].author
             const bookAuthorBttn = document.createElement('button')
             bookAuthorBttn.className = 'author'
@@ -119,7 +120,7 @@ function renderAuthors(bookData) {
             authorBttn.replaceWith(titleView)
 
 
-            const titleList = document.querySelector('.title')
+            const titleList = document.querySelectorAll(`.title`)
             titleList.replaceWith(bookAuthorBttn)
             
         }
