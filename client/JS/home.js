@@ -14,8 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const jsonBookData = await response.json()
                 if (response.ok) {
                     renderBookData(jsonBookData)
-                    renderTitles(jsonBookData)
-                    renderAuthors(jsonBookData)
+                    // renderTitles(jsonBookData)
+                    // renderAuthors(jsonBookData)
+                    toggleView(jsonBookData)
                 } else {
                     console.log("Error from fetching User Data", response.status)
                 }
@@ -31,6 +32,7 @@ function renderBookData(bookData) {
 
     const author = firstBook.author
     const authorName = document.querySelector('.author')
+    authorName.className = 'author-top'
     authorName.innerHTML = `${author}` 
 
     const notes = firstBook.notes
@@ -77,8 +79,38 @@ function renderBookData(bookData) {
         notesDiv.append(noteSpan, notePara, pinBttn)
         document.querySelector('.notes').append(notesDiv);
     })    
+
     
 }
+
+function toggleView(bookData) {
+
+    document.getElementById('toggleView').addEventListener('click', () => {
+        const toggleBttn = document.getElementById('toggleView')
+        const currentView = toggleBttn.innerText.includes('Author') ? 'author' : 'title'
+        
+        if (currentView === 'title') {
+            renderAuthors(bookData);
+            toggleBttn.innerText = 'View by Title';
+        } else {
+            renderTitles(bookData);
+            toggleBttn.innerText = 'View by Author';
+        }
+    })
+}
+
+// document.getElementById('toggleView').addEventListener('click', () => {
+//     const toggleBttn = document.getElementById('toggleView')
+//     const currentView = toggleBttn.innerText.includes('Author') ? 'author' : 'title'
+
+//     if (currentView === 'title') {
+//         renderAuthors();
+//         toggleBttn.innerText = 'View by Title';
+//     } else {
+//         renderTitles();
+//         toggleBttn.innerText = 'View by Author';
+//     }
+// })
 
 
 function renderTitles(bookData) {
@@ -88,11 +120,7 @@ function renderTitles(bookData) {
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
-        // if replace button is by title 
-            // click - switch to by author
-
         document.querySelector('.list').append(bookTitleButton)
-        
       }
 
 
@@ -116,12 +144,12 @@ function renderAuthors(bookData) {
             titleView.id = 'title-toggleView'
             titleView.innerText = "View by Title"
             
-            const authorBttn = document.getElementById('toggleView')
-            authorBttn.replaceWith(titleView)
+            // const authorBttn = document.getElementById('toggleView')
+            // authorBttn.replaceWith(titleView)
 
 
-            const titleList = document.querySelectorAll(`.title`)
-            titleList.replaceWith(bookAuthorBttn)
+            // const titleList = document.querySelectorAll(`.title`)
+            // titleList.replaceWith(bookAuthorBttn)
             
         }
         
