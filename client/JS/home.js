@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const jsonBookData = await response.json()
                 if (response.ok) {
                     renderBookData(jsonBookData)
-                    // renderTitles(jsonBookData)
+                    renderTitles(jsonBookData)
                     // renderAuthors(jsonBookData)
                     toggleView(jsonBookData)
                 } else {
@@ -83,34 +83,6 @@ function renderBookData(bookData) {
     
 }
 
-function toggleView(bookData) {
-
-    document.getElementById('toggleView').addEventListener('click', () => {
-        const toggleBttn = document.getElementById('toggleView')
-        const currentView = toggleBttn.innerText.includes('Author') ? 'author' : 'title'
-        
-        if (currentView === 'title') {
-            renderAuthors(bookData);
-            toggleBttn.innerText = 'View by Title';
-        } else {
-            renderTitles(bookData);
-            toggleBttn.innerText = 'View by Author';
-        }
-    })
-}
-
-// document.getElementById('toggleView').addEventListener('click', () => {
-//     const toggleBttn = document.getElementById('toggleView')
-//     const currentView = toggleBttn.innerText.includes('Author') ? 'author' : 'title'
-
-//     if (currentView === 'title') {
-//         renderAuthors();
-//         toggleBttn.innerText = 'View by Title';
-//     } else {
-//         renderTitles();
-//         toggleBttn.innerText = 'View by Author';
-//     }
-// })
 
 
 function renderTitles(bookData) {
@@ -123,7 +95,20 @@ function renderTitles(bookData) {
         document.querySelector('.list').append(bookTitleButton)
       }
 
-
+      function toggleView(bookData) {
+        document.getElementById('toggleView').addEventListener('click', () => {
+            const toggleBttn = document.getElementById('toggleView')
+            const currentView = toggleBttn.innerText.includes('Author') ? 'author' : 'title'
+            
+            if (currentView === 'title') {
+                renderAuthors(bookData);
+                toggleBttn.innerText = 'View by Title';
+            } else {
+                renderTitles();
+                toggleBttn.innerText = 'View by Author';
+            }
+        })
+    }
 
 
 }
