@@ -15,8 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.ok) {
                     renderBookData(jsonBookData)
                     renderTitles(jsonBookData)
-                    // renderAuthors(jsonBookData)
-                    toggleView(jsonBookData)
+                    
                 } else {
                     console.log("Error from fetching User Data", response.status)
                 }
@@ -88,58 +87,42 @@ function renderBookData(bookData) {
 function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
-        const bookTitleButton = document.createElement('button')
+        const bookTitleButton = document.createElement('p')
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
         document.querySelector('.list').append(bookTitleButton)
       }
 
-      function toggleView(bookData) {
-        document.getElementById('toggleView').addEventListener('click', () => {
-            const toggleBttn = document.getElementById('toggleView')
-            const currentView = toggleBttn.innerText.includes('Author') ? 'author' : 'title'
-            
-            if (currentView === 'title') {
-                renderAuthors(bookData);
-                toggleBttn.innerText = 'View by Title';
-            } else {
-                renderTitles();
-                toggleBttn.innerText = 'View by Author';
-            }
-        })
-    }
-
-
 }
 
-function renderAuthors(bookData) {
+// function renderAuthors(bookData) {
 
-    const renderAuthorsBttn = document.getElementById('toggleView')
-    renderAuthorsBttn.addEventListener('click', () => {
-        console.log("Render the authors on the sidebar")
-        for (let i = 0; i < bookData.length; i++) {
-            const bookTitle = bookData[i].title 
-            const bookAuthor = bookData[i].author
-            const bookAuthorBttn = document.createElement('button')
-            bookAuthorBttn.className = 'author'
-            bookAuthorBttn.innerText = bookAuthor
+//     const renderAuthorsBttn = document.getElementById('toggleView')
+//     renderAuthorsBttn.addEventListener('click', () => {
+//         console.log("Render the authors on the sidebar")
+//         for (let i = 0; i < bookData.length; i++) {
+//             const bookTitle = bookData[i].title 
+//             const bookAuthor = bookData[i].author
+//             const bookAuthorBttn = document.createElement('button')
+//             bookAuthorBttn.className = 'author'
+//             bookAuthorBttn.innerText = bookAuthor
 
-            const titleView = document.createElement('button')
-            titleView.id = 'title-toggleView'
-            titleView.innerText = "View by Title"
+//             const titleView = document.createElement('button')
+//             titleView.id = 'title-toggleView'
+//             titleView.innerText = "View by Title"
             
-            // const authorBttn = document.getElementById('toggleView')
-            // authorBttn.replaceWith(titleView)
+//             // const authorBttn = document.getElementById('toggleView')
+//             // authorBttn.replaceWith(titleView)
 
 
-            // const titleList = document.querySelectorAll(`.title`)
-            // titleList.replaceWith(bookAuthorBttn)
+//             // const titleList = document.querySelectorAll(`.title`)
+//             // titleList.replaceWith(bookAuthorBttn)
             
-        }
+//         }
         
-    })
+//     })
 
-}
+// }
 
 
