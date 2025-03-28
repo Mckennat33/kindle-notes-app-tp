@@ -87,12 +87,18 @@ function renderBookData(bookData) {
 function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
-        const bookTitleButton = document.createElement('p')
+        const bookTitleButton = document.createElement('button')
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
-
+        bookTitleButton.addEventListener('click', () => {
+            async function fetchBookTitle() {
+                
+            }
+        })
         document.querySelector('.list').append(bookTitleButton)
       }
+
+
 
 }
 
