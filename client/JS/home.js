@@ -1,5 +1,7 @@
 // const { NotBeforeError } = require("jsonwebtoken")
 
+// const { AccordionTitle } = require("semantic-ui-react")
+
 document.addEventListener('DOMContentLoaded', () => {
         const fetchUserData = "http://localhost:80/home/data"
         async function fetchData() {
@@ -87,48 +89,25 @@ function renderBookData(bookData) {
 function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
+        const selectedBookInfo = bookData[i]
+
         const bookTitleButton = document.createElement('button')
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
+
         bookTitleButton.addEventListener('click', () => {
-            async function fetchBookTitle() {
-                
-            }
+            renderSelectedTitleData()
+            // this function is used to display the data. 
+            console.log(bookTitle) // logs clicked title
+            console.log(selectedBookInfo) // logs clicked titles book object 
+
+            // 
+
         })
         document.querySelector('.list').append(bookTitleButton)
       }
-
-
-
 }
 
-// function renderAuthors(bookData) {
 
-//     const renderAuthorsBttn = document.getElementById('toggleView')
-//     renderAuthorsBttn.addEventListener('click', () => {
-//         console.log("Render the authors on the sidebar")
-//         for (let i = 0; i < bookData.length; i++) {
-//             const bookTitle = bookData[i].title 
-//             const bookAuthor = bookData[i].author
-//             const bookAuthorBttn = document.createElement('button')
-//             bookAuthorBttn.className = 'author'
-//             bookAuthorBttn.innerText = bookAuthor
-
-//             const titleView = document.createElement('button')
-//             titleView.id = 'title-toggleView'
-//             titleView.innerText = "View by Title"
-            
-//             // const authorBttn = document.getElementById('toggleView')
-//             // authorBttn.replaceWith(titleView)
-
-
-//             // const titleList = document.querySelectorAll(`.title`)
-//             // titleList.replaceWith(bookAuthorBttn)
-            
-//         }
-        
-//     })
-
-// }
 
 
