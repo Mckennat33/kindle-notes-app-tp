@@ -79,6 +79,8 @@ header {
     border-radius: 8px;
 }
 
+
+
 .pin-button {
 
     background: var(--highlight);
@@ -103,6 +105,7 @@ header {
     flex-grow: 1;
 }
 
+/* Title buttons  */
 .title {
     background: var(--border);
     color: var(--text-primary);
@@ -119,6 +122,26 @@ header {
     background: var(--highlight);
     color: white;
 }
+
+/* Author buttons */
+.author {
+    background: var(--border);
+    color: var(--text-primary);
+    padding: 18px; /* Slightly taller */
+    border: none;
+    text-align: left;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.author:hover {
+    background: var(--highlight);
+    color: white;
+}
+
+
 
 /* Notes Section */
 .notes-display {
@@ -153,6 +176,20 @@ header {
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
     width: 100%;
 }
+
+.sidebar {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 20%; 
+    margin-right: 60px; 
+    overflow-y: auto; 
+    height: 100vh; 
+}
+
+
 .pin-note-div {
     display: flex;
     flex-direction: column;
