@@ -90,8 +90,6 @@ function renderBookData(bookData) {
 
         bookTitleButton.addEventListener('click', () => {
                 const bookNotes = selectedBookInfo.notes
-
-
                 bookNotes.forEach((newNote, newIndex) => {
                     // newNoteDiv.className = 'note'
                     const newNoteDiv = document.createElement('div')
@@ -102,8 +100,36 @@ function renderBookData(bookData) {
                     newNotePara.dataset.index = newIndex
                     newNotePara.innerText = newNote
 
+                    const pinBttn = document.createElement('button')
+                    pinBttn.addEventListener('click', () => {
+                        const pickedNoteClass = document.querySelector(`[data-index="${newIndex}"]`) 
+                        const pickedNote = pickedNoteClass.innerHTML
+                        
+                        const pinnedDiv = document.querySelector('.pin-note')
+                        const pinnedNote = document.createElement('p')
+                        pinnedNote.className = 'pinned-note'
+                        pinnedNote.innerText = pickedNote
+            
+                        const deletePinBttn = document.createElement('button')
+                        deletePinBttn.className = 'del-pin-bttn'
+                        deletePinBttn.innerText = "Remove Pin"
+                        deletePinBttn.addEventListener('click', () => {
+                            // Do I want to add a line in between the notes that are pinned? 
+                            const removePinnedNote = document.querySelector(".pinned-note")
+                            removePinnedNote.remove()
+                        })
+            
+                        pinnedNote.append(deletePinBttn)
+                        pinnedDiv.append(pinnedNote)
+            
+                    })
+                    pinBttn.className = 'pin-button'
+                    pinBttn.innerHTML = 'Pin Note'
+
+                    newNotePara.append(pinBttn)
                     newNoteDiv.append(newNotePara)
-                    //notesDiv.replaceWith(newNoteDiv)
+
+
                     document.querySelector('.note').replaceWith(newNoteDiv)
                 })
             })
