@@ -43,8 +43,6 @@ function renderBookData(bookData) {
     notes.forEach((note, index) => {
         const notesDiv = document.createElement('div')
         notesDiv.className = 'note'
-        const noteSpan = document.createElement('span')
-        noteSpan.className = 'page-number'
 
         const notePara = document.createElement('p')
         notePara.className = 'note-text' // add a unique class name
@@ -77,7 +75,7 @@ function renderBookData(bookData) {
         pinBttn.className = 'pin-button'
         pinBttn.innerHTML = 'Pin Note'
 
-        notesDiv.append(noteSpan, notePara, pinBttn)
+        notesDiv.append(notePara, pinBttn)
         document.querySelector('.notes').append(notesDiv);
     })    
 
@@ -86,7 +84,7 @@ function renderBookData(bookData) {
 
 
 
-function renderTitles(bookData) {
+async function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
         const selectedBookInfo = bookData[i]
@@ -96,14 +94,23 @@ function renderTitles(bookData) {
         bookTitleButton.innerText = bookTitle
 
         bookTitleButton.addEventListener('click', () => {
-            renderSelectedTitleData()
-            // this function is used to display the data. 
-            console.log(bookTitle) // logs clicked title
-            console.log(selectedBookInfo) // logs clicked titles book object 
+                const bookNotes = selectedBookInfo.notes
+                bookNotes.forEach((note, index) => {
+                    console.log(index, note)
+                    const newNoteDiv = document.createElement('div')
+                    newNoteDiv.className = 'note'
+                    const newNotesSpan = document.createElement('span')
+                    newNotesSpan.className = 'page-number'
+            
+                    const notePara = document.createElement('p')
+                    notePara.className = 'note-text' // add a unique class name
+                    notePara.dataset.index = index
+                    notePara.innerHTML = note
 
-            // 
 
-        })
+                })
+            })
+
         document.querySelector('.list').append(bookTitleButton)
       }
 }
