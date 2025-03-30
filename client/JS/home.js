@@ -96,17 +96,17 @@ async function renderTitles(bookData) {
         bookTitleButton.addEventListener('click', () => {
                 const bookNotes = selectedBookInfo.notes
                 bookNotes.forEach((note, index) => {
-                    console.log(index, note)
                     const newNoteDiv = document.createElement('div')
                     newNoteDiv.className = 'note'
-                    const newNotesSpan = document.createElement('span')
-                    newNotesSpan.className = 'page-number'
             
                     const notePara = document.createElement('p')
                     notePara.className = 'note-text' // add a unique class name
                     notePara.dataset.index = index
                     notePara.innerHTML = note
 
+                    newNoteDiv.append(notePara)
+
+                    // need to figure out how to append data
 
                 })
             })
