@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const jsonBookData = await response.json()
                 if (response.ok) {
                     renderBookData(jsonBookData)
-                    renderTitles(jsonBookData)
+                    // renderTitles(jsonBookData)
                     
                 } else {
                     console.log("Error from fetching User Data", response.status)
@@ -79,12 +79,7 @@ function renderBookData(bookData) {
         document.querySelector('.notes').append(notesDiv);
     })    
 
-    
-}
-
-
-
-async function renderTitles(bookData) {
+    function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
         const selectedBookInfo = bookData[i]
@@ -95,25 +90,62 @@ async function renderTitles(bookData) {
 
         bookTitleButton.addEventListener('click', () => {
                 const bookNotes = selectedBookInfo.notes
-                bookNotes.forEach((note, index) => {
+
+
+                bookNotes.forEach((newNote, newIndex) => {
+                    // newNoteDiv.className = 'note'
                     const newNoteDiv = document.createElement('div')
-                    newNoteDiv.className = 'note'
-            
-                    const notePara = document.createElement('p')
-                    notePara.className = 'note-text' // add a unique class name
-                    notePara.dataset.index = index
-                    notePara.innerHTML = note
+                    newNoteDiv.className = 'new-notes-div'
 
-                    newNoteDiv.append(notePara)
+                    const newNotePara = document.createElement('p')
+                    newNotePara.className = 'new-note' // add a unique class name
+                    newNotePara.dataset.index = newIndex
+                    newNotePara.innerText = newNote
 
-                    // need to figure out how to append data
-
+                    newNoteDiv.append(newNotePara)
+                    //notesDiv.replaceWith(newNoteDiv)
+                    document.querySelector('.note').replaceWith(newNoteDiv)
                 })
             })
 
         document.querySelector('.list').append(bookTitleButton)
       }
 }
+    renderTitles(bookData)
+}
+
+
+
+// function renderTitles(bookData) {
+//     for (let i = 0; i < bookData.length; i++) {
+//         const bookTitle = bookData[i].title
+//         const selectedBookInfo = bookData[i]
+
+//         const bookTitleButton = document.createElement('button')
+//         bookTitleButton.className = `title`
+//         bookTitleButton.innerText = bookTitle
+
+//         bookTitleButton.addEventListener('click', () => {
+//                 const bookNotes = selectedBookInfo.notes
+//                 bookNotes.forEach((note, index) => {
+//                     const newNoteDiv = document.createElement('div')
+//                     newNoteDiv.className = 'note'
+            
+//                     const notePara = document.createElement('p')
+//                     notePara.className = 'note-text' // add a unique class name
+//                     notePara.dataset.index = index
+//                     notePara.innerHTML = note
+
+//                     newNoteDiv.append(notePara)
+
+//                     // need to figure out how to append data
+
+//                 })
+//             })
+
+//         document.querySelector('.list').append(bookTitleButton)
+//       }
+// }
 
 
 
