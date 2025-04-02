@@ -77,6 +77,7 @@ function renderBookData(bookData) {
 
         notesDiv.append(notePara, pinBttn)
         document.querySelector('.notes').append(notesDiv);
+        
     })    
 
     function renderTitles(bookData) {
@@ -88,10 +89,9 @@ function renderBookData(bookData) {
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
-        bookTitleButton.addEventListener('click', () => {
+        bookTitleButton.addEventListener('click', async () => {
                 const bookNotes = selectedBookInfo.notes
                 bookNotes.forEach((newNote, newIndex) => {
-                    // newNoteDiv.className = 'note'
                     const newNoteDiv = document.createElement('div')
                     newNoteDiv.className = 'new-notes-div'
 
@@ -103,7 +103,7 @@ function renderBookData(bookData) {
                     const pinBttn = document.createElement('button')
                     pinBttn.addEventListener('click', () => {
                         const pickedNoteClass = document.querySelector(`[data-index="${newIndex}"]`) 
-                        const pickedNote = pickedNoteClass.innerHTML
+                        const pickedNote = pickedNoteClass.innerText // was innerhtml
                         
                         const pinnedDiv = document.querySelector('.pin-note')
                         const pinnedNote = document.createElement('p')
@@ -124,13 +124,21 @@ function renderBookData(bookData) {
             
                     })
                     pinBttn.className = 'pin-button'
-                    pinBttn.innerHTML = 'Pin Note'
+                    pinBttn.innerHTML  = "Pin Note"
 
                     newNotePara.append(pinBttn)
                     newNoteDiv.append(newNotePara)
 
+                    const noteClassName = document.querySelector('.note')
+                    const newNoteClassName = document.querySelector('.new-note')
 
-                    document.querySelector('.note').replaceWith(newNoteDiv)
+                    if (noteClassName) {
+                        document.querySelector('.note').replaceWith(newNoteDiv)
+                    }   else if (newNoteClassName) {
+                        document.querySelector('.new-note').append(newNoteDiv)
+                    }
+
+                    
                 })
             })
 
@@ -140,38 +148,6 @@ function renderBookData(bookData) {
     renderTitles(bookData)
 }
 
-
-
-// function renderTitles(bookData) {
-//     for (let i = 0; i < bookData.length; i++) {
-//         const bookTitle = bookData[i].title
-//         const selectedBookInfo = bookData[i]
-
-//         const bookTitleButton = document.createElement('button')
-//         bookTitleButton.className = `title`
-//         bookTitleButton.innerText = bookTitle
-
-//         bookTitleButton.addEventListener('click', () => {
-//                 const bookNotes = selectedBookInfo.notes
-//                 bookNotes.forEach((note, index) => {
-//                     const newNoteDiv = document.createElement('div')
-//                     newNoteDiv.className = 'note'
-            
-//                     const notePara = document.createElement('p')
-//                     notePara.className = 'note-text' // add a unique class name
-//                     notePara.dataset.index = index
-//                     notePara.innerHTML = note
-
-//                     newNoteDiv.append(notePara)
-
-//                     // need to figure out how to append data
-
-//                 })
-//             })
-
-//         document.querySelector('.list').append(bookTitleButton)
-//       }
-// }
 
 
 
