@@ -91,9 +91,11 @@ function renderBookData(bookData) {
 
         bookTitleButton.addEventListener('click', () => {
                 const bookNotes = selectedBookInfo.notes
+                console.log(bookNotes.length)
+                // if the notes length is larger than the previous note then we need to add a div and append
                 bookNotes.forEach((newNote, newIndex) => {
                     const newNoteDiv = document.createElement('div')
-                    newNoteDiv.className = `new-notes-div-${newIndex}`
+                    newNoteDiv.className = 'new-notes-div'
 
                     const newNotePara = document.createElement('p')
                     newNotePara.className = 'new-note' // add a unique class name
@@ -133,9 +135,11 @@ function renderBookData(bookData) {
                     if (noteClassName) {
                         document.querySelector('.note').replaceWith(newNoteDiv)
                     } else if (newNoteClassName) {
-                        document.querySelector(`.new-notes-div-${newIndex}`).replaceWith(newNoteDiv)
+                        // document.querySelector(`.new-notes-div-${newIndex}`).replaceWith(newNoteDiv)
+                        document.querySelector('.new-notes-div').replaceWith(newNotePara)
+                    } else {
+                        document.querySelector('.notes').append(newNoteDiv);
                     }
-
                 })
             })
 
