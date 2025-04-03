@@ -80,6 +80,8 @@ function renderBookData(bookData) {
         
     })    
 
+
+        
     function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
@@ -89,6 +91,7 @@ function renderBookData(bookData) {
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
+            // maybe add a div up (without anything attached) then add the new-notes to this div. so i am not creating a div for each? 
         bookTitleButton.addEventListener('click', () => {
                 const bookNotes = selectedBookInfo.notes
                 console.log(bookNotes.length)
