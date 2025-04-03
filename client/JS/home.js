@@ -89,11 +89,11 @@ function renderBookData(bookData) {
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
-        bookTitleButton.addEventListener('click', async () => {
+        bookTitleButton.addEventListener('click', () => {
                 const bookNotes = selectedBookInfo.notes
                 bookNotes.forEach((newNote, newIndex) => {
                     const newNoteDiv = document.createElement('div')
-                    newNoteDiv.className = 'new-notes-div'
+                    newNoteDiv.className = `new-notes-div-${newIndex}`
 
                     const newNotePara = document.createElement('p')
                     newNotePara.className = 'new-note' // add a unique class name
@@ -118,10 +118,8 @@ function renderBookData(bookData) {
                             const removePinnedNote = document.querySelector(".pinned-note")
                             removePinnedNote.remove()
                         })
-            
                         pinnedNote.append(deletePinBttn)
                         pinnedDiv.append(pinnedNote)
-            
                     })
                     pinBttn.className = 'pin-button'
                     pinBttn.innerHTML  = "Pin Note"
@@ -134,11 +132,10 @@ function renderBookData(bookData) {
 
                     if (noteClassName) {
                         document.querySelector('.note').replaceWith(newNoteDiv)
-                    }   else if (newNoteClassName) {
-                        document.querySelector('.new-note').append(newNoteDiv)
+                    } else if (newNoteClassName) {
+                        document.querySelector(`.new-notes-div-${newIndex}`).replaceWith(newNoteDiv)
                     }
 
-                    
                 })
             })
 
