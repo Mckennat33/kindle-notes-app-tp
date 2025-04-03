@@ -131,7 +131,9 @@ function renderBookData(bookData) {
 
                     const noteClassName = document.querySelector('.note')
                     const newNoteClassName = document.querySelector('.new-note')
-
+                // need to make a div container for notes. 
+                // add new notes to that div. 
+                        // replace anything after that with new div. 
                     if (noteClassName) {
                         document.querySelector('.note').replaceWith(newNoteDiv)
                     } else if (newNoteClassName) {
