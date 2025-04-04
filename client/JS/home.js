@@ -89,11 +89,16 @@ function renderBookData(bookData) {
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
+        
+        
         bookTitleButton.addEventListener('click', () => {
-                const bookNotes = selectedBookInfo.notes
-                console.log(bookNotes.length)
+            const allNotesWrapper = document.createElement('div')
+            allNotesWrapper.className = 'test-notes'
+
+            const bookNotes = selectedBookInfo.notes
                 // if the notes length is larger than the previous note then we need to add a div and append
                 bookNotes.forEach((newNote, newIndex) => {
+
                     const newNoteDiv = document.createElement('div')
                     newNoteDiv.className = 'new-notes-div'
 
@@ -126,21 +131,20 @@ function renderBookData(bookData) {
                     pinBttn.className = 'pin-button'
                     pinBttn.innerHTML  = "Pin Note"
 
-                    newNotePara.append(pinBttn)
-                    newNoteDiv.append(newNotePara)
+                    // newNotePara.append(pinBttn)
+                    newNoteDiv.append(newNotePara, pinBttn)
 
-                    const noteClassName = document.querySelector('.note')
-                    const newNoteClassName = document.querySelector('.new-note')
+                    allNotesWrapper.append(newNoteDiv)
 
-                    if (noteClassName) {
-                        document.querySelector('.note').replaceWith(newNoteDiv)
-                    } else if (newNoteClassName) {
-                        // document.querySelector(`.new-notes-div-${newIndex}`).replaceWith(newNoteDiv)
-                        document.querySelector('.new-notes-div').replaceWith(newNotePara)
-                    } else {
-                        document.querySelector('.notes').append(newNoteDiv);
-                    }
                 })
+
+            const firstNoteDiv = document.querySelector('.notes')
+            if (firstNoteDiv) {
+                document.querySelector('.notes').replaceWith(allNotesWrapper)
+            } else {
+                document.querySelector('.test-notes').replaceWith(allNotesWrapper)
+            }
+
             })
 
         document.querySelector('.list').append(bookTitleButton)
