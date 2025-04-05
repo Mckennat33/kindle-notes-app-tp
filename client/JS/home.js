@@ -130,7 +130,7 @@ function renderBookData(bookData) {
                     pinBttn.innerHTML  = "Pin Note"
 
                     newNotePara.append(pinBttn)
-                    newNoteDiv.append(newNotePara)
+                    newNoteDiv.append(newNotePara) // add pin bttn to div
 
                     const noteClassName = document.querySelector('.note')
                     const newNoteClassName = document.querySelector('.new-note')
