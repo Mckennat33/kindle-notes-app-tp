@@ -91,13 +91,13 @@ function renderBookData(bookData) {
 
         bookTitleButton.addEventListener('click', () => {
             const allNotesWrapper = document.createElement('div')
-            allNotesWrapper.className = 'test-notes'
+            allNotesWrapper.className = 'notes'
 
             const bookNotes = selectedBookInfo.notes
                 bookNotes.forEach((newNote, newIndex) => {
 
                     const newNoteDiv = document.createElement('div')
-                    newNoteDiv.className = 'new-notes-div'
+                    newNoteDiv.className = 'note'
 
                     const newNotePara = document.createElement('p')
                     newNotePara.className = 'new-note' // add a unique class name
@@ -128,7 +128,6 @@ function renderBookData(bookData) {
                     pinBttn.className = 'pin-button'
                     pinBttn.innerText = "Pin Note"
 
-                    // newNotePara.append(pinBttn)
                     newNoteDiv.append(newNotePara, pinBttn)
 
                     allNotesWrapper.append(newNoteDiv)
