@@ -164,6 +164,7 @@ header {
 }
 
 
+
 .note {
     background: var(--card-bg);
     padding: 24px; 
@@ -176,6 +177,8 @@ header {
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
     width: 100%;
 }
+
+
 
 .sidebar {
     flex: 1;
