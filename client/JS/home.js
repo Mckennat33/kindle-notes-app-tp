@@ -77,8 +77,8 @@ function renderBookData(bookData) {
 
         notesDiv.append(notePara, pinBttn)
         document.querySelector('.notes').append(notesDiv);
-        
     })    
+
 
     function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
@@ -89,14 +89,11 @@ function renderBookData(bookData) {
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
-        
-        
         bookTitleButton.addEventListener('click', () => {
             const allNotesWrapper = document.createElement('div')
             allNotesWrapper.className = 'test-notes'
 
             const bookNotes = selectedBookInfo.notes
-                // if the notes length is larger than the previous note then we need to add a div and append
                 bookNotes.forEach((newNote, newIndex) => {
 
                     const newNoteDiv = document.createElement('div')
@@ -129,7 +126,7 @@ function renderBookData(bookData) {
                         pinnedDiv.append(pinnedNote)
                     })
                     pinBttn.className = 'pin-button'
-                    pinBttn.innerHTML  = "Pin Note"
+                    pinBttn.innerText = "Pin Note"
 
                     // newNotePara.append(pinBttn)
                     newNoteDiv.append(newNotePara, pinBttn)
