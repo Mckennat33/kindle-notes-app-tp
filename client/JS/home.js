@@ -80,6 +80,10 @@ function renderBookData(bookData) {
     })    
 
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 2f0b3c9dc6a460610e1ac2fa173623d2321faf33
     function renderTitles(bookData) {
     for (let i = 0; i < bookData.length; i++) {
         const bookTitle = bookData[i].title
@@ -89,6 +93,7 @@ function renderBookData(bookData) {
         bookTitleButton.className = `title`
         bookTitleButton.innerText = bookTitle
 
+            // maybe add a div up (without anything attached) then add the new-notes to this div. so i am not creating a div for each? 
         bookTitleButton.addEventListener('click', () => {
             const allNotesWrapper = document.createElement('div')
             allNotesWrapper.className = 'notes'
@@ -128,10 +133,29 @@ function renderBookData(bookData) {
                     pinBttn.className = 'pin-button'
                     pinBttn.innerText = "Pin Note"
 
+<<<<<<< HEAD
                     newNoteDiv.append(newNotePara, pinBttn)
 
                     allNotesWrapper.append(newNoteDiv)
 
+=======
+                    newNotePara.append(pinBttn)
+                    newNoteDiv.append(newNotePara) // add pin bttn to div
+
+                    const noteClassName = document.querySelector('.note')
+                    const newNoteClassName = document.querySelector('.new-note')
+                // need to make a div container for notes. 
+                // add new notes to that div. 
+                        // replace anything after that with new div. 
+                    if (noteClassName) {
+                        document.querySelector('.note').replaceWith(newNoteDiv)
+                    } else if (newNoteClassName) {
+                        // document.querySelector(`.new-notes-div-${newIndex}`).replaceWith(newNoteDiv)
+                        document.querySelector('.new-notes-div').replaceWith(newNotePara)
+                    } else {
+                        document.querySelector('.notes').append(newNoteDiv);
+                    }
+>>>>>>> 2f0b3c9dc6a460610e1ac2fa173623d2321faf33
                 })
 
             const firstNoteDiv = document.querySelector('.notes')

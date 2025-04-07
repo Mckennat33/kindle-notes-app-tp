@@ -14,9 +14,7 @@ const catchNote = require("../services/catchnote.js")
 const auth = require('../middleware/auth.js')
 require('dotenv').config({ path: '../.env' });
 const cookieParser = require('cookie-parser')
-connectDB()
 const config = require('config')  
-
 
 app.use(cookieParser())
 app.use(express.json())
@@ -24,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, '../client')))
 app.use('/', loginRoute)
 app.use('/home', auth, homeRoute)
+app.use('/home/data', auth, homeRoute)
 app.use('/login', loginRoute)
 app.use('/signup', signupRoute)
 

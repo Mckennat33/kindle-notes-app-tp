@@ -30,6 +30,7 @@
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.1",
     "nodemon": "^3.1.9",
+    "pdf-parse": "^1.1.1",
     "semantic-ui-react": "^2.1.5",
     "validator": "^13.12.0"
   }

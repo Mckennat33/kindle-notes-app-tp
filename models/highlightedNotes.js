@@ -8,3 +8,13 @@ const highlightedNotes = Schema({
 })
 
 module.exports = mongoose.model('Notes', highlightedNotes)
+
+
+
+
+// Module 
+// greeting.js
+
+
+
+

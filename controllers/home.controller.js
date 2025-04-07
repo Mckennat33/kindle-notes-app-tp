@@ -17,7 +17,6 @@ const homePage = async (req, res) => {
 const getUserData = async (req, res) => {
     try {
         const bookInfo = await Book.find({})
-        //console.log(req.cookies.access_token)
         res.json(bookInfo)
     } catch(err) {
         console.log(err)
