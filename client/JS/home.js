@@ -1,6 +1,4 @@
-// const { NotBeforeError } = require("jsonwebtoken")
 
-// const { AccordionTitle } = require("semantic-ui-react")
 
 document.addEventListener('DOMContentLoaded', () => {
     const fetchUserData = "http://localhost:80/home/data"
@@ -29,12 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function renderBookData(bookData) {
+
 const firstBook = bookData[0]
 
 const author = firstBook.author
 const authorName = document.querySelector('.author')
 authorName.className = 'author-top'
 authorName.innerHTML = `${author}` 
+
+const title = firstBook.title
+const firstTitleSelect = document.querySelector('.book-title')
+firstTitleSelect.className = 'title-top'
+firstTitleSelect.innerHTML = `YOU KINDLE NOTES FOR: ${title}`
 
 const notes = firstBook.notes
 const notesDiv = document.createElement('div')
@@ -92,6 +96,18 @@ for (let i = 0; i < bookData.length; i++) {
     bookTitleButton.addEventListener('click', () => {
         const allNotesWrapper = document.createElement('div')
         allNotesWrapper.className = 'notes'
+
+        // DISPLAYING AUTHOR AND TITLE TO HOME PAGE
+        const selectedBooktitle = selectedBookInfo.title
+        const selectedBookAuthor = selectedBookInfo.author
+
+        const newTitle = document.createElement('p')
+        newTitle.className = 'new-title'
+        newTitle.innerHTML = `${selectedBooktitle}`
+
+        console.log(newTitle)
+        // document.querySelector('.book-top').replaceWith(newTitle)
+        // document.querySelector('.author').replaceWith(selectedBookAuthor)
 
         const bookNotes = selectedBookInfo.notes
             bookNotes.forEach((newNote, newIndex) => {
