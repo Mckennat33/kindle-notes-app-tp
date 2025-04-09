@@ -80,7 +80,6 @@ header {
 }
 
 
-
 .pin-button {
 
     background: var(--highlight);
@@ -119,9 +118,15 @@ header {
 }
 
 .title:hover {
-    background: var(--highlight);
+    /* background: var(--highlight);
     color: white;
+    transition: all 0.2s ease-in-out; */
+    background-color: #258df5; /* slightly darker highlight */
+    transform: scale(1.04); /* grow by 5% */
+    transition: all 0.2s ease-in-out;
 }
+
+
 
 /* Author buttons */
 .author {
