@@ -56,6 +56,8 @@ header {
     overflow: hidden; /* Prevents full page scrolling */
 }
 
+
+
 /* Sidebar */
 .sidebar {
     width: 280px;
@@ -103,6 +105,8 @@ header {
     gap: 12px;
     flex-grow: 1;
 }
+
+
 
 /* Title buttons  */
 .title {
@@ -181,8 +185,15 @@ header {
     min-height: 120px; 
     box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
     width: 100%;
+    /* add movoement when hovering over */
 }
 
+.note:hover {
+
+    background-color: #272626; /* slightly darker highlight */
+    transform: scale(1.02); /* grow by 5% */
+    transition: all 0.2s ease-in-out;
+}
 
 
 .sidebar {
@@ -218,12 +229,22 @@ header {
     width: 100%;
 }
 
+.pin-note:hover {
+
+    background-color: #272626; /* slightly darker highlight */
+    transform: scale(1.02); /* grow by 5% */
+    transition: all 0.2s ease-in-out;
+}
+
 .pinned-note {
     display: flex;
     flex-direction: column;
     align-items: center; 
     justify-content: center; 
 }
+
+
+
 
 /* Just added this */
 .pinned-note p {
