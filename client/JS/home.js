@@ -38,7 +38,7 @@ authorName.innerHTML = `${author}`
 const title = firstBook.title
 const firstTitleSelect = document.querySelector('.book-title')
 firstTitleSelect.className = 'title-top'
-firstTitleSelect.innerHTML = `YOU KINDLE NOTES FOR: ${title}`
+firstTitleSelect.innerHTML = `YOUR KINDLE NOTES FOR: ${title}`
 
 const notes = firstBook.notes
 const notesDiv = document.createElement('div')
@@ -101,13 +101,26 @@ for (let i = 0; i < bookData.length; i++) {
         const selectedBooktitle = selectedBookInfo.title
         const selectedBookAuthor = selectedBookInfo.author
 
-        const newTitle = document.createElement('p')
+        const newTitle = document.createElement('h2')
         newTitle.className = 'new-title'
-        newTitle.innerHTML = `${selectedBooktitle}`
+        newTitle.innerHTML = `YOUR KINDLE NOTES FOR: ${selectedBooktitle}`
 
-        console.log(newTitle)
-        // document.querySelector('.book-top').replaceWith(newTitle)
-        // document.querySelector('.author').replaceWith(selectedBookAuthor)
+        const newAuthor = document.createElement('p')
+        newAuthor.className = 'new-auth'
+        newAuthor.innerHTML = selectedBookAuthor
+
+        const firstTitle = document.querySelector('.title-top')
+
+        if (!firstTitle) {
+            document.querySelector('.new-title').replaceWith(newTitle)
+            document.querySelector('.new-auth').replaceWith(newAuthor)
+        } else {    
+            document.querySelector('.title-top').replaceWith(newTitle)
+            document.querySelector('.author-top').replaceWith(newAuthor)
+        }
+
+
+
 
         const bookNotes = selectedBookInfo.notes
             bookNotes.forEach((newNote, newIndex) => {
