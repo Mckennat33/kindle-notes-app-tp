@@ -84,97 +84,108 @@ notes.forEach((note, index) => {
 })    
 
 
-function renderTitles(bookData) {
-for (let i = 0; i < bookData.length; i++) {
-    const bookTitle = bookData[i].title
-    const selectedBookInfo = bookData[i]
+    function renderTitles(bookData) {
+        for (let i = 0; i < bookData.length; i++) {
+        const bookTitle = bookData[i].title
+        const selectedBookInfo = bookData[i]
 
-    const bookTitleButton = document.createElement('button')
-    bookTitleButton.className = `title`
-    bookTitleButton.innerText = bookTitle
+        const bookTitleButton = document.createElement('button')
+        bookTitleButton.className = `title`
+        bookTitleButton.innerText = bookTitle
 
-    bookTitleButton.addEventListener('click', () => {
-        const allNotesWrapper = document.createElement('div')
-        allNotesWrapper.className = 'notes'
+        bookTitleButton.addEventListener('click', () => {
+            const allNotesWrapper = document.createElement('div')
+            allNotesWrapper.className = 'notes'
 
-        // DISPLAYING AUTHOR AND TITLE TO HOME PAGE
-        const selectedBooktitle = selectedBookInfo.title
-        const selectedBookAuthor = selectedBookInfo.author
+            // DISPLAYING AUTHOR AND TITLE TO HOME PAGE
+            const selectedBooktitle = selectedBookInfo.title
+            const selectedBookAuthor = selectedBookInfo.author
 
-        const newTitle = document.createElement('h2')
-        newTitle.className = 'new-title'
-        newTitle.innerHTML = `YOUR KINDLE NOTES FOR: ${selectedBooktitle}`
+            const newTitle = document.createElement('h2')
+            newTitle.className = 'new-title'
+            newTitle.innerHTML = `YOUR KINDLE NOTES FOR: ${selectedBooktitle}`
 
-        const newAuthor = document.createElement('p')
-        newAuthor.className = 'new-auth'
-        newAuthor.innerHTML = selectedBookAuthor
+            const newAuthor = document.createElement('p')
+            newAuthor.className = 'new-auth'
+            newAuthor.innerHTML = selectedBookAuthor
 
-        const firstTitle = document.querySelector('.title-top')
+            const firstTitle = document.querySelector('.title-top')
 
-        if (!firstTitle) {
-            document.querySelector('.new-title').replaceWith(newTitle)
-            document.querySelector('.new-auth').replaceWith(newAuthor)
-        } else {    
-            document.querySelector('.title-top').replaceWith(newTitle)
-            document.querySelector('.author-top').replaceWith(newAuthor)
-        }
+            if (!firstTitle) {
+                document.querySelector('.new-title').replaceWith(newTitle)
+                document.querySelector('.new-auth').replaceWith(newAuthor)
+            } else {    
+                document.querySelector('.title-top').replaceWith(newTitle)
+                document.querySelector('.author-top').replaceWith(newAuthor)
+            }
 
+            const bookNotes = selectedBookInfo.notes
+                bookNotes.forEach((newNote, newIndex) => {
 
+                    const newNoteDiv = document.createElement('div')
+                    newNoteDiv.className = 'note'
 
+                    const newNotePara = document.createElement('p')
+                    newNotePara.className = 'new-note' // add a unique class name
+                    newNotePara.dataset.index = newIndex
+                    newNotePara.innerText = newNote
 
-        const bookNotes = selectedBookInfo.notes
-            bookNotes.forEach((newNote, newIndex) => {
-
-                const newNoteDiv = document.createElement('div')
-                newNoteDiv.className = 'note'
-
-                const newNotePara = document.createElement('p')
-                newNotePara.className = 'new-note' // add a unique class name
-                newNotePara.dataset.index = newIndex
-                newNotePara.innerText = newNote
-
-                const pinBttn = document.createElement('button')
-                pinBttn.addEventListener('click', () => {
-                    const pickedNoteClass = document.querySelector(`[data-index="${newIndex}"]`) 
-                    const pickedNote = pickedNoteClass.innerText // was innerhtml
-                    
-                    const pinnedDiv = document.querySelector('.pin-note')
-                    const pinnedNote = document.createElement('p')
-                    pinnedNote.className = 'pinned-note'
-                    pinnedNote.innerText = pickedNote
-        
-                    const deletePinBttn = document.createElement('button')
-                    deletePinBttn.className = 'del-pin-bttn'
-                    deletePinBttn.innerText = "Remove Pin"
-                    deletePinBttn.addEventListener('click', () => {
-                        // Do I want to add a line in between the notes that are pinned? 
-                        const removePinnedNote = document.querySelector(".pinned-note")
-                        removePinnedNote.remove()
+                    const pinBttn = document.createElement('button')
+                    pinBttn.addEventListener('click', () => {
+                        const pickedNoteClass = document.querySelector(`[data-index="${newIndex}"]`) 
+                        const pickedNote = pickedNoteClass.innerText // was innerhtml
+                        
+                        const pinnedDiv = document.querySelector('.pin-note')
+                        const pinnedNote = document.createElement('p')
+                        pinnedNote.className = 'pinned-note'
+                        pinnedNote.innerText = pickedNote
+            
+                        const deletePinBttn = document.createElement('button')
+                        deletePinBttn.className = 'del-pin-bttn'
+                        deletePinBttn.innerText = "Remove Pin"
+                        deletePinBttn.addEventListener('click', () => {
+                            // Do I want to add a line in between the notes that are pinned? 
+                            const removePinnedNote = document.querySelector(".pinned-note")
+                            removePinnedNote.remove()
+                        })
+                        pinnedNote.append(deletePinBttn)
+                        pinnedDiv.append(pinnedNote)
                     })
-                    pinnedNote.append(deletePinBttn)
-                    pinnedDiv.append(pinnedNote)
+                    pinBttn.className = 'pin-button'
+                    pinBttn.innerText = "Pin Note"
+
+                    newNoteDiv.append(newNotePara, pinBttn)
+
+                    allNotesWrapper.append(newNoteDiv)
+
                 })
-                pinBttn.className = 'pin-button'
-                pinBttn.innerText = "Pin Note"
 
-                // newNotePara.append(pinBttn)
-                newNoteDiv.append(newNotePara, pinBttn)
-
-                allNotesWrapper.append(newNoteDiv)
+            const firstNoteDiv = document.querySelector('.notes')
+            if (firstNoteDiv) {
+                document.querySelector('.notes').replaceWith(allNotesWrapper)
+            } else {
+                document.querySelector('.test-notes').replaceWith(allNotesWrapper)
+            }
 
             })
 
-        const firstNoteDiv = document.querySelector('.notes')
-        if (firstNoteDiv) {
-            document.querySelector('.notes').replaceWith(allNotesWrapper)
-        } else {
-            document.querySelector('.test-notes').replaceWith(allNotesWrapper)
+        document.querySelector('.list').append(bookTitleButton)
+
+
         }
 
-        })
 
-    document.querySelector('.list').append(bookTitleButton)
-  }
-}
-renderTitles(bookData)
+    }
+    renderTitles(bookData)
+
+    document.querySelector('.add-book').addEventLister('click', () => {
+        console.log('add book button')
+         const popUpContainer = document.createElement('div')
+         const popUp = document.createElement('p')
+
+         const notesContainer = document.querySelector('notes-display')
+        notesContainer.append(popUpContainer, popUp)
+         
+    })
+
 }
