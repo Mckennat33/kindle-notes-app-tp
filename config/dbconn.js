@@ -1,5 +1,8 @@
 
-require('dotenv').config({ path: '../.env' });  // Adjust path relative to config folder
+//require('dotenv').config({ path: '../.env' });  // Adjust path relative to config folder
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+
 
 const mongoose = require('mongoose');
 
