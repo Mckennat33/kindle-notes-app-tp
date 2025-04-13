@@ -176,21 +176,28 @@ notes.forEach((note, index) => {
     }
     renderTitles(bookData)
 
+
     const manualBook = document.querySelector('.add-book')
-    manualBook.addEventLister('click', () => {
+    manualBook.addEventListener('click', () => {
         console.log('add book button')
-         const popUpContainer = document.createElement('div')
-         const popUp = document.createElement('p')
+        const popUpContainer = document.createElement('div')
+        const popUp = document.createElement('p')
 
-         const exitBttn = document.createElement('button')
-         exitBttn.className = 'exit-bttn'
-         exitBttn.addEventListener('click', () => {
-            console.log("Exit Pop up")
-         })
+        const exitBttn = document.createElement('button')
+     exitBttn.className = 'exit-bttn'
+     exitBttn.addEventListener('click', () => {
+         console.log("Exit Pop up")
+     })
 
-         const notesContainer = document.querySelector('notes-display')
-        notesContainer.append(popUpContainer, popUp)
-         
+     const notesContainer = document.querySelector('notes-display')
+     notesContainer.append(popUpContainer, popUp)
+     
     })
 
+
 }
+
+
+
+
+
