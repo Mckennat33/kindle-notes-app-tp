@@ -180,10 +180,13 @@ notes.forEach((note, index) => {
     const manualBook = document.querySelector('.add-book')
     manualBook.addEventListener('click', () => {
         console.log('add book button')
-        const popUpContainer = document.createElement('div')
-        popUpContainer.className = 'pop-container'
+        // const popUpContainer = document.createElement('div')
+        const popUpContainer = document.getElementsByClassName('pop-container')
+        // popUpContainer.className = 'pop-container'
 
-        const popUp = document.createElement('p')
+        // const popUp = document.createElement('p')
+        const popUp = document.getElementsByClassName('p')
+        // popUp.className = 'pop-up'
 
         popUpContainer.style.display = 'flex'
 
@@ -198,8 +201,8 @@ notes.forEach((note, index) => {
         })
         const notesContainer = document.querySelector('.header-container')
         // popUpContainer.append(popUp)
-        popUpContainer.append(exitBttn)
-        notesContainer.append(popUpContainer, popUp)
+        //popUpContainer.append(exitBttn)
+        //notesContainer.append(popUpContainer, popUp)
     })
 
 
