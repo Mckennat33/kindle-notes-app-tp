@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     const fetchUserData = "http://localhost:80/home/data"
     async function fetchData() {
@@ -178,10 +176,17 @@ notes.forEach((note, index) => {
     }
     renderTitles(bookData)
 
-    document.querySelector('.add-book').addEventLister('click', () => {
+    const manualBook = document.querySelector('.add-book')
+    manualBook.addEventLister('click', () => {
         console.log('add book button')
          const popUpContainer = document.createElement('div')
          const popUp = document.createElement('p')
+
+         const exitBttn = document.createElement('button')
+         exitBttn.className = 'exit-bttn'
+         exitBttn.addEventListener('click', () => {
+            console.log("Exit Pop up")
+         })
 
          const notesContainer = document.querySelector('notes-display')
         notesContainer.append(popUpContainer, popUp)
