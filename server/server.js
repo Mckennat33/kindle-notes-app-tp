@@ -14,7 +14,7 @@ const catchNote = require("../services/catchnote.js")
 const auth = require('../middleware/auth.js')
 require('dotenv').config({ path: '../.env' });
 const cookieParser = require('cookie-parser')
-const config = require('config')  
+// const config = require('config')  
 
 app.use(cookieParser())
 app.use(express.json())
@@ -28,7 +28,14 @@ app.use('/signup', signupRoute)
 
 
 const port = process.env.PORT || 80
+
 app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`)
-  catchNote
-})  
+  console.log(`Server running on port ${port}`);
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${port} is already in use. Please kill the process using it or try another port.`);
+    process.exit(1);
+  } else {
+    console.error('Server error:', err);
+  }
+});

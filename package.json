@@ -4,7 +4,8 @@
   "description": "Kindle notes app for my thinkpad",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_CONFIG_DIR=./server/config nodemon server/server.js"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,8 @@
     "lodash": "^4.17.21",
     "mongodb": "^6.13.0",
     "mongoose": "^8.10.1",
+    "node-schedule": "^2.1.1",
+    "nodemailer": "^6.10.0",
     "nodemon": "^3.1.9",
     "pdf-parse": "^1.1.1",
     "semantic-ui-react": "^2.1.5",

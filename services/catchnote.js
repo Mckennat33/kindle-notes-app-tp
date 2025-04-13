@@ -44,6 +44,7 @@ const parseBook = async (path) => {
         .pipe(csv())
         .on('data', (data) => results.push(data))
         .on('end', async () => {
+            console.log(results)
             const bookNotes = results.slice(7, results.length)
             const [{ "Your Kindle Notes For:": bookTitle }, { "Your Kindle Notes For:": author }] = results 
             const [{ "": notes }] = bookNotes

@@ -184,14 +184,14 @@ notes.forEach((note, index) => {
         const popUp = document.createElement('p')
 
         const exitBttn = document.createElement('button')
-     exitBttn.className = 'exit-bttn'
-     exitBttn.addEventListener('click', () => {
+        exitBttn.className = 'exit-bttn'
+        exitBttn.addEventListener('click', () => {
          console.log("Exit Pop up")
-     })
 
-     const notesContainer = document.querySelector('notes-display')
-     notesContainer.append(popUpContainer, popUp)
-     
+        })
+        const notesContainer = document.querySelector('.notes-display')
+        // popUpContainer.append(popUp)
+        notesContainer.append(popUpContainer)
     })
 
 

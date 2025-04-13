@@ -8,8 +8,9 @@
 </head>
 <body>
     <div class="container">
-        <header>
+        <header class="header-container">
             <h1 class="app-title">Kindle Notes App</h1>
+            <button class="add-book">Add Book Notes</button>
         </header>
 
 
@@ -25,9 +26,12 @@
 
             <!-- Notes Display Section -->
             <main class="notes-display">
+                <div class="notes-header">
+                    
+                </div>
                 <div class="book-info">
-                    <h2>Your Kindle notes for:</h2> 
-                    <h3 class="book-title"></h3>
+                        <h2 class="book-title" ></h2> 
+                    <!-- <h3 class="book-title"></h3> -->
                     <p class="author"></p>
                 </div>
                 <div class="pin-note-div">
@@ -43,9 +47,6 @@
 
         <!-- Toggle Footer -->
         <footer>
-            <button class="toggle-btn active">Book</button>
-            <button class="toggle-btn">Author</button>
-            <button class="add-book">Add Book Notes</button>
         </footer>
     </div>
     <script src="..\JS\home.js"></script>
