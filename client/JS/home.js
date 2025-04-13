@@ -181,17 +181,25 @@ notes.forEach((note, index) => {
     manualBook.addEventListener('click', () => {
         console.log('add book button')
         const popUpContainer = document.createElement('div')
+        popUpContainer.className = 'pop-container'
+
         const popUp = document.createElement('p')
+
+        popUpContainer.style.display = 'flex'
+
 
         const exitBttn = document.createElement('button')
         exitBttn.className = 'exit-bttn'
+        exitBttn.innerText = "x"
         exitBttn.addEventListener('click', () => {
          console.log("Exit Pop up")
+         popUpContainer.style.display = 'none'
 
         })
-        const notesContainer = document.querySelector('.notes-display')
+        const notesContainer = document.querySelector('.header-container')
         // popUpContainer.append(popUp)
-        notesContainer.append(popUpContainer)
+        popUpContainer.append(exitBttn)
+        notesContainer.append(popUpContainer, popUp)
     })
 
 
