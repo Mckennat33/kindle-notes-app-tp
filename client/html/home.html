@@ -26,6 +26,34 @@
 
             <!-- Notes Display Section -->
             <main class="notes-display">
+
+                <!-- Hidden form -->
+                <div class="pop-container">
+                    <form action="/submit" method="POST" class="pop-form">
+
+                            <!-- Exit Button Positioned Top Right -->
+                        <button type="button" class="exit-button" onclick="closeForm()">✕</button>
+                      
+                        <label for="author">Author:</label>
+                        <input type="text" id="author" name="author" placeholder="Author" required>
+                  
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" placeholder="Title" required>
+                  
+                        <label for="notes">Notes:</label>
+                        <textarea id="notes" name="notes" placeholder="Enter book notes here..." rows="6" required></textarea>
+                  
+                        <button type="submit">Save</button>
+                        
+                        <div>Exit button
+                            <button type="button" class="exit-button">Exit Pop Up</button>
+
+                        </div>
+                    </form>
+                </div>
+
+
+
                 <div class="notes-header">
                     
                 </div>
