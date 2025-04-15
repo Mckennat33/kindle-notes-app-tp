@@ -349,7 +349,8 @@ header {
 
 /* Inputs and textarea styling */
 .pop-form input,
-.pop-form textarea {
+.pop-form textarea,
+.pop-form button[type="submit"] {
     background: #2a2a2a;
     color: var(--text-primary);
     border: 1px solid var(--border);
@@ -357,8 +358,11 @@ header {
     padding: 12px;
     font-size: 1rem;
     font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
 }
 
+/* Label styling */
 .pop-form label {
     color: var(--text-secondary);
     font-size: 0.9rem;
@@ -389,4 +393,29 @@ header {
     transform: scale(1.1);
 }
 
+/* Styling for the Save Button */
+.pop-form button[type="submit"] {
+    background-color: #258df5;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 
+.pop-form button[type="submit"]:hover {
+    background-color: #1a72d1;
+}
+
+/* Notes area styling */
+.pop-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+    max-height: 300px; /* Restrict textarea height to fit within the form */
+    min-height: 100px; /* Minimum height for the textarea */
+}
+
+/* Optional: Ensuring form elements align nicely */
+.pop-form input,
+.pop-form textarea,
+.pop-form button[type="submit"] {
+    margin-bottom: 10px;
+}
