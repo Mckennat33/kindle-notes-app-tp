@@ -14,7 +14,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background: var(--background);
     color: var(--text-primary);
-    overflow: hidden; /* Prevent entire page from scrolling */
+    overflow: hidden; 
 }
 
 /* Container */
@@ -53,7 +53,7 @@ header {
 .content {
     display: flex;
     flex: 1;
-    overflow: hidden; /* Prevents full page scrolling */
+    overflow: hidden; 
 }
 
 
@@ -98,7 +98,7 @@ header {
     margin: 10px auto; 
     
 }
-/* Sidebar Titles - Slightly Taller */
+
 .list {
     display: flex;
     flex-direction: column;
@@ -112,7 +112,7 @@ header {
 .title {
     background: var(--border);
     color: var(--text-primary);
-    padding: 18px; /* Slightly taller */
+    padding: 18px;
     border: none;
     text-align: left;
     font-size: 1rem;
@@ -122,11 +122,9 @@ header {
 }
 
 .title:hover {
-    /* background: var(--highlight);
-    color: white;
-    transition: all 0.2s ease-in-out; */
-    background-color: #258df5; /* slightly darker highlight */
-    transform: scale(1.04); /* grow by 5% */
+
+    background-color: #258df5; 
+    transform: scale(1.04); 
     transition: all 0.2s ease-in-out;
 }
 
@@ -136,7 +134,7 @@ header {
 .author {
     background: var(--border);
     color: var(--text-primary);
-    padding: 18px; /* Slightly taller */
+    padding: 18px; 
     border: none;
     text-align: left;
     font-size: 1rem;
@@ -183,15 +181,15 @@ header {
     flex-direction: column;
     gap: 10px;
     min-height: 120px; 
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); 
     width: 100%;
-    /* add movoement when hovering over */
+    
 }
 
 .note:hover {
 
-    background-color: #272626; /* slightly darker highlight */
-    transform: scale(1.02); /* grow by 5% */
+    background-color: #272626; 
+    transform: scale(1.02); 
     transition: all 0.2s ease-in-out;
 }
 
@@ -224,15 +222,15 @@ header {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-height: 120px; /* Taller notes */
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Subtle shadow for a card look */
+    min-height: 120px; 
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); 
     width: 100%;
 }
 
 .pin-note:hover {
 
-    background-color: #272626; /* slightly darker highlight */
-    transform: scale(1.02); /* grow by 5% */
+    background-color: #272626; 
+    transform: scale(1.02); 
     transition: all 0.2s ease-in-out;
 }
 
@@ -275,7 +273,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px; /* adds spacing on both sides */
+    padding: 0 40px; 
     max-width: 100%;
 }
 
@@ -289,7 +287,7 @@ header {
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(10, 132, 255, 0.3);
     transition: all 0.2s ease-in-out;
-    margin-left: 40px; /* extra spacing between title and button */
+    margin-left: 40px; 
 }
 
 .add-book:hover {
@@ -297,31 +295,10 @@ header {
     transform: scale(1.05);
 }
 
-/* 
-.pop-container {
-    display: none; 
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    
 
-    display: none; 
-    justify-content: center;
-    align-items: center;
-}
-
-.pop-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    width: 300px; 
-} */
 
 .pop-container {
-    display: none; /* Hidden by default */
+    display: none; 
     position: fixed;
     top: 0;
     left: 0;
@@ -344,7 +321,7 @@ header {
     gap: 20px;
     border: 1px solid var(--border);
     box-shadow: 0 0 20px rgba(10, 132, 255, 0.3);
-    position: relative; /* Important for positioning the exit button */
+    position: relative; 
 }
 
 /* Inputs and textarea styling */
@@ -408,12 +385,11 @@ header {
 
 /* Notes area styling */
 .pop-form textarea {
-    resize: vertical; /* Allow vertical resizing */
-    max-height: 300px; /* Restrict textarea height to fit within the form */
-    min-height: 100px; /* Minimum height for the textarea */
+    resize: vertical; 
+    max-height: 300px; 
+    min-height: 100px; 
 }
 
-/* Optional: Ensuring form elements align nicely */
 .pop-form input,
 .pop-form textarea,
 .pop-form button[type="submit"] {
