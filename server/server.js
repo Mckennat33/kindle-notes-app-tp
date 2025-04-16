@@ -25,6 +25,11 @@ app.use('/home', auth, homeRoute)
 app.use('/home/data', auth, homeRoute)
 app.use('/login', loginRoute)
 app.use('/signup', signupRoute)
+app.use('/submit', (req, res) => {
+  console.log(req.body)
+  console.log('this worked from the front end')
+  
+})
 
 
 const port = process.env.PORT || 80
