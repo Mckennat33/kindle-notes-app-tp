@@ -47,7 +47,7 @@ notes.forEach((note, index) => {
     notesDiv.className = 'note'
 
     const notePara = document.createElement('p')
-    notePara.className = 'note-text' // add a unique class name
+    notePara.className = 'note-text' 
     notePara.dataset.index = index
     notePara.innerHTML = note
 
@@ -65,7 +65,6 @@ notes.forEach((note, index) => {
         deletePinBttn.className = 'del-pin-bttn'
         deletePinBttn.innerText = "Remove Pin"
         deletePinBttn.addEventListener('click', () => {
-            // Do I want to add a line in between the notes that are pinned? 
             const removePinnedNote = document.querySelector(".pinned-note")
             removePinnedNote.remove()
         })
@@ -80,7 +79,6 @@ notes.forEach((note, index) => {
     notesDiv.append(notePara, pinBttn)
     document.querySelector('.notes').append(notesDiv);
 })    
-
 
     function renderTitles(bookData) {
         for (let i = 0; i < bookData.length; i++) {
@@ -176,7 +174,6 @@ notes.forEach((note, index) => {
     }
     renderTitles(bookData)
 
-
     const manualBook = document.querySelector('.add-book')
     manualBook.addEventListener('click', () => {
         console.log('add book button')
@@ -186,17 +183,25 @@ notes.forEach((note, index) => {
 
         popUpContainer.style.display = 'flex'
 
-
         const exitBttn = document.querySelector('.exit-button')
         exitBttn.addEventListener('click', (e) => {
             e.preventDefault()
             popUpContainer.style.display = 'none'
 
         })
-        
-        
-        // const notesContainer = document.querySelector('.header-container')
     })
+
+
+    const submitBook = document.querySelector('.submit-book')
+    submitBook.addEventListener('submit', async (event) => {
+        event.preventDefault()
+        const manAuthor = await document.getElementsById('author')
+        const manTitle = await document.getElementsById('title')
+        const manNotes = await document.getElementsById('notes')
+
+         console.log(manAuthor, manTitle, manNotes)
+    })
+
 }
 
 
