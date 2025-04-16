@@ -189,9 +189,9 @@ notes.forEach((note, index) => {
             popUpContainer.style.display = 'none'
 
         })
-    })
 
-
+    // Adding book manually 
+    // Event listener goes on the form not the button
     const submitBook = document.querySelector('.submit-book')
     submitBook.addEventListener('submit', async (event) => {
         event.preventDefault()
@@ -200,6 +200,9 @@ notes.forEach((note, index) => {
         const manNotes = await document.getElementsById('notes')
 
          console.log(manAuthor, manTitle, manNotes)
+    })
+
+
     })
 
 }
