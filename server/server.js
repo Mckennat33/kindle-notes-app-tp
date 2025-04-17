@@ -26,7 +26,9 @@ app.use('/home/data', auth, homeRoute)
 app.use('/login', loginRoute)
 app.use('/signup', signupRoute)
 app.use('/submit', (req, res) => {
+  const {title, author, notes} = req.body
   console.log(req.body)
+  console.log(title, author, notes)
   console.log('this worked from the front end')
   
 })
