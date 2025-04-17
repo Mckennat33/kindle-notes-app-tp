@@ -206,8 +206,7 @@ notes.forEach((note, index) => {
             "title": manTitle, 
             "notes": manNotes
         }
-        // console.log(manAuthor, manTitle, manNotes)
-        const sendNewBook = fetch("/submit", {
+        fetch("/submit", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
