@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const fetchUserData = "http://localhost:80/home/data"
     async function fetchData() {
@@ -192,16 +194,34 @@ notes.forEach((note, index) => {
 
     // Adding book manually 
     // Event listener goes on the form not the button
-    const submitBook = document.querySelector('.submit-book')
-    submitBook.addEventListener('submit', async (event) => {
+    const submitBook = document.querySelector('.pop-form')
+    submitBook.addEventListener('submit', (event) => {
         event.preventDefault()
-        const manAuthor = await document.getElementsById('author')
-        const manTitle = await document.getElementsById('title')
-        const manNotes = await document.getElementsById('notes')
+        const manAuthor = document.getElementById('author').value
+        const manTitle = document.getElementById('title').value
+        const manNotes = document.getElementById('notes').value
 
-         console.log(manAuthor, manTitle, manNotes)
+        const manualBook = {
+            "author": manAuthor, 
+            "title": manTitle, 
+            "notes": manNotes
+        }
+        // console.log(manAuthor, manTitle, manNotes)
+        const sendNewBook = fetch("/submit", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify(manualBook)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success', data)
+        })
+        .catch(err => {
+            console.error("Error", err)
+        })
     })
-
 
     })
 
