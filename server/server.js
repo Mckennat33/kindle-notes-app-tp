@@ -33,6 +33,8 @@ app.use('/submit', (req, res) => {
   
 })
 
+// Create a route and a controller 
+
 
 const port = process.env.PORT || 80
 
