@@ -29,7 +29,8 @@
 
                 <!-- Hidden form -->
                 <div class="pop-container">
-                    <form action="/submit" method="POST" class="pop-form">
+                    <!-- <form action="/submit" method="POST" class="pop-form"> -->
+                    <form class="pop-form">
                         <button type="button" class="exit-button" aria-label="Close">&times;</button>
                 
                         <label for="author">Author:</label>
@@ -41,7 +42,8 @@
                         <label for="notes">Notes:</label>
                         <textarea id="notes" name="notes" placeholder="Enter book notes here..." rows="6" required></textarea>
                 
-                        <button type="submit">Save</button>
+                        <button class="submit-book" type="submit">Save</button>
+                        <!-- <button class="submit-book" type="button">Save</button> -->
                     </form>
                 </div>
 

@@ -192,9 +192,9 @@ notes.forEach((note, index) => {
 
         })
 
-    // Adding book manually 
-    // Event listener goes on the form not the button
+    // Book Form Function
     const submitBook = document.querySelector('.pop-form')
+    const loginServer = "http://localhost:80/home"
     submitBook.addEventListener('submit', (event) => {
         event.preventDefault()
         const manAuthor = document.getElementById('author').value
@@ -206,7 +206,7 @@ notes.forEach((note, index) => {
             "title": manTitle, 
             "notes": manNotes
         }
-        fetch("/submit", {
+        fetch(loginServer, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -224,7 +224,7 @@ notes.forEach((note, index) => {
 
     })
 
-}
+} 
 
 
 
