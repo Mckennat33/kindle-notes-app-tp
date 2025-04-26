@@ -194,7 +194,7 @@ notes.forEach((note, index) => {
 
     // Book Form Function
     const submitBook = document.querySelector('.pop-form')
-    const loginServer = "http://localhost:80/home"
+    const loginServer = "http://localhost:80/home/submit"
     submitBook.addEventListener('submit', (event) => {
         event.preventDefault()
         const manAuthor = document.getElementById('author').value
