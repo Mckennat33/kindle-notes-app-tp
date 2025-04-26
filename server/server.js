@@ -8,7 +8,7 @@ const { STATUS_CODES } = require('http')
 const mongoose = require('mongoose')
 const signupRoute = require("../routes/signup.routes.js")
 const loginRoute = require('../routes/login.routes.js')
-const addBookForm = require('..routes/addBookForm.js')
+const addBookForm = require('../routes/addBookForm.routes.js')
 const homeRoute = require('../routes/home.routes.js')
 const connectDB = require("../config/dbconn.js")
 const catchNote = require("../services/catchnote.js")
@@ -27,7 +27,7 @@ app.use('/home/data', auth, homeRoute)
 app.use('/login', loginRoute)
 app.use('/signup', signupRoute)
 // Create a route and a controller 
-app.use('/submit', addBookForm)
+app.use('/home/submit', addBookForm)
 
 const port = process.env.PORT || 80
 
