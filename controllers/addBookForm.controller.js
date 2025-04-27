@@ -7,10 +7,14 @@ const addBook = async (req, res) => {
     // console.log(title, author, notes)
     // console.log('this worked from the front end')
     try {
-        const matchingBook = await Book.findOne({ title: title })
+        const matchingBook = await Book.findOne({ title: title, author: author })
         if (matchingBook) {
             console.log('book already exists')
-        }  else {
+            Book.updateOne(
+                {author: author},
+                { $push: { notes: notes }}
+            )
+        } else {
             const manBook = new Book({
                 title: title, 
                 author: author, 
