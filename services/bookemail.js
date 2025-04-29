@@ -12,10 +12,15 @@ const Books = require('../models/book.js')
 
 async function getAllBooks() {
     try {
-      const allBooks = await Books.find();
+      await connectDB();
+  
+      const allBooks = await Books.find(); // Find all books
       console.log(allBooks);
+  
     } catch (err) {
       console.error('Error fetching books:', err);
+    } finally {
+      await mongoose.connection.close(); // Close connection when done
     }
   }
   
