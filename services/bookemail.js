@@ -10,12 +10,12 @@ require('dotenv').config({ path: '../.env' });
 const Books = require('../models/book.js')
 
 
-async function getAllBooks() {
+async function getAllNotes() {
     try {
       await connectDB();
   
-      const allBooks = await Books.find(); // Find all books
-      console.log(allBooks);
+      const allNotes = await Books.find({}, 'notes'); // Find all books
+      console.log(allNotes);
   
     } catch (err) {
       console.error('Error fetching books:', err);
@@ -24,5 +24,5 @@ async function getAllBooks() {
     }
   }
   
-  getAllBooks();
+  getAllNotes();
   
