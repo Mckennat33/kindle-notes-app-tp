@@ -206,6 +206,7 @@ notes.forEach((note, index) => {
             "title": manTitle, 
             "notes": manNotes
         }
+        // alert('success')
         fetch(submitManualBook, {
             method: 'POST',
             headers: {
@@ -216,6 +217,8 @@ notes.forEach((note, index) => {
         .then(response => response.json())
         .then(data => {
             console.log('Success', data)
+            document.getElementById('notes').value = ''
+            
         })
         .catch(err => {
             console.error("Error", err)
@@ -227,6 +230,7 @@ notes.forEach((note, index) => {
 } 
 
 
-
+// add manual book
+// if authur and title are the same then add the note to that database 
 
 
