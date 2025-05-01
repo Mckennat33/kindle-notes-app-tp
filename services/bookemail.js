@@ -9,13 +9,55 @@ const mongoose = require('mongoose')
 require('dotenv').config({ path: '../.env' });
 const Books = require('../models/book.js')
 
+// get all the notes from the database
+// only grab 10 random notes from that array/object
+// different 10 each day 
+    // run that random 10 function each day 
+
+
 
 async function getAllNotes() {
     try {
       await connectDB();
   
       const allNotes = await Books.find({}, 'notes'); // Find all books
-      console.log(allNotes);
+      const allBooks = await Books.find()
+      
+      const bookObject = {
+          author: author, 
+          title: title,  
+          notes: [
+            'one note', 
+            'two notes'
+          ], 
+          
+        }
+        
+
+      // const book = [
+      //   {
+      //     author: author, 
+      //     title: title,  
+      //     notes: [
+      //       'one note', 
+      //       'two notes'
+      //     ]
+      //   }, {
+      //     author: author, 
+      //     title: title, 
+      //     notes: [
+      //       'one note', 
+      //       'two notes'
+      //     ]
+      //   }
+      // ]
+
+      
+    
+      // console.log(allNotes);
+      console.log(typeof(allBooks));
+
+
   
     } catch (err) {
       console.error('Error fetching books:', err);
