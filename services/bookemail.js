@@ -14,15 +14,11 @@ const Books = require('../models/book.js')
 // different 10 each day 
     // run that random 10 function each day 
 
-
-
 async function getAllNotes() {
     try {
       await connectDB();
-  
       const allNotes = await Books.find({}, 'notes'); // Find all books
-      const allBooks = await Books.find()
-      
+      const allBooks = await Books.find()      
       // const bookObject = {
       //     author: author, 
       //     title: title,  
@@ -32,13 +28,16 @@ async function getAllNotes() {
       //     ], 
 
       //   }
-
+        const randomNotesArray = []
         allBooks.map((book) => {
-          console.log(book.author)
+          const {author, title, notes} = book
+          
+
         })
 
-        
 
+
+        console.log(randomNotesArray)
   
     } catch (err) {
       console.error('Error fetching books:', err);
