@@ -23,40 +23,21 @@ async function getAllNotes() {
       const allNotes = await Books.find({}, 'notes'); // Find all books
       const allBooks = await Books.find()
       
-      const bookObject = {
-          author: author, 
-          title: title,  
-          notes: [
-            'one note', 
-            'two notes'
-          ], 
-          
-        }
-        
-
-      // const book = [
-      //   {
+      // const bookObject = {
       //     author: author, 
       //     title: title,  
       //     notes: [
       //       'one note', 
       //       'two notes'
-      //     ]
-      //   }, {
-      //     author: author, 
-      //     title: title, 
-      //     notes: [
-      //       'one note', 
-      //       'two notes'
-      //     ]
+      //     ], 
+
       //   }
-      // ]
 
-      
-    
-      // console.log(allNotes);
-      console.log(typeof(allBooks));
+        allBooks.map((book) => {
+          console.log(book.author)
+        })
 
+        
 
   
     } catch (err) {
