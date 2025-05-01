@@ -345,6 +345,15 @@ header {
     font-size: 0.9rem;
 }
 
+button {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:active {
+    transform: scale(0.92);
+    box-shadow: 0 0 12px rgba(10, 132, 255, 0.6), inset 0 2px 6px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.2);
+}
 /* Exit Button */
 .exit-button {
     position: absolute;
