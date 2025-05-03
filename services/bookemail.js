@@ -31,16 +31,20 @@ async function getAllNotes() {
         const randomNotesArray = []
         allBooks.map((book) => {
           const { author, title, notes } = book
+          // notes is an array of all the notes
+          // randomize those notes 
+          // pull 10 notes from that array 
 
-          for (let i = notes.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1))
-            [notes[i], notes[j] = notes[j], notes[i]]
+
+
+
+          for (let i = notes.length - 1; i > 0; i--) {  
+            const r = Math.floor(Math.random() * (i + 1))
+            console.log(notes[r], notes[i])
+
           }
           
-          
 
-          console.log(notes)
-          // goal: get 10 notes from allBooks
 
         })
 
