@@ -19,33 +19,16 @@ async function getAllNotes() {
       await connectDB();
       const allNotes = await Books.find({}, 'notes'); // Find all books
       const allBooks = await Books.find()      
-      // const bookObject = {
-      //     author: author, 
-      //     title: title,  
-      //     notes: [
-      //       'one note', 
-      //       'two notes'
-      //     ], 
-
-      //   }
         const randomNotesArray = []
+
+        // test random notes by slicing the array and trying to randomizing
+        // it to see if it works 
         allBooks.map((book) => {
           const { author, title, notes } = book
-          // notes is an array of all the notes
-          // randomize those notes 
-          // pull 10 notes from that array 
-
-
-
-
           for (let i = notes.length - 1; i > 0; i--) {  
             const r = Math.floor(Math.random() * (i + 1))
             console.log(notes[r], notes[i])
-
           }
-          
-
-
         })
 
 
