@@ -24,12 +24,16 @@ async function getAllNotes() {
         // test random notes by slicing the array and trying to randomizing
         // it to see if it works 
         allBooks.map((book) => {
-          const { author, title, notes } = book
-          for (let i = notes.length - 1; i > 0; i--) {  
-            const r = Math.floor(Math.random() * (i + 1))
-            console.log(notes[r], notes[i])
+          const { author, title, notes } = book;
+          const testArray = notes.slice(1, 5);
+        
+          for (let i = testArray.length - 1; i > 0; i--) {
+            const r = Math.floor(Math.random() * (i + 1));
+            [testArray[i], testArray[r]] = [testArray[r], testArray[i]];
           }
-        })
+        
+          console.log(testArray); 
+        });
 
 
 
