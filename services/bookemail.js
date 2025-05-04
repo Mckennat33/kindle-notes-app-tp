@@ -17,33 +17,29 @@ const Books = require('../models/book.js')
 async function getAllNotes() {
     try {
       await connectDB();
-      const allNotes = await Books.find({}, 'notes'); // Find all books
       const allBooks = await Books.find()      
-        const randomNotesArray = []
+      const allNotesWithBookInfo = []
 
-        allBooks.map((book) => {
-          const { author, title, notes } = book;
-          // const testArray = notes.slice(1, 5);
+        allBooks.forEach((book) => {
+          const { author, title, notes } = book; 
 
-          for (let i = notes.length - 1; i > 0; i--) {
-            const r = Math.floor(Math.random() * (i + 1));
-            [notes[i], notes[r]] = [notes[r], notes[i]];
-          }
-        
-          randomNotesArray.push({
-            author, 
-            title, 
-            notes: notes
-          })  
+          notes.forEach((note) => {
+            allNotesWithBookInfo.push({
+              author,
+              title, 
+              note
+            })
+          })
+        })
 
-          // right now I am loggins all the notes.
-          // we want to only send 10 notes to the random book functions
-          console.log(randomNotesArray); 
-        });
+        for (let i = allNotesWithBookInfo.length - 1; i > 0; i--) {
+          const r = Math.floor(Math.random() * (i + 1));
+          [allNotesWithBookInfo[i], allNotesWithBookInfo[r]] = [allNotesWithBookInfo[r], allNotesWithBookInfo[i]];
+        }
 
+        const tendRandomNotes = allNotesWithBookInfo.slice(0, 10)
 
-
-        // console.log(randomNotesArray)
+        console.log(tendRandomNotes)
   
     } catch (err) {
       console.error('Error fetching books:', err);
@@ -54,3 +50,11 @@ async function getAllNotes() {
   
   getAllNotes();
   
+
+  // Goal 
+  // Get Ten random Notes with the author and title 
+  // mapping through all the books
+    // grabbing author title and notes 
+      
+
+  // Send an email with those notes to myself
