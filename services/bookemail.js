@@ -21,18 +21,24 @@ async function getAllNotes() {
       const allBooks = await Books.find()      
         const randomNotesArray = []
 
-        // test random notes by slicing the array and trying to randomizing
-        // it to see if it works 
         allBooks.map((book) => {
           const { author, title, notes } = book;
-          const testArray = notes.slice(1, 5);
-        
-          for (let i = testArray.length - 1; i > 0; i--) {
+          // const testArray = notes.slice(1, 5);
+
+          for (let i = notes.length - 1; i > 0; i--) {
             const r = Math.floor(Math.random() * (i + 1));
-            [testArray[i], testArray[r]] = [testArray[r], testArray[i]];
+            [notes[i], notes[r]] = [notes[r], notes[i]];
           }
         
-          console.log(testArray); 
+          randomNotesArray.push({
+            author, 
+            title, 
+            notes: notes
+          })  
+
+          // right now I am loggins all the notes.
+          // we want to only send 10 notes to the random book functions
+          console.log(randomNotesArray); 
         });
 
 
