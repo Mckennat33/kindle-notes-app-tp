@@ -1,13 +1,11 @@
-// look at docs on how to use
-const schedule = require('node-schedule');
 
-// look at docs on how to use
-const nodemailer = require('nodemailer')
+const schedule = require('node-schedule');
 const express = require('express')
 const connectDB = require("../config/dbconn.js")
 const mongoose = require('mongoose')
 require('dotenv').config({ path: '../.env' });
 const Books = require('../models/book.js')
+const nodemailer = require('nodemailer')
 
 // get all the notes from the database
 // only grab 10 random notes from that array/object
@@ -39,8 +37,30 @@ async function getAllNotes() {
 
         const tendRandomNotes = allNotesWithBookInfo.slice(0, 10)
 
-        console.log(tendRandomNotes)
-  
+        // setting up email ten random notes
+
+        const transporter = nodemailer.createTransport({
+          host: "smtp.ethereal.email",
+          port: 587,
+          secure: false, // true for 465, false for other ports
+          auth: {
+            user: 'thomasmckenna12@gmail.com ',
+            pass: 'abcj zpwy bcwo ibvu',
+          },
+        });
+
+        (async () => {
+          const info = await transporter.sendMail({
+            from: 'thomasmckenna12@gmail.com',
+            to: 'thomasmckenna12@gmail.com',
+            subject: "Hello ✔",
+            text: "Hello world?", // plain‑text body
+            html: "<b>Hello world?</b>", // HTML body
+          });
+        
+          console.log("Message sent:", info.messageId);
+        })();
+
     } catch (err) {
       console.error('Error fetching books:', err);
     } finally {
@@ -51,10 +71,3 @@ async function getAllNotes() {
   getAllNotes();
   
 
-  // Goal 
-  // Get Ten random Notes with the author and title 
-  // mapping through all the books
-    // grabbing author title and notes 
-      
-
-  // Send an email with those notes to myself
