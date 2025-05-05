@@ -40,12 +40,15 @@ async function getAllNotes() {
         // setting up email ten random notes
 
         const transporter = nodemailer.createTransport({
-          host: "smtp.ethereal.email",
+          host: 'smtp.gmail.com', 
           port: 587,
           secure: false, // true for 465, false for other ports
           auth: {
             user: 'thomasmckenna12@gmail.com ',
             pass: 'abcj zpwy bcwo ibvu',
+          },
+          tls: {
+            rejectUnauthorized: false, // <== ADD THIS LINE
           },
         });
 
