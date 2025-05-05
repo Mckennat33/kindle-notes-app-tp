@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 require('dotenv').config({ path: '../.env' });
 const Books = require('../models/book.js')
 const nodemailer = require('nodemailer')
-const schedule = require('node-schedule');
+// const schedule = require('node-schedule');
 
 async function getAllNotes() {
     try {
@@ -104,11 +104,13 @@ async function getAllNotes() {
       }
 
       function timeEmail() {
-        schedule.scheduleJob('*/1 * * * *', () => {
-          return emailNotes(), new Date().toLocaleTimeString(); 
+        schedule.scheduleJob('30 6 * * *', () => {
+          emailNotes();
+          console.log('Email sent at', new Date().toLocaleString());
         });
       }
-      timeEmail()
+
+      timeEmail();
 
     } catch (err) {
       console.error('Error fetching books:', err);
