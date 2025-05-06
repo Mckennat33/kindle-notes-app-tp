@@ -6,7 +6,6 @@ const mongoose = require('mongoose')
 require('dotenv').config({ path: '../.env' });
 const Books = require('../models/book.js')
 const nodemailer = require('nodemailer')
-// const schedule = require('node-schedule');
 
 async function getAllNotes() {
     try {
@@ -37,13 +36,13 @@ async function getAllNotes() {
         const transporter = nodemailer.createTransport({
           host: 'smtp.gmail.com', 
           port: 587,
-          secure: false, // true for 465, false for other ports
+          secure: false, 
           auth: {
             user: 'thomasmckenna12@gmail.com ',
           pass: 'abcj zpwy bcwo ibvu',
         },
         tls: {
-          rejectUnauthorized: false, // <== ADD THIS LINE
+          rejectUnauthorized: false,
         },
       });
       
@@ -104,6 +103,7 @@ async function getAllNotes() {
       }
 
       function timeEmail() {
+        // need to add a server or VPS to keep this running 24/7 
         schedule.scheduleJob('30 6 * * *', () => {
           emailNotes();
           console.log('Email sent at', new Date().toLocaleString());
@@ -115,7 +115,7 @@ async function getAllNotes() {
     } catch (err) {
       console.error('Error fetching books:', err);
     } finally {
-      await mongoose.connection.close(); // Close connection when done
+      await mongoose.connection.close(); 
     }
   }
   
