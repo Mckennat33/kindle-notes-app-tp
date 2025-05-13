@@ -103,7 +103,6 @@ async function getAllNotes() {
       }
 
       function timeEmail() {
-        // need to add a server or VPS to keep this running 24/7 
         schedule.scheduleJob('30 6 * * *', () => {
           emailNotes();
           console.log('Email sent at', new Date().toLocaleString());
