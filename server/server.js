@@ -26,7 +26,6 @@ app.use('/home', auth, homeRoute)
 app.use('/home/data', auth, homeRoute)
 app.use('/login', loginRoute)
 app.use('/signup', signupRoute)
-// Create a route and a controller 
 app.use('/home/submit', addBookForm)
 
 const port = process.env.PORT || 80
