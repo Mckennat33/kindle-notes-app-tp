@@ -23,7 +23,16 @@ function loginUser(event) {
             if (response.ok) {
                 window.location.href = "/home";
             } else {
-                alert('Invalid user name or password')
+                // alert('Invalid user name or password')
+                
+                const invalidUser = document.createElement('p')
+                invalidUser.className = 'invalid-user'
+                invalidUser.innerText = 'Username or password invalid'
+
+                const forgotPass = document.querySelector('.invalid-user')
+                forgotPass.append(invalidUser)
+
+
             }
         }
         catch(err) {

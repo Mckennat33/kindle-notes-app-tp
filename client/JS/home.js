@@ -230,7 +230,4 @@ notes.forEach((note, index) => {
 } 
 
 
-// add manual book
-// if authur and title are the same then add the note to that database 
-
 
