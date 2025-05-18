@@ -38,11 +38,17 @@
     border: none; /* remove the red/green borders from before */
   }
 
+  /* .invalid-user {
+    color: red;
+  }
 
-  .invalid-user {
+  /* .password-fail {
+
     color: red;
 
-  }
+  } */ */
+
+ 
 
   
   /* Title styles */
