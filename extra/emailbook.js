@@ -71,6 +71,7 @@ function emailTenRandomNotes(bookNotes) {
         const j = Math.floor(Math.random() * (i + 1)); 
         [array[i], array[j]] = [array[j], array[i]]; 
     }
+    
     example.push(...bookNotes); 
 }
   shuffleArray(bookNotes);
@@ -110,7 +111,7 @@ function emailNotes(randomTenNotes) {
     ]
   };
 
-  // Send the email
+  
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
         console.log('Error:', error);
@@ -122,6 +123,7 @@ function emailNotes(randomTenNotes) {
 }
 
 
+// input field for author, title and notes
 
 
 
@@ -139,23 +141,6 @@ function emailNotes(randomTenNotes) {
 
 
 
-
-
-
-// function readBookFile() {
-//   const newResults = []
-//   fs.createReadStream('./booknotes.csv')
-//   .pipe(csvParser())
-//   .on('data', (data) => newResults.push(data))
-//   .on('end', () => {
-//     console.log('we did it', newResults)
-//   })
-//   .on('error', (err) => {
-//     console.log('error reading file:', err)
-//   })
-// }
-
-// readBookFile()
 
 
 

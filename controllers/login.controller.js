@@ -25,7 +25,8 @@ const loginUser = async ( req, res ) => {
         if (!matchingUser) return res.status(401).json({message: "wrong username or password"})
             
             const isPasswordValid = await bcrypt.compare(password, matchingUser.password)
-            if (!isPasswordValid) return res.status(401).json({message: 'wrong username or password' })
+            // if (!isPasswordValid) return res.status(401).json({message: 'wrong username or password' })
+            if (!isPasswordValid) return res.render('login', { error: 'Incorrect username or password' });
                         
         const jwtPrivateKey = process.env.JWT_PRIVATE_KEY
         const token = jwt.sign({ userId: matchingUser._id } , jwtPrivateKey, {expiresIn: '1hr' })
