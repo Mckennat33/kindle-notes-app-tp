@@ -10,11 +10,13 @@ function signUp(event) {
     const userPassword = document.getElementById('password').value
     const signupServer = "http://localhost:80/signup"
     async function postRequest() {
-        try {
+        try {a
             const response = await fetch(signupServer, {
                 method: "POST",
                 headers: {
-                    "Content-Type": 'application/json'
+                    "Content-Type": 'application/json', 
+                     Authorization : `Bearer ${token}` 
+                    // need to add authorizatioon
                 }, 
                 body: JSON.stringify({
                     username: userName, 
