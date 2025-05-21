@@ -10,7 +10,7 @@ function signUp(event) {
     const userPassword = document.getElementById('password').value
     const signupServer = "http://localhost:80/signup"
     async function postRequest() {
-        try {a
+        try {
             const response = await fetch(signupServer, {
                 method: "POST",
                 headers: {
