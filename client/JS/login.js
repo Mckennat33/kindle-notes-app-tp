@@ -13,7 +13,8 @@ function loginUser(event) {
             const response = await fetch(loginServer, {
                 method: 'POST', 
                 headers: { 
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 }, 
                 body: JSON.stringify({
                     username, 
