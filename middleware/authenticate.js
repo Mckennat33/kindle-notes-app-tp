@@ -3,10 +3,12 @@ const app = express()
 const jwt = require('jsonwebtoken')
 const path = require('path')
 const loginRoute = require('../routes/login.routes.js')
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
 
 require('dotenv').config();
 
-const auth = (req, res, next) => {
+const authenticate = (req, res, next) => {
     const token = req.cookies.access_token
     if (!token) {
         return res.status(403).json({ message: 'No token provided' });
@@ -22,4 +24,4 @@ const auth = (req, res, next) => {
         res.status(401).json({ message: 'Invalid token' });
     }
 };
-module.exports = auth;
+module.exports = authenticate;
