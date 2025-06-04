@@ -11,6 +11,9 @@ const bookSchema = new mongoose.Schema({
         required: true,
     },
     notes: [String],
+    // need to add user ID 
+    userId: userId,
+    
     dateAdded: {
         type: Date, 
         default: Date.now
@@ -19,3 +22,4 @@ const bookSchema = new mongoose.Schema({
 
 const Book = mongoose.model("Book", bookSchema)
 module.exports = Book
+

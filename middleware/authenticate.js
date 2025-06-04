@@ -14,13 +14,11 @@ const authenticate = (req, res, next) => {
         return res.status(403).json({ message: 'No token provided' });
     }
     try {
-        //console.log("Verifying token..."); // Log before verification
-        const decoded = jwt.verify(token, process.env.JWT_PRIVATE_KEY); // Verify the token
-        //console.log('Decoded token:', decoded); // Log decoded token if successful
-        req.user = decoded; // Attach user info to request
+        const decoded = jwt.verify(token, process.env.JWT_PRIVATE_KEY); 
+        req.user = decoded; 
         next();
     } catch (error) {
-        console.error("Error during token verification:", error); // Log the error message
+        console.error("Error during token verification:", error); 
         res.status(401).json({ message: 'Invalid token' });
     }
 };

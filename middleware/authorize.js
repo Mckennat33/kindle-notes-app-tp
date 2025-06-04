@@ -12,11 +12,11 @@ const authorize = (req, res, next) => {
     if(!token) {
         return res.status(404).json({message: 'no user data'})
     }
-    
+
 }
 
 
 
-export.module = {
-    authorize
-}
+module.exports = authorize; 
+
+
