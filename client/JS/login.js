@@ -13,14 +13,14 @@ function loginUser(event) {
             const response = await fetch(loginServer, {
                 method: 'POST', 
                 headers: { 
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Content-Type': 'application/json'
                 }, 
                 body: JSON.stringify({
                     username, 
                     password
                 })
             }) 
+
             if (response.ok) {
                 window.location.href = "/home";
             } else {

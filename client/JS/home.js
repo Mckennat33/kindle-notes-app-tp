@@ -15,9 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             const jsonBookData = await response.json()
             if (response.ok) {
-                renderBookData(jsonBookData)
-                // renderTitles(jsonBookData)
-                
+                renderBookData(jsonBookData) 
             } else {
                 console.log("Error from fetching User Data", response.status)
             }
