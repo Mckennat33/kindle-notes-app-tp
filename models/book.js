@@ -12,7 +12,11 @@ const bookSchema = new mongoose.Schema({
     },
     notes: [String],
     // need to add user ID 
-    userId: userId,
+    userId: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User', 
+        required: true
+    },
     
     dateAdded: {
         type: Date, 
