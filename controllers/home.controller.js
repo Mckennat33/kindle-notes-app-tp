@@ -16,7 +16,9 @@ const homePage = async (req, res) => {
 
 const getUserData = async (req, res) => {
     try {
-        const bookInfo = await Book.find({})
+        console.log(req.params.id)
+        const bookInfo = await Book.find({  })
+
         res.json(bookInfo)
     } catch(err) {
         console.log(err)
