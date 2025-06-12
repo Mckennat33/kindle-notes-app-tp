@@ -15,8 +15,8 @@ function signUp(event) {
                 method: "POST",
                 headers: {
                     "Content-Type": 'application/json', 
-                     Authorization : `Bearer ${token}` 
-                    // need to add authorizatioon
+                    //  Authorization : `Bearer ${token}` 
+                    // // need to add authorizatioon
                 }, 
                 body: JSON.stringify({
                     username: userName, 

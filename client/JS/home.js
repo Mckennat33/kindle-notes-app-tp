@@ -2,8 +2,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    
     const fetchUserData = "http://localhost:80/home/data"
+
     async function fetchData() {
         try {   
             const response = await fetch(fetchUserData, {
@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     fetchData()
 })
+
 
 function renderBookData(bookData) {
 
@@ -61,6 +62,7 @@ notes.forEach((note, index) => {
         const pinnedDiv = document.querySelector('.pin-note')
         const pinnedNote = document.createElement('p')
         pinnedNote.className = 'pinned-note'
+        pinnedNote.style.display = 'flex' // added to display when a note is pinned - check css. 
         pinnedNote.innerText = pickedNote
 
         const deletePinBttn = document.createElement('button')
