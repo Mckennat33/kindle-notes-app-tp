@@ -2,7 +2,7 @@ const express = require('express')
 const chokidar = require('chokidar')
 const mongoose = require('mongoose')
 const csv = require('csv-parser')
-const app = express()
+const app = express() 
 const fs = require('fs')
 const path = require('path')
 const pdf = require('pdf-parse');
@@ -14,9 +14,9 @@ const User = require("../models/user.js")
 const connectDB = require("../config/dbconn.js");
 connectDB()
 
-function testBook() {
-    const findUser = User.findOne({ username: 'mckennat' })
-    console.log('User password:', findUser.password)
+async function testBook() {
+    const findUser = await User.findOne({ })
+    console.log(findUser)
 }
 
 testBook()
