@@ -18,6 +18,7 @@ require('dotenv').config({ path: '../.env' });
 const cookieParser = require('cookie-parser')
 // const config = require('config')  
 
+
 app.use(cookieParser())
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -30,6 +31,8 @@ app.use('/signup', signupRoute)
 app.use('/home/submit', addBookForm)
 
 const port = process.env.PORT || 80
+
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
