@@ -2,10 +2,10 @@
   "name": "kindle-notes-app-tp",
   "version": "1.0.0",
   "description": "Kindle notes app for my thinkpad",
-  "main": "index.js",
+  "main": "client/JS/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_CONFIG_DIR=./server/config nodemon server/server.js"
+    "start": "cross-env NODE_CONFIG_DIR=./server/config concurrently \"nodemon server/server.js\" \"electron .\""
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
     "cookie-parser": "^1.4.7",
     "csv-parser": "^3.2.0",
     "dotenv": "^16.4.7",
+    "electron-is-dev": "^3.0.1",
     "emailjs": "^4.0.3",
     "express": "^4.21.2",
     "express-session": "^1.18.1",
@@ -39,6 +40,8 @@
     "validator": "^13.12.0"
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
     "electron": "^36.4.0"
   }
 }
