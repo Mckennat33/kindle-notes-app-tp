@@ -15,12 +15,12 @@ const connectDB = require("../config/dbconn.js");
 connectDB()
 
 async function testBook() {
+    // need to store that users id in the book schema so i can reference that later on.
     const findUser = await User.findOne({ })
-    console.log(findUser)
+    console.log(findUser._id)
 }
 
 testBook()
-
 
 
 // const catchDownloadedNote = () => {

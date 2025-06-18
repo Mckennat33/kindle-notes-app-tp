@@ -16,7 +16,6 @@ const homePage = async (req, res) => {
 
 const getUserData = async (req, res) => {
     try {
-        console.log(req.params.id)
         const bookInfo = await Book.find({  })
 
         res.json(bookInfo)
@@ -27,6 +26,6 @@ const getUserData = async (req, res) => {
 }
 
 module.exports = {
-    homePage, 
+    homePage,
     getUserData
 }  

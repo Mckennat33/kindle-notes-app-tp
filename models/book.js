@@ -10,13 +10,12 @@ const bookSchema = new mongoose.Schema({
         type: String, 
         required: true,
     },
-    notes: [String],
-    // need to add user ID 
-    userId: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'User', 
-        required: true
-    },
+    notes: [ String ],
+    // userId: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User', 
+    //     required: true
+    // },
     
     dateAdded: {
         type: Date, 
