@@ -15,10 +15,14 @@ function addManualBook() {
 
     })
 
+   
+})
+
 // Book Form Function
 const submitBook = document.querySelector('.pop-form')
 const submitManualBook = "http://localhost:80/home/submit"
 submitBook.addEventListener('submit', (event) => {
+    console.log(event)
     event.preventDefault()
     const manAuthor = document.getElementById('author').value
     const manTitle = document.getElementById('title').value
@@ -48,7 +52,6 @@ submitBook.addEventListener('submit', (event) => {
     })
 })
 
-})
 } 
 
 addManualBook()
