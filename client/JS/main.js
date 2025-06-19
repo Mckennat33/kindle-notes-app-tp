@@ -12,10 +12,7 @@ function createWindow() {
       contextIsolation: false
     }
   })
-
-  // Load your frontend from the Express server
-// or your HTML file directly if it's static
-//  win.loadURL('http://localhost:80/home')        
+    
     win.loadFile('client/html/home.html')
 }
 
