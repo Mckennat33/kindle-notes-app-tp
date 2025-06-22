@@ -93,17 +93,24 @@ const parsePdfBook = async (path) => {
 
         let dataBuffer = fs.readFileSync(path)
         pdf(dataBuffer).then(async (data) => {  
-            
             const { text } = data
-            // const pdfNotes = text.split("Free")[1].split('|').slice(2)
-            // const pdfTitle = text.split('Free')[0].split('by')[0].trim()
-            // const pdfAuthor = text.split('Free')[0].split('by')[1]?.trim()
+            const pdfTitle = text.split('1')[1].split('by')[0]
+            const pdfAuthor = text.split('1')[1].split('by')[1].split('Free')[0]
+            const pdfNotes = text.split('Page').slice(1).toString().split()
+            const cleanedNotes = pdfNotes.map(note =>
+                note
+                .replace(/Highlight\s*/gi, '')
+                .replace(/\([^)]+\)/g, '')
+                .replace(/,\s*\d+\n?/g, '')
+                .replace(/\+/g, '')
+                .replace(/^\d+\s*/gm, '')      
+                .replace(/^\s*\|\s*/gm, '')  
+                .trim()                  
+            )
 
-            const title = text.split('1')[1].split('by')[0]
-            const author = text.split('1')[1].split('by')[1].split('Free')[0]
-            const notes = text.split('Page').slice(1).toString().split()
+            console.log(pdfTitle, pdfAuthor, cleanedNotes[0])
 
-            console.log(title, author, notes)
+            // console.log(title, author, test)
 
 
             // start of notes
