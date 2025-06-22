@@ -99,12 +99,13 @@ const parsePdfBook = async (path) => {
             const pdfNotes = text.split('Page').slice(1).toString().split()
             const cleanedNotes = pdfNotes.map(note =>
                 note
-                .replace(/Highlight\s*/gi, '')
-                .replace(/\([^)]+\)/g, '')
+                .replace(/^\s*\d+\s*$/gm, '')     // Removes lines that contain only a number, with optional spaces
+                .replace(/^\s*\|\s*/gm, '')       // Remove leading pipes and spaces
+                .replace(/Highlight\s*/gi, '')    // Remove "Highlight"
+                .replace(/\([^)]+\)/g, '')        // Remove anything in parentheses
                 .replace(/,\s*\d+\n?/g, '')
-                .replace(/\+/g, '')
-                .replace(/^\d+\s*/gm, '')      
-                .replace(/^\s*\|\s*/gm, '')  
+                .replace(/^\s*\|\s*/gm, '')   
+                .replace(/\+/g, '')    
                 .trim()                  
             )
 
