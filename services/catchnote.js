@@ -8,20 +8,10 @@ const path = require('path')
 const pdf = require('pdf-parse');
 require('dotenv').config({ path: '../.env' });
 app.use(express.json())
-
 const Book = require("../models/book.js")
 const User = require("../models/user.js")
 const connectDB = require("../config/dbconn.js");
 connectDB()
-
-// async function testBook() {
-//     // need to store that users id in the book schema so i can reference that later on.
-//     const findUser = await User.findOne({ })
-//     console.log(findUser._id)
-// }
-
-// testBook()
-
 
 const catchDownloadedNote = () => {
     try {    
@@ -45,7 +35,6 @@ const catchDownloadedNote = () => {
         console.log(err)
     }
 }
-
 
 const parseBook = async (path) => {
     const results = []
@@ -96,8 +85,9 @@ const parsePdfBook = async (path) => {
             const { text } = data
             const pdfTitle = text.split('1')[1].split('by')[0]
             const pdfAuthor = text.split('1')[1].split('by')[1].split('Free')[0]
-            const pdfNotes = text.split('Page').slice(1).toString().split()
-            const cleanedNotes = pdfNotes.map(note =>
+            // const passedNotes = text.split('Page').slice(1).toString().split()
+            const passedNotes = text.split('Page').slice(1); // Split notes by page
+            const cleanedNotes = passedNotes.map(note =>
                 note
                 .replace(/^\s*\d+\s*$/gm, '')     // Removes lines that contain only a number, with optional spaces
                 .replace(/^\s*\|\s*/gm, '')       // Remove leading pipes and spaces
@@ -107,26 +97,23 @@ const parsePdfBook = async (path) => {
                 .replace(/^\s*\|\s*/gm, '')   
                 .replace(/\+/g, '')    
                 .trim()                  
-            )
+            ).filter(note => note.length > 0);
 
-            console.log(pdfTitle, pdfAuthor, cleanedNotes[0])
-
-            // console.log(title, author, test)
-
+            const pdfNotes = cleanedNotes.toString()
 
             // start of notes
-            // const matchingPdfBook = await Book.findOne({ title: pdfTitle }) 
-            // if (matchingPdfBook) {
-            //     console.log('PDF Book already exists')
-            // } else {
-            //     const pdfBook = new Book({
-            //         author: pdfAuthor, 
-            //         title: pdfTitle, 
-            //         notes: pdfNotes
-            //     })
-            //     await pdfBook.save() 
-            //     console.log("PDF Book saved in Mongoose")
-            // }
+            const matchingPdfBook = await Book.findOne({ title: pdfTitle }) 
+            if (matchingPdfBook) {
+                console.log('PDF Book already exists')
+            } else {
+                const pdfBook = new Book({
+                    author: pdfAuthor, 
+                    title: pdfTitle, 
+                    notes: cleanedNotes
+                })
+                await pdfBook.save() 
+                console.log("PDF Book saved in Mongoose")
+            }
         })
     } catch (err) {
         console.log(err.message)
