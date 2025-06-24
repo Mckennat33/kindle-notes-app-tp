@@ -7,6 +7,9 @@ require('dotenv').config({ path: '../.env' });
 const Books = require('../models/book.js')
 const nodemailer = require('nodemailer')
 const cron = require('node-cron');
+const moment = require('moment');
+// const express = require('express');
+const app = express();
 
 async function getAllNotes() {
     try {
@@ -105,22 +108,24 @@ async function getAllNotes() {
 
       //'30 6 * * *'
       function timeEmail() {
-        emailNotes();
-        schedule.scheduleJob('0 17 * * *', () => {
-          console.log('Email sent at', new Date().toLocaleString());
+        cron.schedule('30 6 * * *', () => {
+          // console.log('Email sent at', moment().tz('America/Chicago').format());
+          emailNotes();
+        }, {
+          scheduled: true,
+          timezone: 'America/Chicago'
         });
       }
-
+    
       timeEmail();
-
+    
     } catch (err) {
       console.error('Error fetching books:', err);
     }
-    // } finally {
-    //   await mongoose.connection.close(); 
-    // }
+  
   }
   
   getAllNotes();
   
+
 
