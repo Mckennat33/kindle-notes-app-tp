@@ -2,6 +2,7 @@
 const { app, BrowserWindow } = require('electron')
 const path = require('path')
 const isDev = require('electron-is-dev')
+// const path = require('node:path')
 
 function createWindow() {
   const win = new BrowserWindow({
@@ -9,9 +10,14 @@ function createWindow() {
     height: 700,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      preload: path.join(__dirname, 'home.js')
+      
     }
   })
+
+// ...
+
     
     win.loadFile('client/html/home.html')
 }

@@ -33,7 +33,7 @@ submitBook.addEventListener('submit', (event) => {
         "title": manTitle, 
         "notes": manNotes
     }
-    // alert('success')
+
     fetch(submitManualBook, {
         method: 'POST',
         headers: {

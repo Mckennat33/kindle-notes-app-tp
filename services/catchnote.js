@@ -97,9 +97,11 @@ const parsePdfBook = async (path) => {
                 .replace(/^\s*\|\s*/gm, '')   
                 .replace(/\+/g, '')    
                 .trim()                  
-            ).filter(note => note.length > 0);
+            ).filter(note => note.length > 0)
 
             const pdfNotes = cleanedNotes.toString()
+
+            console.log(cleanedNotes)
 
             // start of notes
             const matchingPdfBook = await Book.findOne({ title: pdfTitle }) 

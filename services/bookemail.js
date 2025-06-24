@@ -102,9 +102,10 @@ async function getAllNotes() {
         console.log("Message sent:", info.messageId);
       }
 
+      //'30 6 * * *'
       function timeEmail() {
-        schedule.scheduleJob('30 6 * * *', () => {
-          emailNotes();
+        emailNotes();
+        schedule.scheduleJob('0 17 * * *', () => {
           console.log('Email sent at', new Date().toLocaleString());
         });
       }
@@ -113,9 +114,10 @@ async function getAllNotes() {
 
     } catch (err) {
       console.error('Error fetching books:', err);
-    } finally {
-      await mongoose.connection.close(); 
     }
+    // } finally {
+    //   await mongoose.connection.close(); 
+    // }
   }
   
   getAllNotes();
