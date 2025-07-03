@@ -24,11 +24,10 @@ const getUserData = async (req, res) => {
         if(!token) return res.status(401).json({message: 'no token provided'})
 
         const decoded = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-        console.log(decoded)
 
-        const bookInfo = await Book.find({  })
-
-        console.log(bookInfo.userId)
+        const bookInfo = await Book.find({ userId: decoded.userId })
+        console.log(bookInfo)
+        // console.log(bookInfo.userId)
 
         res.json(bookInfo)
     } catch(err) {
