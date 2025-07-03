@@ -8,8 +8,7 @@ const Books = require('../models/book.js')
 const nodemailer = require('nodemailer')
 const cron = require('node-cron');
 const moment = require('moment');
-// const express = require('express');
-const app = express();
+
 
 async function getAllNotes() {
     try {
@@ -124,7 +123,7 @@ async function getAllNotes() {
     }
   
   }
-  
+
   getAllNotes();
   
 

@@ -47,7 +47,6 @@ const parseBook = async (path) => {
             console.log(results)
             const bookNotes = results.slice(7, results.length)
             const [{ "Your Kindle Notes For:": bookTitle }, { "Your Kindle Notes For:": author }] = results 
-            console.log(bookTitle, author) // booktile and author are undefined 
             const [{ "": notes }] = bookNotes
             const bookNotesArray = []
             bookNotes.map((notes) => {
@@ -60,6 +59,7 @@ const parseBook = async (path) => {
                 console.log("Book already exists")
 
             } else {
+                // before saving newBook we need to add the users id when we save
                 const newBook = new Book({
                     author: author, 
                     title: bookTitle, 
@@ -77,16 +77,12 @@ const parseBook = async (path) => {
 
 const parsePdfBook = async (path) => {
     try {
-
-        // try parsing data a differen way with try catch method 
-
         let dataBuffer = fs.readFileSync(path)
         pdf(dataBuffer).then(async (data) => {  
             const { text } = data
             const pdfTitle = text.split('1')[1].split('by')[0]
             const pdfAuthor = text.split('1')[1].split('by')[1].split('Free')[0]
-            // const passedNotes = text.split('Page').slice(1).toString().split()
-            const passedNotes = text.split('Page').slice(1); // Split notes by page
+            const passedNotes = text.split('Page').slice(1); 
             const cleanedNotes = passedNotes.map(note =>
                 note
                 .replace(/^\s*\d+\s*$/gm, '')     // Removes lines that contain only a number, with optional spaces
@@ -101,9 +97,6 @@ const parsePdfBook = async (path) => {
 
             const pdfNotes = cleanedNotes.toString()
 
-            console.log(cleanedNotes)
-
-            // start of notes
             const matchingPdfBook = await Book.findOne({ title: pdfTitle }) 
             if (matchingPdfBook) {
                 console.log('PDF Book already exists')
