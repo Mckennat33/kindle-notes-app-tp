@@ -64,6 +64,7 @@ const parseBook = async (path) => {
                     author: author, 
                     title: bookTitle, 
                     notes: bookNotesArray
+                    // Users ID - How to add Id variable 
                 })
                 console.log("Book saved in Mongoose")
                 await newBook.save()
@@ -97,6 +98,7 @@ const parsePdfBook = async (path) => {
 
             const pdfNotes = cleanedNotes.toString()
 
+            // need to ref: 'Author' to connect different models in mongoose 
             const matchingPdfBook = await Book.findOne({ title: pdfTitle }) 
             if (matchingPdfBook) {
                 console.log('PDF Book already exists')
@@ -105,6 +107,8 @@ const parsePdfBook = async (path) => {
                     author: pdfAuthor, 
                     title: pdfTitle, 
                     notes: cleanedNotes
+                    // Users ID - How to add Id variable 
+
                 })
                 await pdfBook.save() 
                 console.log("PDF Book saved in Mongoose")
