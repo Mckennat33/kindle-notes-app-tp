@@ -15,6 +15,7 @@ connectDB()
 
 const catchDownloadedNote = () => {
     try {    
+        // do I make this a variable? 
         const watcher = chokidar.watch('C:/Users/thoma/Downloads', 
             {
                 persistent: true, 
@@ -38,13 +39,13 @@ const catchDownloadedNote = () => {
 
 const parseBook = async (path) => {
     const results = []
-    console.log(User)
+    console.log(User._id)
     try {
         fs.createReadStream(path)
         .pipe(csv())
         .on('data', (data) => results.push(data))
         .on('end', async () => {
-            console.log(results)
+            // console.log(results)
             const bookNotes = results.slice(7, results.length)
             const [{ "Your Kindle Notes For:": bookTitle }, { "Your Kindle Notes For:": author }] = results 
             const [{ "": notes }] = bookNotes
@@ -60,10 +61,13 @@ const parseBook = async (path) => {
 
             } else {
                 // before saving newBook we need to add the users id when we save
+                const foundUser = await User.findOne({  })
                 const newBook = new Book({
                     author: author, 
                     title: bookTitle, 
-                    notes: bookNotesArray
+                    notes: bookNotesArray,
+                    userId: user._id
+                    // userId: 
                     // Users ID - How to add Id variable 
                 })
                 console.log("Book saved in Mongoose")
@@ -103,6 +107,7 @@ const parsePdfBook = async (path) => {
             if (matchingPdfBook) {
                 console.log('PDF Book already exists')
             } else {
+                const foudnUser = User.findOne({ }) // How to find logged in user
                 const pdfBook = new Book({
                     author: pdfAuthor, 
                     title: pdfTitle, 
