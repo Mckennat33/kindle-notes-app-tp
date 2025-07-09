@@ -13,9 +13,10 @@ const User = require("../models/user.js")
 const connectDB = require("../config/dbconn.js");
 connectDB()
 
+
+
 const catchDownloadedNote = () => {
     try {    
-        // do I make this a variable? 
         const watcher = chokidar.watch('C:/Users/thoma/Downloads', 
             {
                 persistent: true, 
@@ -39,13 +40,13 @@ const catchDownloadedNote = () => {
 
 const parseBook = async (path) => {
     const results = []
-    console.log(User._id)
+    // console.log(User._id)
     try {
+        console.log('hello')
         fs.createReadStream(path)
         .pipe(csv())
         .on('data', (data) => results.push(data))
         .on('end', async () => {
-            // console.log(results)
             const bookNotes = results.slice(7, results.length)
             const [{ "Your Kindle Notes For:": bookTitle }, { "Your Kindle Notes For:": author }] = results 
             const [{ "": notes }] = bookNotes
@@ -58,17 +59,12 @@ const parseBook = async (path) => {
             const matchingBook = await Book.findOne({ title: bookTitle })
             if (matchingBook) {
                 console.log("Book already exists")
-
             } else {
-                // before saving newBook we need to add the users id when we save
                 const foundUser = await User.findOne({  })
                 const newBook = new Book({
                     author: author, 
                     title: bookTitle, 
-                    notes: bookNotesArray,
-                    userId: user._id
-                    // userId: 
-                    // Users ID - How to add Id variable 
+                    notes: bookNotesArray
                 })
                 console.log("Book saved in Mongoose")
                 await newBook.save()
@@ -102,18 +98,15 @@ const parsePdfBook = async (path) => {
 
             const pdfNotes = cleanedNotes.toString()
 
-            // need to ref: 'Author' to connect different models in mongoose 
             const matchingPdfBook = await Book.findOne({ title: pdfTitle }) 
             if (matchingPdfBook) {
                 console.log('PDF Book already exists')
             } else {
-                const foudnUser = User.findOne({ }) // How to find logged in user
+                const foudnUser = User.findOne({ }) 
                 const pdfBook = new Book({
                     author: pdfAuthor, 
                     title: pdfTitle, 
                     notes: cleanedNotes
-                    // Users ID - How to add Id variable 
-
                 })
                 await pdfBook.save() 
                 console.log("PDF Book saved in Mongoose")
