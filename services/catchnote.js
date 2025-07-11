@@ -13,8 +13,6 @@ const User = require("../models/user.js")
 const connectDB = require("../config/dbconn.js");
 connectDB()
 
-
-
 const catchDownloadedNote = () => {
     try {    
         const watcher = chokidar.watch('C:/Users/thoma/Downloads', 
@@ -40,7 +38,6 @@ const catchDownloadedNote = () => {
 
 const parseBook = async (path) => {
     const results = []
-    // console.log(User._id)
     try {
         console.log('hello')
         fs.createReadStream(path)
@@ -102,7 +99,6 @@ const parsePdfBook = async (path) => {
             if (matchingPdfBook) {
                 console.log('PDF Book already exists')
             } else {
-                const foudnUser = User.findOne({ }) 
                 const pdfBook = new Book({
                     author: pdfAuthor, 
                     title: pdfTitle, 

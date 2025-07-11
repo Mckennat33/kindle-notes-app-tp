@@ -12,6 +12,7 @@ function loginUser(event) {
         try {
             const response = await fetch(loginServer, {
                 method: 'POST', 
+                credentials: 'include',
                 headers: { 
                     'Content-Type': 'application/json'
                 }, 

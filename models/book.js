@@ -11,12 +11,6 @@ const bookSchema = new mongoose.Schema({
         required: true,
     },
     notes: [ String ],
-    // userId: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'User', 
-    //     required: true
-    // },
-    
     dateAdded: {
         type: Date, 
         default: Date.now

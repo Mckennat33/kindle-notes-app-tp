@@ -1,5 +1,5 @@
-const { contextBridge } = require('electron');
+// const { contextBridge } = require('electron');
 
-contextBridge.exposeInMainWorld('api', {
-  hello: () => 'Hello from preload!'
-});
+// contextBridge.exposeInMainWorld('api', {
+//   hello: () => 'Hello from preload!'
+// });

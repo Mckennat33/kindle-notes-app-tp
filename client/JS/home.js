@@ -4,6 +4,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const fetchUserData = "http://localhost:80/home/data"
+    // const fetchUserData = "http://localhost:80/home"
 
     async function fetchData() {
         try {   
